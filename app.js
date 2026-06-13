@@ -1,6 +1,7 @@
 /* =========================
    INSTALL APP LOGIC
 ========================= */
+const API_BASE = "https://neetlession.onrender.com/ai";
 
 let deferredPrompt = null;
 
