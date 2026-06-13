@@ -90,7 +90,7 @@ if ("serviceWorker" in navigator) {
 }
 async function learn(topic){
 
-    const res = await fetch(API, {
+    const res = await fetch(API_BASE, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -107,7 +107,7 @@ async function learn(topic){
 }
 async function solve(question){
 
-    const res = await fetch(API, {
+    const res = await fetch(API_BASE, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
