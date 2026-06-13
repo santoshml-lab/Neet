@@ -88,6 +88,40 @@ if ("serviceWorker" in navigator) {
     });
 
 }
+async function learn(topic){
+
+    const res = await fetch(API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            type: "learn",
+            message: topic
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("output").innerHTML = data.reply;
+}
+async function solve(question){
+
+    const res = await fetch(API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            type: "solve",
+            message: question
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("output").innerHTML = data.reply;
+}
 
 /* =========================
    EXTERNAL LINKS
