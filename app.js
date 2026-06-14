@@ -11,18 +11,33 @@ let deferredPrompt = null;
 ========================= */
 
 // 🔴 ADD YOUR FIREBASE CONFIG HERE
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB8BXZtnmsKy9QSVeTl1JdcF3mux9fvBnc",
+  authDomain: "neet-learning-f9c15.firebaseapp.com",
+  projectId: "neet-learning-f9c15",
+  storageBucket: "neet-learning-f9c15.firebasestorage.app",
+  messagingSenderId: "608606527229",
+  appId: "1:608606527229:web:7e26a9937605cbafb92894",
+  measurementId: "G-368FE6VXR9"
 };
 
-// init firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+    
+    
+    
+    
+
+
 
 /* =========================
    INSTALL APP LOGIC
