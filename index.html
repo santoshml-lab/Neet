@@ -1,22 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NEET Learning Hub</title>
 
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
-
 <meta name="theme-color" content="#020617">
 
 </head>
@@ -24,304 +19,155 @@ rel="stylesheet">
 <body>
 
 <div class="glow"></div>
-
 <div class="glow2"></div>
 
 <header>
 
-    <div class="logo">
-
-        🩺 NEET Learning Hub
-
-    </div>
+    <div class="logo">🩺 NEET Learning Hub</div>
 
     <nav class="nav">
-
-        
-<a href="index.html">Home</a>
-
-<a href="learn.html">Learn</a>
-
-<a href="solve.html">Solve</a>
-
-<a href="#">NEET</a>
-           
-
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="solve.html">Solve</a>
+        <a href="#">NEET</a>
     </nav>
 
 </header>
 
 <!-- INSTALL BUTTON -->
-
 <div class="install-wrapper">
 
-    <button
-    id="installBtn"
-    class="install-btn">
-
+    <button id="installBtn" class="install-btn">
         📲 Install App
-
     </button>
 
 </div>
 
-<!-- HERO SECTION -->
-
+<!-- HERO -->
 <section class="hero">
 
     <h1>
-
         Crack <span>NEET</span><br>
-
         Become a <span>Future Doctor</span>
-
     </h1>
 
     <p>
-
-        Learn Smart. Solve Faster.
-        Your AI-powered companion
-        for NEET preparation.
-
+        Learn Smart. Solve Faster.<br>
+        Your AI-powered companion for NEET preparation.
     </p>
 
     <div class="hero-buttons">
 
         <a href="learn.html" class="btn primary">
-
             📚 Start Learning
-
         </a>
 
         <a href="solve.html" class="btn secondary">
-
             🧠 Practice Questions
-
         </a>
 
     </div>
 
 </section>
 
-    
-
-    
-    <!-- =========================
-     STATS SECTION
+<!-- =========================
+     CHATGPT STYLE QUICK AI BOX
 ========================= -->
 
-<section class="stats">
+<section class="ai-box">
 
-    <div class="stat-card">
+    <h2 class="section-title">🤖 AI Assistant</h2>
 
-        <h2>24×7</h2>
+    <div class="input-box">
 
-        <p>AI Mentor</p>
+        <h3>Ask Anything (NEET Doubts)</h3>
+
+        <input id="chatInput" type="text" placeholder="Type your question...">
+
+        <div style="margin-top:10px;">
+
+            <button class="btn primary"
+                onclick="learn(document.getElementById('chatInput').value)">
+                📚 Learn
+            </button>
+
+            <button class="btn secondary"
+                onclick="solve(document.getElementById('chatInput').value)">
+                🧠 Solve
+            </button>
+
+        </div>
 
     </div>
 
-    <div class="stat-card">
-
-        <h2>720</h2>
-
-        <p>NEET Target Score</p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h2>∞</h2>
-
-        <p>Practice Questions</p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h2>AI</h2>
-
-        <p>Instant Explanations</p>
-
+    <div id="output" class="output-box">
+        <h3>🤖 AI Response</h3>
+        <p>Your answer will appear here...</p>
     </div>
 
 </section>
 
+<!-- STATS -->
+<section class="stats">
 
-<!-- =========================
-     LEARNING ECOSYSTEM
-========================= -->
+    <div class="stat-card"><h2>24×7</h2><p>AI Mentor</p></div>
+    <div class="stat-card"><h2>720</h2><p>NEET Target Score</p></div>
+    <div class="stat-card"><h2>∞</h2><p>Practice Questions</p></div>
+    <div class="stat-card"><h2>AI</h2><p>Instant Explanations</p></div>
 
-<h2 class="section-title">
+</section>
 
-    🩺 NEET Learning Ecosystem
-
-</h2>
-
+<!-- FEATURES -->
+<h2 class="section-title">🩺 NEET Learning Ecosystem</h2>
 
 <section class="features">
 
-    <!-- LEARN -->
+    <div class="feature-card">
+        <h3>📚 Learn</h3>
+        <p>AI-generated structured lessons for NEET.</p>
+        <a href="learn.html">Open Learning Hub</a>
+    </div>
 
-    <!-- LEARN -->
-
-<div class="feature-card">
-
-    <h3>📚 Learn</h3>
-
-    <p>
-
-        Master Biology,
-        Chemistry and Physics
-        using AI-generated lessons,
-        revision notes,
-        formulas and concept explanations.
-
-    </p>
-
-    <a href="learn.html">
-
-        Open Learning Hub
-
-    </a>
-
-</div>
-
-
-<!-- SOLVE -->
-
-<div class="feature-card">
-
-    <h3>🧠 Solve</h3>
-
-    <p>
-
-        Practice chapter-wise MCQs,
-        solve PYQs,
-        understand explanations,
-        and improve accuracy.
-
-    </p>
-
-    <a href="solve.html">
-
-        Open Practice Hub
-
-    </a>
-
-</div>
-         
+    <div class="feature-card">
+        <h3>🧠 Solve</h3>
+        <p>Step-by-step MCQ solving system.</p>
+        <a href="solve.html">Open Practice Hub</a>
+    </div>
 
 </section>
-    
-     
 
-
-
-    
-
-
-
-    
-    
-
-    
-          
-    
-    <!-- =========================
-     CORE SUBJECTS
-========================= -->
-
-<h2 class="section-title">
-
-    🧬 Core Subjects
-
-</h2>
+<!-- SUBJECTS -->
+<h2 class="section-title">🧬 Core Subjects</h2>
 
 <section class="subjects">
 
     <div class="subject">
-
         <h2>🧬 Biology</h2>
-
-        <p>
-
-            Human Physiology,
-            Genetics,
-            Ecology,
-            Biotechnology,
-            Reproduction
-
-        </p>
-
+        <p>Human Physiology, Genetics, Ecology</p>
     </div>
 
-
     <div class="subject">
-
         <h2>🧪 Chemistry</h2>
-
-        <p>
-
-            Physical Chemistry,
-            Organic Chemistry,
-            Inorganic Chemistry
-
-        </p>
-
+        <p>Physical, Organic, Inorganic</p>
     </div>
 
-
     <div class="subject">
-
         <h2>⚛ Physics</h2>
-
-        <p>
-
-            Mechanics,
-            Modern Physics,
-            Thermodynamics,
-            Electrodynamics
-
-        </p>
-
+        <p>Mechanics, Thermodynamics, Modern Physics</p>
     </div>
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
+<!-- FOOTER -->
 <div class="footer">
 
-    <h3>
-
-        🩺 NEET Learning Hub
-
-    </h3>
-
-    <p>
-
-        Built for Future Doctors ❤️
-
-    </p>
-
-    <p>
-
-        Learn Smart • Solve Faster • Crack NEET
-
-    </p>
+    <h3>🩺 NEET Learning Hub</h3>
+    <p>Built for Future Doctors ❤️</p>
+    <p>Learn Smart • Solve Faster • Crack NEET</p>
 
 </div>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
