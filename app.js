@@ -88,23 +88,64 @@ if ("serviceWorker" in navigator) {
     });
 
 }
-async function learn(topic){
 
-    const res = await fetch(API_BASE, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            type: "learn",
-            message: topic
-        })
-    });
+  async function learn(topic){
 
-    const data = await res.json();
+    if(!topic){
+        alert("📚 Please enter a topic.");
+        return;
+    }
 
-    document.getElementById("output").innerHTML = data.reply;
-}
+    const loading =
+    document.getElementById("loading");
+
+    const output =
+    document.getElementById("output");
+
+    if(loading){
+        loading.style.display = "block";
+    }
+
+    output.innerHTML =
+    "🤖 Generating your lesson...";
+
+    try{
+
+        const res = await fetch(API_BASE, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "learn",
+                message: topic
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+        data.reply || "No lesson generated.";
+
+    }
+
+    catch(err){
+
+        output.innerHTML =
+        "❌ Failed to generate lesson.";
+
+        console.log(err);
+
+    }
+
+    if(loading){
+        loading.style.display = "none";
+    }
+} 
+
+    
+
+    
 async function solve(question){
 
     const res = await fetch(API_BASE, {
