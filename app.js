@@ -151,21 +151,60 @@ marked.parse(
     
 async function solve(question){
 
-    const res = await fetch(API_BASE, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            type: "solve",
-            message: question
-        })
-    });
+    const output =
+    document.getElementById("output");
 
-    const data = await res.json();
+    const loading =
+    document.getElementById("loading");
 
-    document.getElementById("output").innerHTML = data.reply;
+    if(!question){
+        alert("Enter question");
+        return;
+    }
+
+    if(loading){
+        loading.style.display = "block";
+    }
+
+    output.innerHTML = "Solving...";
+
+    try{
+
+        const res = await fetch(API_BASE, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "solve",
+                message: question
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+        marked.parse(data.reply || "").replace(/\n/g, "<br>");
+
+    }
+
+    catch(err){
+
+        output.innerHTML =
+        "Error while solving";
+
+        console.log(err);
+
+    }
+
+    if(loading){
+        loading.style.display = "none";
+    }
 }
+        
+      
+
+    
 
 /* =========================
    EXTERNAL LINKS
