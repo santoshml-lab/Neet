@@ -125,7 +125,10 @@ if ("serviceWorker" in navigator) {
         const data = await res.json();
 
         output.innerHTML =
-        data.reply || "No lesson generated.";
+marked.parse(
+    data.reply || "No lesson generated."
+);
+        
 
     }
 
