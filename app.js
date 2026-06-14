@@ -7,6 +7,24 @@ const API_BASE = "https://neetlession.onrender.com/ai";
 let deferredPrompt = null;
 
 /* =========================
+   FIREBASE SETUP (NEW 🔥)
+========================= */
+
+// 🔴 ADD YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// init firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+/* =========================
    INSTALL APP LOGIC
 ========================= */
 
@@ -64,7 +82,7 @@ if ("serviceWorker" in navigator) {
 }
 
 /* =========================
-   LEARN FUNCTION
+   LEARN FUNCTION (UPDATED 🔥)
 ========================= */
 
 async function learn(topic){
@@ -98,8 +116,19 @@ async function learn(topic){
 
         const data = await res.json();
 
-        output.innerHTML =
-        marked.parse(data.reply || "No response");
+        const lesson = data.reply || "No response";
+
+        output.innerHTML = marked.parse(lesson);
+
+        /* =========================
+           FIREBASE SAVE (NEW)
+        ========================= */
+
+        db.collection("learn").add({
+            topic: topic,
+            reply: lesson,
+            time: new Date()
+        });
 
     }
     catch(err){
@@ -115,7 +144,7 @@ async function learn(topic){
 }
 
 /* =========================
-   SOLVE FUNCTION (CHATGPT STYLE)
+   SOLVE FUNCTION (UPDATED 🔥)
 ========================= */
 
 async function solve(question){
@@ -149,8 +178,19 @@ async function solve(question){
 
         const data = await res.json();
 
-        output.innerHTML =
-        marked.parse(data.reply || "");
+        const answer = data.reply || "";
+
+        output.innerHTML = marked.parse(answer);
+
+        /* =========================
+           FIREBASE SAVE (NEW)
+        ========================= */
+
+        db.collection("solve").add({
+            question: question,
+            reply: answer,
+            time: new Date()
+        });
 
     }
     catch(err){
