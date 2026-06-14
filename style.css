@@ -1,633 +1,382 @@
+
 /* =========================
    RESET
 ========================= */
 
 *{
-
     margin:0;
-
     padding:0;
-
     box-sizing:border-box;
-
     font-family:'Poppins',sans-serif;
-
 }
-
 
 /* =========================
    BODY
 ========================= */
 
 body{
-
     background:
     radial-gradient(circle at top left,#10B98125,transparent 25%),
     radial-gradient(circle at bottom right,#06B6D425,transparent 25%),
     #020617;
 
     color:white;
-
     overflow-x:hidden;
-
 }
-
 
 /* =========================
    GLOW EFFECTS
 ========================= */
 
 .glow{
-
     position:fixed;
-
     width:500px;
-
     height:500px;
-
     background:#10B98120;
-
     filter:blur(140px);
-
     top:-120px;
-
     left:-120px;
-
     z-index:-1;
-
 }
 
 .glow2{
-
     position:fixed;
-
     width:500px;
-
     height:500px;
-
     background:#06B6D420;
-
     filter:blur(140px);
-
     bottom:-120px;
-
     right:-120px;
-
     z-index:-1;
-
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
 header{
-
     padding:30px 20px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     backdrop-filter:blur(20px);
-
     background:rgba(255,255,255,.04);
-
     border-bottom:1px solid rgba(255,255,255,.08);
-
     position:sticky;
-
     top:0;
-
     z-index:999;
-
 }
-
 
 /* =========================
    LOGO
 ========================= */
 
 .logo{
-
     font-size:28px;
-
     font-weight:700;
-
     color:#10B981;
-
 }
 
-
 /* =========================
-   NAVIGATION
+   NAV
 ========================= */
 
 .nav{
-
     display:flex;
-
     gap:20px;
-
 }
 
 .nav a{
-
     text-decoration:none;
-
     color:white;
-
     opacity:.85;
-
     transition:.3s;
-
 }
 
 .nav a:hover{
-
     color:#10B981;
-
 }
+
 /* =========================
    INSTALL BUTTON
 ========================= */
 
 .install-wrapper{
-
     text-align:center;
-
     margin-top:20px;
-
 }
 
 .install-btn{
-
     padding:14px 24px;
-
     border:none;
-
     border-radius:16px;
-
     cursor:pointer;
-
     font-size:15px;
-
     font-weight:600;
-
     color:#020617;
-
-    background:linear-gradient(
-        45deg,
-        #10B981,
-        #06B6D4
-    );
-
-    box-shadow:
-        0 0 30px rgba(16,185,129,.35);
-
+    background:linear-gradient(45deg,#10B981,#06B6D4);
+    box-shadow:0 0 30px rgba(16,185,129,.35);
     transition:.3s;
-
 }
 
 .install-btn:hover{
-
     transform:translateY(-4px);
-
-    box-shadow:
-        0 0 40px rgba(16,185,129,.55);
-
+    box-shadow:0 0 40px rgba(16,185,129,.55);
 }
 
-
 /* =========================
-   HERO SECTION
+   HERO
 ========================= */
 
 .hero{
-
     padding:80px 20px;
-
     text-align:center;
-
 }
 
 .hero h1{
-
     font-size:60px;
-
     font-weight:700;
-
     line-height:1.3;
-
 }
 
 .hero span{
-
     color:#10B981;
-
 }
 
 .hero p{
-
     margin-top:20px;
-
     font-size:18px;
-
     opacity:.8;
-
 }
 
-
 /* =========================
-   HERO BUTTONS
+   BUTTONS
 ========================= */
 
 .hero-buttons{
-
     margin-top:40px;
-
     display:flex;
-
     justify-content:center;
-
     gap:20px;
-
     flex-wrap:wrap;
-
 }
 
 .btn{
-
     padding:16px 28px;
-
     border:none;
-
     border-radius:16px;
-
     cursor:pointer;
-
     font-weight:600;
-
     font-size:16px;
-
     text-decoration:none;
-
     transition:.3s;
-
 }
 
-
-/* PRIMARY BUTTON */
-
 .primary{
-
-    background:linear-gradient(
-        45deg,
-        #10B981,
-        #06B6D4
-    );
-
+    background:linear-gradient(45deg,#10B981,#06B6D4);
     color:#020617;
-
-    box-shadow:
-        0 0 30px rgba(16,185,129,.35);
-
+    box-shadow:0 0 30px rgba(16,185,129,.35);
 }
 
 .primary:hover{
-
     transform:translateY(-5px);
-
 }
 
-
-/* SECONDARY BUTTON */
-
 .secondary{
-
     background:rgba(255,255,255,.06);
-
     color:white;
-
     border:1px solid rgba(255,255,255,.08);
-
 }
 
 .secondary:hover{
-
     transform:translateY(-5px);
-
     background:rgba(255,255,255,.10);
-
 }
+
 /* =========================
-   STATS SECTION
+   STATS
 ========================= */
 
 .stats{
-
     width:95%;
     max-width:1300px;
-
     margin:auto;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-
     padding:20px;
-
 }
 
 .stat-card{
-
     background:rgba(255,255,255,.05);
-
     border:1px solid rgba(255,255,255,.08);
-
     backdrop-filter:blur(20px);
-
     padding:25px;
-
     border-radius:24px;
-
     text-align:center;
-
     transition:.3s;
-
 }
 
 .stat-card:hover{
-
     transform:translateY(-6px);
-
-    box-shadow:
-    0 0 30px rgba(16,185,129,.25);
-
+    box-shadow:0 0 30px rgba(16,185,129,.25);
 }
 
 .stat-card h2{
-
     font-size:34px;
-
     color:#10B981;
-
 }
 
 .stat-card p{
-
     margin-top:10px;
-
     opacity:.8;
-
 }
 
-
 /* =========================
-   SECTION TITLES
+   TITLES
 ========================= */
 
 .section-title{
-
     text-align:center;
-
-    margin-top:60px;
-    margin-bottom:30px;
-
+    margin:60px 0 30px;
     font-size:38px;
-
     font-weight:700;
-
 }
-
 
 /* =========================
    FEATURES
 ========================= */
 
 .features{
-
     width:95%;
     max-width:1300px;
-
     margin:auto;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
-
     padding-bottom:30px;
-
 }
 
 .feature-card{
-
     background:rgba(255,255,255,.05);
-
     border:1px solid rgba(255,255,255,.08);
-
     backdrop-filter:blur(20px);
-
     padding:30px;
-
     border-radius:24px;
-
     transition:.3s;
-
 }
 
 .feature-card:hover{
-
     transform:translateY(-6px);
-
-    box-shadow:
-    0 0 30px rgba(16,185,129,.25);
-
+    box-shadow:0 0 30px rgba(16,185,129,.25);
 }
 
 .feature-card h3{
-
     font-size:26px;
-
     color:#10B981;
-
     margin-bottom:15px;
-
 }
 
 .feature-card p{
-
     opacity:.85;
-
     line-height:1.8;
-
 }
 
 .feature-card a{
-
     display:inline-block;
-
     margin-top:20px;
-
     padding:14px 22px;
-
     border-radius:14px;
-
     background:#10B981;
-
     color:#020617;
-
     font-weight:600;
-
     text-decoration:none;
-
 }
-
 
 /* =========================
    SUBJECTS
 ========================= */
 
 .subjects{
-
     width:95%;
     max-width:1300px;
-
     margin:auto;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
-
 }
 
 .subject{
-
     padding:30px;
-
     text-align:center;
-
     border-radius:24px;
-
     background:rgba(255,255,255,.05);
-
     border:1px solid rgba(255,255,255,.08);
-
     backdrop-filter:blur(20px);
-
     transition:.3s;
-
 }
 
 .subject:hover{
-
     transform:scale(1.03);
-
 }
 
 .subject h2{
-
     font-size:30px;
-
     margin-bottom:10px;
-
 }
 
 .subject p{
-
     opacity:.8;
-
 }
-
 
 /* =========================
    FOOTER
 ========================= */
 
 .footer{
-
     margin-top:80px;
-
     padding:40px;
-
     text-align:center;
-
     background:rgba(255,255,255,.04);
-
     border-top:1px solid rgba(255,255,255,.08);
-
 }
 
 .footer h3{
-
     color:#10B981;
-
     margin-bottom:10px;
-
 }
 
 .footer p{
-
     opacity:.8;
-
     margin-top:8px;
-
 }
 
-
 /* =========================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ========================= */
 
 @media(max-width:900px){
-
     header{
-
         flex-direction:column;
-
         gap:15px;
-
     }
 
     .hero h1{
-
         font-size:42px;
-
     }
-
 }
 
 @media(max-width:600px){
-
     .hero h1{
-
         font-size:34px;
-
     }
 
     .hero-buttons{
-
         flex-direction:column;
-
     }
 
     .btn,
     .install-btn{
-
         width:100%;
-
     }
-
 }
