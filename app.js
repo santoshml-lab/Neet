@@ -130,23 +130,19 @@ async function learn(topic){
            FIREBASE SAVE (NEW)
         ========================= */
 
-        db.collection("learn").add({
-            topic: topic,
-            reply: lesson,
-            time: new Date()
-        });
+        try {
+    await db.collection("learn").add({
+        topic: topic,
+        reply: lesson,
+        time: new Date()
+    });
 
-    }
-    catch(err){
+    console.log("✅ Learn Saved");
+    alert("✅ Learn Saved");
 
-        console.log(err);
-        output.innerHTML = "❌ Failed to generate lesson";
-
-    }
-
-    if(loading){
-        loading.style.display = "none";
-    }
+} catch (err) {
+    console.log("❌ Firestore Error:", err);
+    alert("❌ Firestore Error: " + err.message);
 }
 
 /* =========================
@@ -192,24 +188,23 @@ async function solve(question){
            FIREBASE SAVE (NEW)
         ========================= */
 
-        db.collection("solve").add({
-            question: question,
-            reply: answer,
-            time: new Date()
-        });
+        try {
+    await db.collection("solve").add({
+        question: question,
+        reply: answer,
+        time: new Date()
+    });
 
-    }
-    catch(err){
+    console.log("✅ Solve Saved");
+    alert("✅ Solve Saved");
 
-        console.log(err);
-        output.innerHTML = "❌ Error while solving";
-
-    }
-
-    if(loading){
-        loading.style.display = "none";
-    }
+} catch (err) {
+    console.log("❌ Firestore Error:", err);
+    alert("❌ Firestore Error: " + err.message);
 }
+            
+            
+    
 
 /* =========================
    EXTERNAL LINKS
