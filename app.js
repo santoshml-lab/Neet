@@ -1,6 +1,7 @@
 /* =========================
    CONFIG
 ========================= */
+alert("APP LOADED");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
@@ -89,6 +90,7 @@ if ("serviceWorker" in navigator) {
 ========================= */
 
 async function learn(topic){
+   alert("LEARN FUNCTION STARTED");
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
@@ -126,6 +128,7 @@ async function learn(topic){
         /* =========================
            FIREBASE SAVE (NEW)
         ========================= */
+       alert("ABOUT TO SAVE FIREBASE");
 
         try {
     await db.collection("learn").add({
