@@ -111,8 +111,7 @@ async function learn(topic){
         output.innerHTML = marked.parse(lesson);
 
         alert("ABOUT TO SAVE SUPABASE");
-
-const { data, error } = await supabase
+        const { data: savedData, error } = await supabase
     .from("learn")
     .insert([
         {
@@ -122,7 +121,12 @@ const { data, error } = await supabase
     ])
     .select();
 
-alert(JSON.stringify({ data, error }));
+alert(JSON.stringify({
+    savedData,
+    error
+}));
+
+
 
 if (error) {
     throw error;
