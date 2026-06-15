@@ -7,21 +7,16 @@ const API_BASE = "https://neetlession.onrender.com/ai";
 let deferredPrompt = null;
 
 /* =========================
-   FIREBASE SETUP
+   SUPABASE SETUP
 ========================= */
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB8BXZtnmsKy9QSVeTl1JdcF3mux9fvBnc",
-  authDomain: "neet-learning-f9c15.firebaseapp.com",
-  projectId: "neet-learning-f9c15",
-  storageBucket: "neet-learning-f9c15.firebasestorage.app",
-  messagingSenderId: "608606527229",
-  appId: "1:608606527229:web:7e26a9937605cbafb92894",
-  measurementId: "G-368FE6VXR9"
-};
+const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
+const supabaseKey = "sb_publishable_075JKJ0rhGQEGGluslpLMw_N14-S_cJ";
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
 
 /* =========================
    INSTALL APP LOGIC
@@ -110,13 +105,20 @@ async function learn(topic){
 
         output.innerHTML = marked.parse(lesson);
 
-        alert("ABOUT TO SAVE FIREBASE");
+        alert("ABOUT TO SAVE SUPABASE");
 
-        await db.collection("learn").add({
-            topic: topic,
-            reply: lesson,
-            time: new Date()
-        });
+        const { error } = await supabase
+            .from("learn")
+            .insert([
+                {
+                    topic: topic,
+                    reply: lesson
+                }
+            ]);
+
+        if(error){
+            throw error;
+        }
 
         console.log("✅ Learn Saved");
         alert("✅ Learn Saved");
@@ -166,11 +168,18 @@ async function solve(question){
 
         output.innerHTML = marked.parse(answer);
 
-        await db.collection("solve").add({
-            question: question,
-            reply: answer,
-            time: new Date()
-        });
+        const { error } = await supabase
+            .from("learn")
+            .insert([
+                {
+                    topic: question,
+                    reply: answer
+                }
+            ]);
+
+        if(error){
+            throw error;
+        }
 
         console.log("✅ Solve Saved");
         alert("✅ Solve Saved");
@@ -190,3 +199,4 @@ async function solve(question){
 function openLink(url){
     window.open(url, "_blank");
 }
+
