@@ -111,9 +111,25 @@ async function learn(topic){
         output.innerHTML = marked.parse(lesson);
 
         alert("ABOUT TO SAVE SUPABASE");
-    
-        console.log("✅ Learn Saved");
-        alert("✅ Learn Saved");
+
+const { data, error } = await supabase
+    .from("learn")
+    .insert([
+        {
+            topic: topic,
+            reply: lesson
+        }
+    ])
+    .select();
+
+alert(JSON.stringify({ data, error }));
+
+if (error) {
+    throw error;
+}
+
+console.log("✅ Learn Saved");
+alert("✅ Learn Saved");
 
     } catch(err){
         console.log("❌ Learn Error:", err);
