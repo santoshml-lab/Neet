@@ -1,6 +1,4 @@
-/* =========================
-   CONFIG
-========================= */
+
 alert("APP LOADED");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
@@ -8,7 +6,7 @@ const API_BASE = "https://neetlession.onrender.com/ai";
 let deferredPrompt = null;
 
 /* =========================
-   FIREBASE SETUP (NEW 🔥)
+   FIREBASE SETUP
 ========================= */
 
 const firebaseConfig = {
@@ -22,23 +20,16 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
-    
-      
-
 
 /* =========================
    INSTALL APP LOGIC
 ========================= */
 
 window.addEventListener("beforeinstallprompt", (e) => {
-
     e.preventDefault();
     deferredPrompt = e;
-
     console.log("✅ PWA Install Ready");
-
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -74,23 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================= */
 
 if ("serviceWorker" in navigator) {
-
     window.addEventListener("load", () => {
-
         navigator.serviceWorker.register("./service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch(err => console.log("❌ SW Error:", err));
-
     });
-
 }
 
 /* =========================
-   LEARN FUNCTION (UPDATED 🔥)
+   LEARN FUNCTION
 ========================= */
 
 async function learn(topic){
-   alert("LEARN FUNCTION STARTED");
+
+    alert("LEARN FUNCTION STARTED");
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
@@ -100,10 +88,7 @@ async function learn(topic){
         return;
     }
 
-    if(loading){
-        loading.style.display = "block";
-    }
-
+    loading.style.display = "block";
     output.innerHTML = "🤖 Generating lesson...";
 
     try{
@@ -120,36 +105,36 @@ async function learn(topic){
         });
 
         const data = await res.json();
-
         const lesson = data.reply || "No response";
 
         output.innerHTML = marked.parse(lesson);
 
-        /* =========================
-           FIREBASE SAVE (NEW)
-        ========================= */
-       alert("ABOUT TO SAVE FIREBASE");
+        alert("ABOUT TO SAVE FIREBASE");
 
-        try {
-    await db.collection("learn").add({
-        topic: topic,
-        reply: lesson,
-        time: new Date()
-    });
+        await db.collection("learn").add({
+            topic: topic,
+            reply: lesson,
+            time: new Date()
+        });
 
-    console.log("✅ Learn Saved");
-    alert("✅ Learn Saved");
+        console.log("✅ Learn Saved");
+        alert("✅ Learn Saved");
 
-} catch (err) {
-    console.log("❌ Firestore Error:", err);
-    alert("❌ Firestore Error: " + err.message);
+    } catch(err){
+        console.log("❌ Learn Error:", err);
+        alert("❌ Learn Error: " + err.message);
+    }
+
+    loading.style.display = "none";
 }
 
 /* =========================
-   SOLVE FUNCTION (UPDATED 🔥)
+   SOLVE FUNCTION
 ========================= */
 
 async function solve(question){
+
+    alert("SOLVE FUNCTION STARTED");
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
@@ -159,10 +144,7 @@ async function solve(question){
         return;
     }
 
-    if(loading){
-        loading.style.display = "block";
-    }
-
+    loading.style.display = "block";
     output.innerHTML = "🧠 Solving...";
 
     try{
@@ -179,32 +161,26 @@ async function solve(question){
         });
 
         const data = await res.json();
-
         const answer = data.reply || "";
 
         output.innerHTML = marked.parse(answer);
 
-        /* =========================
-           FIREBASE SAVE (NEW)
-        ========================= */
+        await db.collection("solve").add({
+            question: question,
+            reply: answer,
+            time: new Date()
+        });
 
-        try {
-    await db.collection("solve").add({
-        question: question,
-        reply: answer,
-        time: new Date()
-    });
+        console.log("✅ Solve Saved");
+        alert("✅ Solve Saved");
 
-    console.log("✅ Solve Saved");
-    alert("✅ Solve Saved");
+    } catch(err){
+        console.log("❌ Solve Error:", err);
+        alert("❌ Solve Error: " + err.message);
+    }
 
-} catch (err) {
-    console.log("❌ Firestore Error:", err);
-    alert("❌ Firestore Error: " + err.message);
+    loading.style.display = "none";
 }
-            
-            
-    
 
 /* =========================
    EXTERNAL LINKS
