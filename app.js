@@ -13,10 +13,24 @@ let deferredPrompt = null;
 const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
 const supabaseKey = "sb_publishable_075JKJ0rhGQEGGluslpLMw_N14-S_cJ";
 
-const supabase = window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
-);
+let supabase = null;
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    if (!window.supabase) {
+        alert("❌ Supabase library not loaded");
+        console.error("Supabase library missing");
+        return;
+    }
+
+    supabase = window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
+
+    console.log("✅ Supabase Initialized");
+});
+
 
 /* =========================
    INSTALL APP LOGIC
