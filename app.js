@@ -1,4 +1,5 @@
-
+alert("TEST 1");
+console.log("TEST 2");
 alert("APP LOADED");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
