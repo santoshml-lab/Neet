@@ -1,6 +1,10 @@
-alert("TEST 1");
-console.log("TEST 2");
-alert("APP LOADED");
+alert("JS START");
+
+if (!window.supabase) {
+    alert("SUPABASE NOT FOUND");
+} else {
+    alert("SUPABASE FOUND");
+}
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
@@ -10,26 +14,26 @@ let deferredPrompt = null;
    SUPABASE SETUP
 ========================= */
 
-const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
-const supabaseKey = "sb_publishable_075JKJ0rhGQEGGluslpLMw_N14-S_cJ";
+//const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
+//const supabaseKey = "sb_publishable_075JKJ0rhGQEGGluslpLMw_N14-S_cJ";
 
-let supabase = null;
+//let supabase = null;
 
-window.addEventListener("DOMContentLoaded", () => {
+//window.addEventListener("DOMContentLoaded", () => {
 
-    if (!window.supabase) {
-        alert("❌ Supabase library not loaded");
-        console.error("Supabase library missing");
-        return;
-    }
+    //if (!window.supabase) {
+        //alert("❌ Supabase library not loaded");
+      //  console.error("Supabase library missing");
+       // return;
+    //}
 
-    supabase = window.supabase.createClient(
-        supabaseUrl,
-        supabaseKey
-    );
+   // supabase = window.supabase.createClient(
+       // supabaseUrl,
+        //supabaseKey
+   // );
 
-    console.log("✅ Supabase Initialized");
-});
+    //console.log("✅ Supabase Initialized");
+//});
 
 
 /* =========================
