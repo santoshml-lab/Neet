@@ -14,7 +14,7 @@ let deferredPrompt = null;
    SUPABASE SETUP
 ========================= */
 const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
-const supabaseKey = "sb_publishable_075JKJ0rhGQEGGluslpLMw_N14-S_cJ";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0";
 
 const supabase = window.supabase.createClient(
     supabaseUrl,
