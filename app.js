@@ -1,11 +1,4 @@
-
 alert("JS START");
-
-if (!window.supabase) {
-    alert("SUPABASE NOT FOUND");
-} else {
-    alert("SUPABASE FOUND");
-}
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
@@ -13,26 +6,31 @@ let deferredPrompt = null;
 let supabase = null;
 
 /* =========================
-   SUPABASE SETUP (FIXED SAFE)
+   INIT SUPABASE SAFE WAY
 ========================= */
 
-window.addEventListener("DOMContentLoaded", () => {
+function initSupabase(){
 
     if (!window.supabase) {
-        alert("SUPABASE NOT FOUND");
-        return;
+        console.log("Supabase library missing");
+        return false;
     }
 
     supabase = window.supabase.createClient(
         "https://ivwolfnwzrcvcwkobyzl.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0"
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0";
+
     );
 
-    console.log("✅ Supabase Initialized");
-});
+    console.log("Supabase Ready");
+    return true;
+}
+
+/* run init immediately */
+initSupabase();
 
 /* =========================
-   INSTALL APP LOGIC
+   PWA INSTALL
 ========================= */
 
 window.addEventListener("beforeinstallprompt", (e) => {
@@ -47,42 +45,38 @@ window.addEventListener("beforeinstallprompt", (e) => {
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js")
-        .then(() => console.log("✅ Service Worker Registered"))
-        .catch(err => console.log("❌ SW Error:", err));
+        .then(() => console.log("SW OK"))
+        .catch(err => console.log(err));
     });
 }
 
 /* =========================
-   LEARN FUNCTION (FINAL FIXED)
+   LEARN FUNCTION (FINAL STABLE)
 ========================= */
 
 async function learn(topic){
 
-    alert("LEARN FUNCTION STARTED");
+    alert("LEARN START");
 
-    if(!supabase){
-        alert("Supabase not ready");
-        return;
+    if (!supabase) {
+        const ok = initSupabase();
+        if (!ok) {
+            alert("Supabase not loaded");
+            return;
+        }
     }
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
 
-    if(!topic){
-        alert("📚 Please enter a topic");
-        return;
-    }
-
     loading.style.display = "block";
-    output.innerHTML = "🤖 Generating lesson...";
+    output.innerHTML = "Loading...";
 
     try{
 
         const res = await fetch(API_BASE, {
             method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
+            headers:{ "Content-Type":"application/json" },
             body: JSON.stringify({
                 type:"learn",
                 message:topic
@@ -94,9 +88,6 @@ async function learn(topic){
 
         output.innerHTML = marked.parse(lesson);
 
-        alert("ABOUT TO SAVE SUPABASE");
-
-        /* 🔥 FINAL DEBUG INSERT (REAL FIX) */
         const { data: savedData, error } = await supabase
             .from("learn")
             .insert([
@@ -107,56 +98,48 @@ async function learn(topic){
             ])
             .select();
 
-        console.log("INSERT RESPONSE:", { savedData, error });
-
-        alert(JSON.stringify({ savedData, error }));
+        console.log(savedData, error);
 
         if(error){
-            alert("DB ERROR: " + error.message);
-            throw error;
+            alert(error.message);
+            return;
         }
 
-        alert("✅ LEARN SAVED SUCCESSFULLY");
+        alert("✅ SAVED SUCCESS");
 
     } catch(err){
-        console.log("❌ Learn Error:", err);
-        alert("❌ Error: " + err.message);
+        alert("ERROR: " + err.message);
     }
 
     loading.style.display = "none";
 }
 
 /* =========================
-   SOLVE FUNCTION (FINAL FIXED)
+   SOLVE FUNCTION
 ========================= */
 
 async function solve(question){
 
-    alert("SOLVE FUNCTION STARTED");
+    alert("SOLVE START");
 
-    if(!supabase){
-        alert("Supabase not ready");
-        return;
+    if (!supabase) {
+        const ok = initSupabase();
+        if (!ok) {
+            alert("Supabase not loaded");
+            return;
+        }
     }
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
 
-    if(!question){
-        alert("❌ Enter question");
-        return;
-    }
-
     loading.style.display = "block";
-    output.innerHTML = "🧠 Solving...";
 
     try{
 
         const res = await fetch(API_BASE, {
             method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
+            headers:{ "Content-Type":"application/json" },
             body: JSON.stringify({
                 type:"solve",
                 message:question
@@ -179,23 +162,44 @@ async function solve(question){
 
         if(error){
             alert(error.message);
-            throw error;
+            return;
         }
 
-        alert("✅ Solve Saved");
+        alert("✅ SAVED");
 
     } catch(err){
-        console.log("❌ Solve Error:", err);
-        alert("❌ Error: " + err.message);
+        alert(err.message);
     }
 
     loading.style.display = "none";
 }
 
 /* =========================
-   EXTERNAL LINKS
+   GLOBAL FIX (MOST IMPORTANT)
 ========================= */
 
-function openLink(url){
-    window.open(url, "_blank");
-}
+window.learn = learn;
+window.solve = solve;
+
+/* =========================
+   INSTALL BUTTON FIX
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btn = document.getElementById("installBtn");
+
+    if(btn){
+        btn.addEventListener("click", async () => {
+
+            if(!deferredPrompt){
+                alert("Open Chrome and wait");
+                return;
+            }
+
+            deferredPrompt.prompt();
+            deferredPrompt = null;
+        });
+    }
+
+});
