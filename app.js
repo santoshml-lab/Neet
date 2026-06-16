@@ -1,27 +1,33 @@
 alert("JS START");
 
-if (!window.supabase) {
-    alert("SUPABASE NOT FOUND");
-} else {
-    alert("SUPABASE FOUND");
-}
-
 const API_BASE = "https://neetlession.onrender.com/ai";
 
 let deferredPrompt = null;
 
 /* =========================
-   SUPABASE SETUP
+   SUPABASE SETUP (FIXED SAFE INIT)
 ========================= */
+
+let supabase;
+
 const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0";
 
-const supabase = window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
-);
+window.addEventListener("DOMContentLoaded", () => {
 
+    if (!window.supabase) {
+        alert("SUPABASE NOT FOUND");
+        console.error("Supabase library missing");
+        return;
+    }
 
+    supabase = window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
+
+    console.log("✅ Supabase Initialized");
+});
 
 /* =========================
    INSTALL APP LOGIC
@@ -74,7 +80,7 @@ if ("serviceWorker" in navigator) {
 }
 
 /* =========================
-   LEARN FUNCTION
+   LEARN FUNCTION (FINAL FIXED)
 ========================= */
 
 async function learn(topic){
@@ -86,6 +92,11 @@ async function learn(topic){
 
     if(!topic){
         alert("📚 Please enter a topic");
+        return;
+    }
+
+    if(!supabase){
+        alert("Supabase not ready yet");
         return;
     }
 
@@ -111,40 +122,35 @@ async function learn(topic){
         output.innerHTML = marked.parse(lesson);
 
         alert("ABOUT TO SAVE SUPABASE");
+
         const { data: savedData, error } = await supabase
-    .from("learn")
-    .insert([
-        {
-            topic: topic,
-            reply: lesson
+            .from("learn")
+            .insert([
+                {
+                    topic: topic,
+                    reply: lesson
+                }
+            ])
+            .select();
+
+        console.log("SAVE RESULT:", savedData, error);
+
+        if(error){
+            throw error;
         }
-    ])
-    .select();
 
-alert(JSON.stringify({
-    savedData,
-    error
-}));
-
-
-
-if (error) {
-    throw error;
-}
-
-console.log("✅ Learn Saved");
-alert("✅ Learn Saved");
+        alert("✅ Learn Saved Successfully");
 
     } catch(err){
         console.log("❌ Learn Error:", err);
-        alert("❌ Learn Error: " + err.message);
+        alert("❌ Error: " + err.message);
     }
 
     loading.style.display = "none";
 }
 
 /* =========================
-   SOLVE FUNCTION
+   SOLVE FUNCTION (FIXED)
 ========================= */
 
 async function solve(question){
@@ -156,6 +162,11 @@ async function solve(question){
 
     if(!question){
         alert("❌ Enter question");
+        return;
+    }
+
+    if(!supabase){
+        alert("Supabase not ready yet");
         return;
     }
 
@@ -193,12 +204,11 @@ async function solve(question){
             throw error;
         }
 
-        console.log("✅ Solve Saved");
         alert("✅ Solve Saved");
 
     } catch(err){
         console.log("❌ Solve Error:", err);
-        alert("❌ Solve Error: " + err.message);
+        alert("❌ Error: " + err.message);
     }
 
     loading.style.display = "none";
