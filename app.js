@@ -3,15 +3,11 @@ alert("JS START");
 const API_BASE = "https://neetlession.onrender.com/ai";
 
 let deferredPrompt = null;
+let supabase = null;
 
 /* =========================
-   SUPABASE SETUP (FIXED SAFE INIT)
+   SUPABASE INIT (FINAL FIX)
 ========================= */
-
-let supabase;
-
-const supabaseUrl = "https://ivwolfnwzrcvcwkobyzl.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0";
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -22,8 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     supabase = window.supabase.createClient(
-        supabaseUrl,
-        supabaseKey
+        "https://ivwolfnwzrcvcwkobyzl.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0"
     );
 
     console.log("✅ Supabase Initialized");
@@ -80,23 +76,23 @@ if ("serviceWorker" in navigator) {
 }
 
 /* =========================
-   LEARN FUNCTION (FINAL FIXED)
+   LEARN FUNCTION (FINAL STABLE)
 ========================= */
 
 async function learn(topic){
 
     alert("LEARN FUNCTION STARTED");
 
+    if(!supabase){
+        alert("Supabase not ready");
+        return;
+    }
+
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
 
     if(!topic){
         alert("📚 Please enter a topic");
-        return;
-    }
-
-    if(!supabase){
-        alert("Supabase not ready yet");
         return;
     }
 
@@ -132,10 +128,11 @@ async function learn(topic){
                 }
             ])
             .select();
-       console.log("SUPABASE RESPONSE:", { savedData, error });
-       alert(JSON.stringify({ savedData, error }));
-       
-           if(error){
+
+        console.log("SUPABASE RESPONSE:", { savedData, error });
+
+        if(error){
+            alert("DB Error: " + error.message);
             throw error;
         }
 
@@ -150,23 +147,23 @@ async function learn(topic){
 }
 
 /* =========================
-   SOLVE FUNCTION (FIXED)
+   SOLVE FUNCTION (FINAL STABLE)
 ========================= */
 
 async function solve(question){
 
     alert("SOLVE FUNCTION STARTED");
 
+    if(!supabase){
+        alert("Supabase not ready");
+        return;
+    }
+
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
 
     if(!question){
         alert("❌ Enter question");
-        return;
-    }
-
-    if(!supabase){
-        alert("Supabase not ready yet");
         return;
     }
 
@@ -201,13 +198,14 @@ async function solve(question){
             ]);
 
         if(error){
+            alert(error.message);
             throw error;
         }
 
         alert("✅ Solve Saved");
 
     } catch(err){
-        console.log("❌ Solve Error:", err);
+        console.log(err);
         alert("❌ Error: " + err.message);
     }
 
