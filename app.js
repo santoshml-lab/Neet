@@ -1,4 +1,11 @@
+
 alert("JS START");
+
+if (!window.supabase) {
+    alert("SUPABASE NOT FOUND");
+} else {
+    alert("SUPABASE FOUND");
+}
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
@@ -6,14 +13,13 @@ let deferredPrompt = null;
 let supabase = null;
 
 /* =========================
-   SUPABASE INIT (FINAL FIX)
+   SUPABASE SETUP (FIXED SAFE)
 ========================= */
 
 window.addEventListener("DOMContentLoaded", () => {
 
     if (!window.supabase) {
         alert("SUPABASE NOT FOUND");
-        console.error("Supabase library missing");
         return;
     }
 
@@ -32,35 +38,6 @@ window.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    console.log("✅ PWA Install Ready");
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const installBtn = document.getElementById("installBtn");
-
-    if (!installBtn) return;
-
-    installBtn.addEventListener("click", async () => {
-
-        if (!deferredPrompt) {
-            alert("📲 Open Chrome and wait to install app");
-            return;
-        }
-
-        deferredPrompt.prompt();
-
-        const choice = await deferredPrompt.userChoice;
-
-        if (choice.outcome === "accepted") {
-            console.log("🎉 App Installed");
-        } else {
-            console.log("❌ Install Cancelled");
-        }
-
-        deferredPrompt = null;
-    });
-
 });
 
 /* =========================
@@ -76,7 +53,7 @@ if ("serviceWorker" in navigator) {
 }
 
 /* =========================
-   LEARN FUNCTION (FINAL STABLE)
+   LEARN FUNCTION (FINAL FIXED)
 ========================= */
 
 async function learn(topic){
@@ -119,6 +96,7 @@ async function learn(topic){
 
         alert("ABOUT TO SAVE SUPABASE");
 
+        /* 🔥 FINAL DEBUG INSERT (REAL FIX) */
         const { data: savedData, error } = await supabase
             .from("learn")
             .insert([
@@ -129,14 +107,16 @@ async function learn(topic){
             ])
             .select();
 
-        console.log("SUPABASE RESPONSE:", { savedData, error });
+        console.log("INSERT RESPONSE:", { savedData, error });
+
+        alert(JSON.stringify({ savedData, error }));
 
         if(error){
-            alert("DB Error: " + error.message);
+            alert("DB ERROR: " + error.message);
             throw error;
         }
 
-        alert("✅ Learn Saved Successfully");
+        alert("✅ LEARN SAVED SUCCESSFULLY");
 
     } catch(err){
         console.log("❌ Learn Error:", err);
@@ -147,7 +127,7 @@ async function learn(topic){
 }
 
 /* =========================
-   SOLVE FUNCTION (FINAL STABLE)
+   SOLVE FUNCTION (FINAL FIXED)
 ========================= */
 
 async function solve(question){
@@ -205,7 +185,7 @@ async function solve(question){
         alert("✅ Solve Saved");
 
     } catch(err){
-        console.log(err);
+        console.log("❌ Solve Error:", err);
         alert("❌ Error: " + err.message);
     }
 
@@ -219,4 +199,3 @@ async function solve(question){
 function openLink(url){
     window.open(url, "_blank");
 }
-
