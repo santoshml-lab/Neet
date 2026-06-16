@@ -132,10 +132,10 @@ async function learn(topic){
                 }
             ])
             .select();
-
-        console.log("SAVE RESULT:", savedData, error);
-
-        if(error){
+       console.log("SUPABASE RESPONSE:", { savedData, error });
+       alert(JSON.stringify({ savedData, error }));
+       
+           if(error){
             throw error;
         }
 
