@@ -1,9 +1,36 @@
-
 alert("JS START");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
 let deferredPrompt = null;
+
+/* =========================
+   XP SYSTEM
+========================= */
+
+let xp = localStorage.getItem("xp") || 0;
+let lessonCount = localStorage.getItem("lessonCount") || 0;
+let quizCount = localStorage.getItem("quizCount") || 0;
+
+function updateXPUI(){
+
+    const xpEl = document.getElementById("xp");
+    const lessonEl = document.getElementById("lessonCount");
+    const quizEl = document.getElementById("quizCount");
+
+    if(xpEl) xpEl.innerText = xp;
+    if(lessonEl) lessonEl.innerText = lessonCount;
+    if(quizEl) quizEl.innerText = quizCount;
+}
+
+function saveXP(){
+
+    localStorage.setItem("xp", xp);
+    localStorage.setItem("lessonCount", lessonCount);
+    localStorage.setItem("quizCount", quizCount);
+
+    updateXPUI();
+}
 
 /* =========================
    PWA INSTALL
@@ -55,6 +82,13 @@ async function learn(topic){
         const lesson = data.reply || "No response";
 
         output.innerHTML = marked.parse(lesson);
+
+        xp = Number(xp) + 10;
+        lessonCount = Number(lessonCount) + 1;
+
+        saveXP();
+
+        alert("🏆 +10 XP Earned");
 
     } catch(err){
         alert("ERROR: " + err.message);
@@ -128,8 +162,7 @@ async function generateQuiz(topic){
             body: JSON.stringify({
                 type:"learn",
                 message:
-                `Create 5 NEET MCQs on ${topic}.
-                 Give options A,B,C,D and correct answer.`
+                `Create 5 NEET MCQs on ${topic}. Give options A,B,C,D and correct answer.`
             })
         });
 
@@ -137,6 +170,13 @@ async function generateQuiz(topic){
 
         output.innerHTML =
             marked.parse(data.reply || "No quiz generated");
+
+        xp = Number(xp) + 20;
+        quizCount = Number(quizCount) + 1;
+
+        saveXP();
+
+        alert("🏆 +20 XP Earned");
 
     } catch(err){
 
@@ -160,6 +200,8 @@ window.generateQuiz = generateQuiz;
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    updateXPUI();
 
     const btn = document.getElementById("installBtn");
 
