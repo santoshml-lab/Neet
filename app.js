@@ -7,6 +7,33 @@ let deferredPrompt = null;
 /* =========================
    XP SYSTEM
 ========================= */
+let badge = localStorage.getItem("badge") || "🌱 Beginner";
+
+function updateBadge(){
+
+    if(xp >= 1000){
+        badge = "👨‍⚕️ Future Doctor";
+    }
+    else if(xp >= 500){
+        badge = "🏆 Expert";
+    }
+    else if(xp >= 250){
+        badge = "🧠 Scholar";
+    }
+    else if(xp >= 100){
+        badge = "📚 Learner";
+    }
+    else{
+        badge = "🌱 Beginner";
+    }
+
+    localStorage.setItem("badge", badge);
+
+    const badgeEl = document.getElementById("badge");
+    if(badgeEl){
+        badgeEl.innerText = badge;
+    }
+}
 
 let xp = localStorage.getItem("xp") || 0;
 let lessonCount = localStorage.getItem("lessonCount") || 0;
@@ -30,7 +57,10 @@ function saveXP(){
     localStorage.setItem("quizCount", quizCount);
 
     updateXPUI();
+    updateBadge();
 }
+
+    
 
 /* =========================
    PWA INSTALL
@@ -202,6 +232,8 @@ window.generateQuiz = generateQuiz;
 document.addEventListener("DOMContentLoaded", () => {
 
     updateXPUI();
+    updateBadge();
+   
 
     const btn = document.getElementById("installBtn");
 
