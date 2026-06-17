@@ -1,33 +1,9 @@
+
 alert("JS START");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
 let deferredPrompt = null;
-let supabase = null;
-
-/* =========================
-   INIT SUPABASE SAFE WAY
-========================= */
-
-function initSupabase(){
-
-    if (!window.supabase) {
-        console.log("Supabase library missing");
-        return false;
-    }
-
-    supabase = window.supabase.createClient(
-        "https://ivwolfnwzrcvcwkobyzl.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d29sZm53enJjdmN3a29ieXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjgyNzgsImV4cCI6MjA5NzEwNDI3OH0.VrXoMx0gNFa0j7Lwsc6S-J5bTYgG0P40PLHDZ-tNAO0";
-
-    );
-
-    console.log("Supabase Ready");
-    return true;
-}
-
-/* run init immediately */
-initSupabase();
 
 /* =========================
    PWA INSTALL
@@ -51,26 +27,18 @@ if ("serviceWorker" in navigator) {
 }
 
 /* =========================
-   LEARN FUNCTION (FINAL STABLE)
+   LEARN FUNCTION
 ========================= */
 
 async function learn(topic){
 
     alert("LEARN START");
 
-    if (!supabase) {
-        const ok = initSupabase();
-        if (!ok) {
-            alert("Supabase not loaded");
-            return;
-        }
-    }
-
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
 
     loading.style.display = "block";
-    output.innerHTML = "Loading...";
+    output.innerHTML = "Loading lesson...";
 
     try{
 
@@ -88,25 +56,6 @@ async function learn(topic){
 
         output.innerHTML = marked.parse(lesson);
 
-        const { data: savedData, error } = await supabase
-            .from("learn")
-            .insert([
-                {
-                    topic: topic,
-                    reply: lesson
-                }
-            ])
-            .select();
-
-        console.log(savedData, error);
-
-        if(error){
-            alert(error.message);
-            return;
-        }
-
-        alert("✅ SAVED SUCCESS");
-
     } catch(err){
         alert("ERROR: " + err.message);
     }
@@ -121,14 +70,6 @@ async function learn(topic){
 async function solve(question){
 
     alert("SOLVE START");
-
-    if (!supabase) {
-        const ok = initSupabase();
-        if (!ok) {
-            alert("Supabase not loaded");
-            return;
-        }
-    }
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
@@ -151,22 +92,6 @@ async function solve(question){
 
         output.innerHTML = marked.parse(answer);
 
-        const { error } = await supabase
-            .from("learn")
-            .insert([
-                {
-                    topic: question,
-                    reply: answer
-                }
-            ]);
-
-        if(error){
-            alert(error.message);
-            return;
-        }
-
-        alert("✅ SAVED");
-
     } catch(err){
         alert(err.message);
     }
@@ -175,14 +100,63 @@ async function solve(question){
 }
 
 /* =========================
-   GLOBAL FIX (MOST IMPORTANT)
+   QUIZ GENERATOR
+========================= */
+
+async function generateQuiz(topic){
+
+    alert("QUIZ START");
+
+    const output = document.getElementById("output");
+    const loading = document.getElementById("loading");
+
+    if(!topic){
+        alert("Enter a topic first");
+        return;
+    }
+
+    loading.style.display = "block";
+    output.innerHTML = "Generating Quiz...";
+
+    try{
+
+        const res = await fetch(API_BASE, {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"learn",
+                message:
+                `Create 5 NEET MCQs on ${topic}.
+                 Give options A,B,C,D and correct answer.`
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+            marked.parse(data.reply || "No quiz generated");
+
+    } catch(err){
+
+        alert("Quiz Error: " + err.message);
+
+    }
+
+    loading.style.display = "none";
+}
+
+/* =========================
+   GLOBAL
 ========================= */
 
 window.learn = learn;
 window.solve = solve;
+window.generateQuiz = generateQuiz;
 
 /* =========================
-   INSTALL BUTTON FIX
+   INSTALL BUTTON
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -190,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("installBtn");
 
     if(btn){
+
         btn.addEventListener("click", async () => {
 
             if(!deferredPrompt){
