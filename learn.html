@@ -1,143 +1,206 @@
-<!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>NEET AI Teacher</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#020617"><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script></head><body><div class="glow"></div><div class="glow2"></div><header><div class="logo">
+<title>NEET AI Teacher</title>
 
-    🩺 NEET Learning Hub
+<link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#020617">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<header>
+
+<div class="logo">
+🩺 NEET Learning Hub
 </div>
 
 <nav class="nav">
 
-    <a href="index.html">Home</a>
-
-    <a href="learn.html">Learn</a>
-
-    <a href="solve.html">Solve</a>
+<a href="index.html">Home</a>
+<a href="learn.html">Learn</a>
+<a href="solve.html">Solve</a>
 
 </nav>
 
-</header><section class="hero"><h1>
+</header>
 
-    🤖 AI Teacher
+<section class="hero">
 
+<h1>
+🤖 AI Teacher
 </h1>
 
 <p>
 
-    Learn NEET concepts with
-    structured AI-generated lessons,
-    key points, memory tricks,
-    and quick revision notes.
+Learn NEET concepts with
+structured AI-generated lessons,
+key points, memory tricks,
+and quick revision notes.
 
 </p>
 
-</section><section class="ai-teacher"><div class="input-box">
+</section>
 
-    <h2>📚 What do you want to learn today?</h2>
+<!-- XP SYSTEM -->
 
-    <p>
-        Enter any NEET topic and let AI teach you
-        with exam-focused explanations.
-    </p>
+<div id="xpBox"
+class="lesson-output"
+style="max-width:700px;margin:20px auto;text-align:center;">
 
-    <input
-        type="text"
-        id="learnInput"
-        placeholder="Enter topic (e.g. Human Heart, Photosynthesis)"
-    >
+🏆 XP: <span id="xp">0</span>
 
-    <button
-        class="btn primary"
-        onclick="learn(document.getElementById('learnInput').value)">
+<br><br>
 
-        🚀 Generate Lesson
+📚 Lessons: <span id="lessonCount">0</span>
 
-    </button>
+<br><br>
 
-    <br><br>
+🧠 Quizzes: <span id="quizCount">0</span>
 
-    <button
-        class="btn secondary"
-        onclick="generateQuiz(document.getElementById('learnInput').value)">
+</div>
 
-        🧠 Generate Quiz
+<section class="ai-teacher">
 
-    </button>
+<div class="input-box">
+
+<h2>📚 What do you want to learn today?</h2>
+
+<p>
+Enter any NEET topic and let AI teach you
+with exam-focused explanations.
+</p>
+
+<input
+type="text"
+id="learnInput"
+placeholder="Enter topic (e.g. Human Heart, Photosynthesis)"
+>
+
+<button
+class="btn primary"
+onclick="learn(document.getElementById('learnInput').value)">
+
+🚀 Generate Lesson
+
+</button>
+
+<br><br>
+
+<button
+class="btn secondary"
+onclick="generateQuiz(document.getElementById('learnInput').value)">
+
+🧠 Generate Quiz
+
+</button>
 
 </div>
 
 <div id="loading"
-     class="loading-box"
-     style="display:none;">
+class="loading-box"
+style="display:none;">
 
-    🤖 AI Teacher is preparing your lesson...
+🤖 AI Teacher is preparing your lesson...
 
 </div>
 
 <div id="output"
-     class="lesson-output">
+class="lesson-output">
 
-    <h3>🩺 Your lesson will appear here</h3>
+<h3>🩺 Your lesson will appear here</h3>
 
-    <p>
-        Enter a topic above and click
-        "Generate Lesson".
-    </p>
+<p>
+Enter a topic above and click
+"Generate Lesson".
+</p>
 
 </div>
 
-</section><h2 class="section-title">🔥 Popular NEET Topics
+</section>
 
-</h2><section class="subjects"><div class="subject"
-     onclick="document.getElementById('learnInput').value='Human Heart'">
+<h2 class="section-title">
 
-    ❤️ Human Heart
+🔥 Popular NEET Topics
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject"
+onclick="document.getElementById('learnInput').value='Human Heart'">
+
+❤️ Human Heart
 
 </div>
 
 <div class="subject"
-     onclick="document.getElementById('learnInput').value='Photosynthesis'">
+onclick="document.getElementById('learnInput').value='Photosynthesis'">
 
-    🌿 Photosynthesis
-
-</div>
-
-<div class="subject"
-     onclick="document.getElementById('learnInput').value='Genetics'">
-
-    🧬 Genetics
+🌿 Photosynthesis
 
 </div>
 
 <div class="subject"
-     onclick="document.getElementById('learnInput').value='Chemical Bonding'">
+onclick="document.getElementById('learnInput').value='Genetics'">
 
-    🧪 Chemical Bonding
+🧬 Genetics
 
 </div>
 
-</section><div style="text-align:center; margin:40px 0;"><a href="index.html"
-   class="btn secondary">
+<div class="subject"
+onclick="document.getElementById('learnInput').value='Chemical Bonding'">
 
-    🏠 Back to Dashboard
+🧪 Chemical Bonding
+
+</div>
+
+</section>
+
+<div style="text-align:center; margin:40px 0;">
+
+<a href="index.html"
+class="btn secondary">
+
+🏠 Back to Dashboard
 
 </a>
 
-</div><div class="footer"><h3>
+</div>
 
-    🤖 NEET AI Teacher
+<div class="footer">
 
+<h3>
+🤖 NEET AI Teacher
 </h3>
 
 <p>
-
-    Learn Smarter • Revise Faster • Crack NEET
-
+Learn Smarter • Revise Faster • Crack NEET
 </p>
 
-</div><script src="app.js"></script></body>
+</div>
+
+<script src="app.js"></script>
+
+</body>
 </html>
   
