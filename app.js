@@ -167,9 +167,13 @@ async function solve(question){
    QUIZ GENERATOR
 ========================= */
 
-async function generateQuiz(topic){
+/* =========================
+   MOCK TEST GENERATOR
+========================= */
 
-    alert("QUIZ START");
+async function generateMockTest(topic){
+
+    alert("MOCK TEST START");
 
     const output = document.getElementById("output");
     const loading = document.getElementById("loading");
@@ -180,7 +184,7 @@ async function generateQuiz(topic){
     }
 
     loading.style.display = "block";
-    output.innerHTML = "Generating Quiz...";
+    output.innerHTML = "Generating Mock Test...";
 
     try{
 
@@ -190,32 +194,37 @@ async function generateQuiz(topic){
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({
-                type:"learn",
-                message:
-                `Create 5 NEET MCQs on ${topic}. Give options A,B,C,D and correct answer.`
+                type:"mocktest",
+                message:topic
             })
         });
 
         const data = await res.json();
 
         output.innerHTML =
-            marked.parse(data.reply || "No quiz generated");
+            marked.parse(data.reply || "No mock test generated");
 
-        xp = Number(xp) + 20;
-        quizCount = Number(quizCount) + 1;
+        xp = Number(xp) + 30;
 
         saveXP();
 
-        alert("🏆 +20 XP Earned");
+        alert("🏆 +30 XP Earned");
 
     } catch(err){
 
-        alert("Quiz Error: " + err.message);
+        alert("Mock Test Error: " + err.message);
 
     }
 
     loading.style.display = "none";
 }
+
+    
+            
+            
+
+        
+        
 
 /* =========================
    GLOBAL
