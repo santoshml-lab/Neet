@@ -233,6 +233,8 @@ async function generateMockTest(topic){
 window.learn = learn;
 window.solve = solve;
 window.generateQuiz = generateQuiz;
+window.generateMockTest = generateMockTest;
+
 
 /* =========================
    INSTALL BUTTON
