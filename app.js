@@ -218,6 +218,53 @@ async function generateMockTest(topic){
 
     loading.style.display = "none";
 }
+/* =========================
+   REVISION NOTES
+========================= */
+
+async function revision(topic){
+
+    const output = document.getElementById("output");
+    const loading = document.getElementById("loading");
+
+    if(!topic){
+        alert("Enter a topic first");
+        return;
+    }
+
+    loading.style.display = "block";
+    output.innerHTML = "Generating Revision Notes...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"revision",
+                message:topic
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+        marked.parse(data.reply || "No notes generated");
+
+        xp = Number(xp) + 5;
+
+        saveXP();
+
+    }catch(err){
+
+        alert("Revision Error: " + err.message);
+
+    }
+
+    loading.style.display = "none";
+}
 
     
             
@@ -234,6 +281,7 @@ window.learn = learn;
 window.solve = solve;
 window.generateQuiz = generateQuiz;
 window.generateMockTest = generateMockTest;
+window.revision = revision;
 
 
 /* =========================
