@@ -1,11 +1,13 @@
 
-const CACHE_NAME = "NEET-Learning-Hub-v2";
+const CACHE_NAME = "NEET-Learning-Hub-v3";
 
 const urlsToCache = [
   "./",
   "./index.html",
   "./style.css",
-  "./app.js"
+  "./app.js",
+  "./learn.html",
+  "./solve.html"
 ];
 
 /* =========================
