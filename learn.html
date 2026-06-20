@@ -110,45 +110,49 @@ id="learnInput"
 placeholder="Enter topic (e.g. Human Heart, Photosynthesis)"
 >
 
-<button
-class="btn primary"
+<div class="action-grid"><div class="action-card"
 onclick="learn(document.getElementById('learnInput').value)">
-
-🚀 Generate Lesson
-
-</button>
-
-<br><br>
-
-<button
-class="btn secondary"
+📚
+<h3>Generate Lesson</h3>
+<p>AI Generated Lesson</p>
+</div><div class="action-card"
 onclick="generateQuiz(document.getElementById('learnInput').value)">
-
-🧠 Generate Quiz
-
-</button>
-  
-
-<br><br>
-
-
-<button
-class="btn secondary"
+🧠
+<h3>Generate Quiz</h3>
+<p>Practice MCQs</p>
+</div><div class="action-card"
 onclick="revision(document.getElementById('learnInput').value)">
-
-📝 Quick Revision Notes
-
-</button>  
-<br><br>  
-
-<button
-class="btn primary"
+📝
+<h3>Revision Notes</h3>
+<p>2 Minute Quick Revision</p>
+</div><div class="action-card"
 onclick="generateMockTest(document.getElementById('learnInput').value)">
+🏆
+<h3>Mock Test</h3>
+<p>10 NEET Level MCQs</p>
+</div></div>
+
+
+
+
+
+
+
+
+
+
   
 
-🏆 Generate Mock Test
 
-</button>
+
+
+
+
+
+
+
+
+
 
 </div>
 
