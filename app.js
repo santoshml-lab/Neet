@@ -279,7 +279,7 @@ async function revision(topic){
 
 window.learn = learn;
 window.solve = solve;
-window.generateQuiz = generateQuiz;
+
 window.generateMockTest = generateMockTest;
 window.revision = revision;
 
