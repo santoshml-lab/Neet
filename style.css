@@ -477,3 +477,31 @@ color:#10B981;
 margin-top:10px;
 font-size:20px;
 }
+
+
+.subject-card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:30px;
+border-radius:24px;
+text-align:center;
+transition:.3s;
+}
+
+.subject-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 30px rgba(16,185,129,.35);
+}
+
+.subject-card h2{
+font-size:28px;
+margin-bottom:15px;
+color:#10B981;
+}
+
+.subject-card p{
+opacity:.85;
+line-height:1.7;
+margin-bottom:20px;
+}
