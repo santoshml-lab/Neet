@@ -311,3 +311,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+async function generateMCQ(subject){
+
+    const output = document.getElementById("output");
+
+    output.innerHTML = "Generating MCQs...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"mcq",
+                message:subject
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+            marked.parse(data.reply || "No MCQs generated");
+
+        xp = Number(xp) + 15;
+        saveXP();
+
+    }catch(err){
+
+        output.innerHTML =
+            "Error: " + err.message;
+
+    }
+}
+
+window.generateMCQ = generateMCQ;
