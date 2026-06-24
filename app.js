@@ -342,6 +342,44 @@ async function generateMCQ(subject){
 
         output.innerHTML =
             "Error: " + err.message;
+       async function dailyChallenge(){
+
+    const output = document.getElementById("output");
+
+    output.innerHTML = "🔥 Loading Daily Challenge...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"dailychallenge",
+                message:"Generate today's challenge"
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML =
+            marked.parse(data.reply || "No challenge generated");
+
+        xp = Number(xp) + 20;
+
+        saveXP();
+
+        alert("🏆 +20 XP Earned");
+
+    }catch(err){
+
+        alert("Challenge Error: " + err.message);
+
+    }
+}
+
+window.dailyChallenge = dailyChallenge;
 
     }
 }
