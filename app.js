@@ -480,6 +480,7 @@ async function generateStudyPlan() {
         <p>${rank}</p>
     `;
 }
+window.predictRank = predictRank;
 
     
 
