@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NCERT Generator | NEET Learning Hub</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<header>
+
+    <div class="logo">📚 NCERT Generator</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="solve.html">Solve</a>
+        <a href="mcq.html">MCQs</a>
+        <a href="ncert.html">NCERT</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <h1>
+        📚 AI NCERT Notes Generator
+    </h1>
+
+    <p>
+        Generate chapter-wise NCERT notes instantly.
+    </p>
+
+</section>
+
+<section class="features">
+
+    <div class="feature-card">
+
+        <h2>📖 Enter Chapter Name</h2>
+
+        <input
+            type="text"
+            id="ncertInput"
+            placeholder="Class 11 Biology - Cell Structure">
+
+        <button
+            class="btn primary"
+            onclick="generateNCERT()">
+
+            Generate Notes
+
+        </button>
+
+        <div id="ncertResult">
+            NCERT notes will appear here...
+        </div>
+
+    </div>
+
+</section>
+
+<div class="footer">
+
+    <h3>🩺 NEET Learning Hub</h3>
+    <p>Built for Future Doctors ❤️</p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
