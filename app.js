@@ -337,52 +337,62 @@ async function generateMCQ(subject){
 
         xp = Number(xp) + 15;
         saveXP();
+       }catch(err){
 
-    }catch(err){
+output.innerHTML =
+    "Error: " + err.message;
 
-        output.innerHTML =
-            "Error: " + err.message;
-       
-    async function dailyChallenge(){
+}
 
-    const output = document.getElementById("output");
+}
 
-    output.innerHTML = "🔥 Loading Daily Challenge...";
+window.generateMCQ = generateMCQ;
 
-    try{
+async function dailyChallenge(){
 
-        const res = await fetch(API_BASE,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                type:"dailychallenge",
-                message:"Generate today's challenge"
-            })
-        });
+const output = document.getElementById("output");
 
-        const data = await res.json();
+output.innerHTML = "🔥 Loading Daily Challenge...";
 
-        output.innerHTML =
-            marked.parse(data.reply || "No challenge generated");
+try{
 
-        xp = Number(xp) + 20;
+    const res = await fetch(API_BASE,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            type:"dailychallenge",
+            message:"Generate today's challenge"
+        })
+    });
 
-        saveXP();
+    const data = await res.json();
 
-        alert("🏆 +20 XP Earned");
+    output.innerHTML =
+        marked.parse(data.reply || "No challenge generated");
 
-    }catch(err){
+    xp = Number(xp) + 20;
 
-        alert("Challenge Error: " + err.message);
+    saveXP();
 
-    }
+    alert("🏆 +20 XP Earned");
+
+}catch(err){
+
+    alert("Challenge Error: " + err.message);
+
+}
+
 }
 
 window.dailyChallenge = dailyChallenge;
 
-    }
-}
+    
 
-window.generateMCQ = generateMCQ;
+        
+       
+       
+    
+
+
