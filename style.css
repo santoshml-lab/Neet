@@ -523,3 +523,46 @@ margin-bottom:20px;
 .feature-card button{
     margin-top:10px;
 }
+/* AI Study Planner Fix */
+
+.feature-card{
+    min-height:auto;
+}
+
+#studyResult{
+    max-height:400px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    margin-top:15px;
+    padding:15px;
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    text-align:left;
+}
+
+/* Daily Challenge Output */
+
+#output{
+    grid-column:1/-1;
+    width:100%;
+    max-width:1200px;
+}
+
+/* Mobile Fix */
+
+@media(max-width:768px){
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .feature-card{
+        width:100%;
+    }
+
+    #studyResult{
+        max-height:300px;
+    }
+}
