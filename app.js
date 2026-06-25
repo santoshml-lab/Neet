@@ -416,8 +416,12 @@ async function generateStudyPlan() {
         const data = await response.json();
 
         result.innerHTML = `
-            <pre>${data.response}</pre>
-        `;
+        <pre>${data.reply}</pre>
+       `;
+
+        
+            
+        
 
     } catch (error) {
 
