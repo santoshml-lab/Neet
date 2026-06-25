@@ -415,9 +415,9 @@ async function generateStudyPlan() {
 
         const data = await response.json();
 
-        result.innerHTML = `
-        <pre>${data.reply}</pre>
-       `;
+        result.innerHTML = marked.parse(data.reply || "No plan generated");
+        
+       
        xp = Number(xp) + 25;
        saveXP();
 
