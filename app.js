@@ -525,6 +525,45 @@ async function generateNCERT(){
 
 window.generateNCERT = generateNCERT;
 
+
+async function generateNCERTNotes(){
+
+    const topic = document.getElementById("ncertInput").value;
+    const output = document.getElementById("ncertResult");
+
+    if(!topic){
+        alert("Enter NCERT chapter");
+        return;
+    }
+
+    output.innerHTML = "Generating NCERT Notes...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"ncertnotes",
+                message:topic
+            })
+        });
+
+        const data = await res.json();
+
+        output.innerHTML = marked.parse(data.reply || "No notes generated");
+
+    }catch(err){
+
+        output.innerHTML = "Error: " + err.message;
+
+    }
+}
+
+window.generateNCERTNotes = generateNCERTNotes;
+
     
 
         
