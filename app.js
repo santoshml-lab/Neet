@@ -387,6 +387,46 @@ try{
 }
 
 window.dailyChallenge = dailyChallenge;
+async function generateStudyPlan() {
+
+    const input =
+        document.getElementById("studyInput").value;
+
+    const result =
+        document.getElementById("studyResult");
+
+    result.innerHTML = "Generating Study Plan...";
+
+    try {
+
+        const response = await fetch(
+            API_BASE,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "studyplan",
+                    message: input
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        result.innerHTML = `
+            <pre>${data.response}</pre>
+        `;
+
+    } catch (error) {
+
+        result.innerHTML =
+            "Error generating plan";
+
+        console.error(error);
+    }
+}
 
     
 
