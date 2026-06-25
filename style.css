@@ -505,3 +505,21 @@ opacity:.85;
 line-height:1.7;
 margin-bottom:20px;
 }
+#studyResult{
+    max-height:300px;
+    overflow-y:auto;
+    margin-top:15px;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
+.feature-card input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+}
+
+.feature-card button{
+    margin-top:10px;
+}
