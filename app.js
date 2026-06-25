@@ -482,6 +482,49 @@ async function generateStudyPlan() {
 }
 window.predictRank = predictRank;
 
+async function generateNCERT(){
+
+    const input =
+        document.getElementById("ncertInput").value;
+
+    const result =
+        document.getElementById("ncertResult");
+
+    result.innerHTML = "Generating NCERT Notes...";
+
+    try{
+
+        const response = await fetch(
+            API_BASE,
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    type:"ncert",
+                    message:input
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        result.innerHTML =
+            marked.parse(data.reply || "No notes generated");
+
+    }
+    catch(error){
+
+        result.innerHTML =
+            "Error generating notes";
+
+    }
+
+}
+
+window.generateNCERT = generateNCERT;
+
     
 
         
