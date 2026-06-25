@@ -418,12 +418,16 @@ async function generateStudyPlan() {
         result.innerHTML = `
         <pre>${data.reply}</pre>
        `;
+       xp = Number(xp) + 25;
+       saveXP();
+
+       alert("🏆 +25 XP Earned");
 
         
             
         
 
-    } catch (error) {
+      } catch (error) {
 
         result.innerHTML =
             "Error generating plan";
@@ -431,6 +435,7 @@ async function generateStudyPlan() {
         console.error(error);
     }
 }
+   window.generateStudyPlan = generateStudyPlan;
 
     
 
