@@ -342,7 +342,8 @@ async function generateMCQ(subject){
 
         output.innerHTML =
             "Error: " + err.message;
-       async function dailyChallenge(){
+       
+    async function dailyChallenge(){
 
     const output = document.getElementById("output");
 
