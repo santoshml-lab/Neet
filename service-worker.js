@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "NEET-Learning-Hub-v5";
+const CACHE_NAME = "NEET-Learning-Hub-v6";
 
 const urlsToCache = [
   "./",
