@@ -570,46 +570,12 @@ margin-bottom:20px;
     white-space:pre-wrap;
     word-break:break-word;
 }
-function predictRank(){
 
-    const marks =
-        Number(document.getElementById("neetMarks").value);
+#rankResult{
+    margin-top:15px;
+    padding:15px;
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+}
 
-    const result =
-        document.getElementById("rankResult");
 
-    if(!marks || marks < 0 || marks > 720){
-        result.innerHTML =
-            "❌ Enter valid marks between 0 and 720";
-        return;
-    }
-
-    let rank = "";
-
-    if(marks >= 700){
-        rank = "AIR 1 - 500";
-    }
-    else if(marks >= 680){
-        rank = "AIR 500 - 3000";
-    }
-    else if(marks >= 650){
-        rank = "AIR 3000 - 10000";
-    }
-    else if(marks >= 620){
-        rank = "AIR 10000 - 20000";
-    }
-    else if(marks >= 580){
-        rank = "AIR 20000 - 50000";
-    }
-    else if(marks >= 500){
-        rank = "AIR 50000+";
-    }
-    else{
-        rank = "Need Improvement 💪";
-    }
-
-    result.innerHTML = `
-        <h3>🎯 Predicted Rank</h3>
-        <p>${rank}</p>
-    `;
-   }
