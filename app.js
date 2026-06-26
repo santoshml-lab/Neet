@@ -2,7 +2,13 @@ alert("JS START");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
 
+// Flashcard Global Variables
+let flashcards = [];
+let currentCard = 0;
+
 let deferredPrompt = null;
+
+
 
 /* =========================
    XP SYSTEM
@@ -603,6 +609,73 @@ async function generateFlashcards(){
 }
 
 window.generateFlashcards = generateFlashcards;
+
+let showingAnswer = false;
+
+function showCard(){
+
+    const result = document.getElementById("flashResult");
+
+    if(flashcards.length === 0){
+        result.innerHTML = "No flashcards found.";
+        return;
+    }
+
+    showingAnswer = false;
+
+    result.innerHTML = `
+        <h2>Flashcard ${currentCard + 1}/${flashcards.length}</h2>
+        <p>${flashcards[currentCard].question}</p>
+    `;
+}
+
+function flipCard(){
+
+    if(flashcards.length === 0) return;
+
+    const result = document.getElementById("flashResult");
+
+    if(showingAnswer){
+
+        result.innerHTML = `
+            <h2>Flashcard ${currentCard + 1}/${flashcards.length}</h2>
+            <p>${flashcards[currentCard].question}</p>
+        `;
+
+        showingAnswer = false;
+
+    }else{
+
+        result.innerHTML = `
+            <h2>Flashcard ${currentCard + 1}/${flashcards.length}</h2>
+            <p><b>Answer:</b><br>${flashcards[currentCard].answer}</p>
+        `;
+
+        showingAnswer = true;
+    }
+}
+
+function nextCard(){
+
+    if(currentCard < flashcards.length - 1){
+        currentCard++;
+        showCard();
+    }
+}
+
+function prevCard(){
+
+    if(currentCard > 0){
+        currentCard--;
+        showCard();
+    }
+}
+
+window.showCard = showCard;
+window.flipCard = flipCard;
+window.nextCard = nextCard;
+window.prevCard = prevCard;
+
 
     
 
