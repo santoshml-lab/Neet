@@ -599,6 +599,27 @@ async function generateFlashcards(){
         const data = await res.json();
 
         result.innerHTML = marked.parse(data.reply);
+       flashcards = [];
+
+const blocks = data.reply.split("## Flashcard");
+
+blocks.forEach(block => {
+
+    const q = block.match(/\*\*Question:\*\*\s*(.*)/);
+    const a = block.match(/\*\*Answer:\*\*\s*(.*)/);
+
+    if(q && a){
+        flashcards.push({
+            question: q[1].trim(),
+            answer: a[1].trim()
+        });
+    }
+
+});
+
+currentCard = 0;
+
+showCard();
 
     }catch(err){
 
