@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards | NEET Learning Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<div class="logo">🧠 Flashcards</div>
+</header>
+
+<section class="features">
+
+<div class="feature-card">
+
+<h2>Generate Flashcards</h2>
+
+<input
+type="text"
+id="flashInput"
+placeholder="Enter Topic">
+
+<button
+class="btn primary"
+onclick="generateFlashcards()">
+Generate Flashcards
+</button>
+
+<div id="flashResult">
+Flashcards will appear here...
+</div>
+
+</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
