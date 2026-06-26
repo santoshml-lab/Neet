@@ -598,7 +598,7 @@ async function generateFlashcards(){
 
         const data = await res.json();
 
-        result.innerHTML = marked.parse(data.reply);
+        
        flashcards = [];
 
 const blocks = data.reply.split("## Flashcard");
