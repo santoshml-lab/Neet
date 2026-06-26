@@ -565,6 +565,7 @@ async function generateNCERTNotes(){
 window.generateNCERTNotes = generateNCERTNotes;
 
 async function generateFlashcards(){
+    alert("Flashcard function started");
 
     const topic = document.getElementById("flashInput").value;
     const result = document.getElementById("flashResult");
