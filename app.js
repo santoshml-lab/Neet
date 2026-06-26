@@ -564,6 +564,45 @@ async function generateNCERTNotes(){
 
 window.generateNCERTNotes = generateNCERTNotes;
 
+async function generateFlashcards(){
+
+    const topic = document.getElementById("flashInput").value;
+    const result = document.getElementById("flashResult");
+
+    if(!topic){
+        alert("Enter a topic");
+        return;
+    }
+
+    result.innerHTML = "Generating Flashcards...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                type:"flashcards",
+                message:topic
+            })
+        });
+
+        const data = await res.json();
+
+        result.innerHTML = marked.parse(data.reply);
+
+    }catch(err){
+
+        result.innerHTML = "Error: " + err.message;
+
+    }
+
+}
+
+window.generateFlashcards = generateFlashcards;
+
     
 
         
