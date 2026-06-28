@@ -83,19 +83,26 @@ header{
 
 .nav{
     display:flex;
-    gap:20px;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    align-items:center;
 }
 
 .nav a{
     text-decoration:none;
     color:white;
-    opacity:.85;
+    padding:8px 12px;
+    border-radius:8px;
     transition:.3s;
 }
 
 .nav a:hover{
-    color:#10B981;
+    background:#10B981;
+    color:#020617;
 }
+        
+
 
 /* =========================
    INSTALL BUTTON
