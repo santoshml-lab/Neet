@@ -727,9 +727,8 @@ async function generateQuiz(){
             })
         });
 
-        console.log(data.reply);
-          result.innerHTML = "<pre>" + data.reply + "</pre>";
-          return;
+      
+          
 
         quizQuestions = [];
 
