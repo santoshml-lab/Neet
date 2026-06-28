@@ -697,6 +697,50 @@ window.flipCard = flipCard;
 window.nextCard = nextCard;
 window.prevCard = prevCard;
 
+async function generateQuiz(){
+
+    const topic = document.getElementById("quizInput").value;
+    const result = document.getElementById("quizResult");
+
+    if(!topic){
+        alert("Enter a topic");
+        return;
+    }
+
+    result.innerHTML = "Generating Quiz...";
+
+    try{
+
+        const res = await fetch(API_BASE,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                type:"quiz",
+                message:topic
+            })
+        });
+
+        const data = await res.json();
+
+        result.innerHTML = marked.parse(data.reply || "No Quiz Generated");
+
+        xp = Number(xp) + 20;
+        saveXP();
+
+        alert("🏆 +20 XP Earned");
+
+    }catch(err){
+
+        result.innerHTML = "Error: " + err.message;
+
+    }
+
+}
+
+ window.generateQuiz = generateQuiz;
+
 
     
 
