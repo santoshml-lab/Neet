@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Doubt Chat</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🤖 AI Doubt Chat</div>
+
+    <nav class="nav">
+        <a href="index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<div class="chat-container">
+
+    <div id="chatBox" class="chat-box">
+
+        <div class="bot-msg">
+            👋 Hello! Ask any NEET Physics, Chemistry or Biology doubt.
+        </div>
+
+    </div>
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="doubtInput"
+            placeholder="Type your doubt...">
+
+        <button onclick="askDoubt()">
+            Send ➜
+        </button>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
