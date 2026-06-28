@@ -9,6 +9,7 @@ let currentCard = 0;
 let quizQuestions = [];
 let currentQuestion = 0;
 let score = 0;
+let answered = false;
 
 let deferredPrompt = null;
 
