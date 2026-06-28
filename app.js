@@ -859,6 +859,45 @@ function nextQuestion(){
 window.checkAnswer = checkAnswer;
 window.nextQuestion = nextQuestion;
 
+async function askDoubt(){
+
+    const input = document.getElementById("doubtInput");
+    const chat = document.getElementById("chatBox");
+
+    const question = input.value.trim();
+
+    if(question==="") return;
+
+    chat.innerHTML += `
+        <div class="user-msg">${question}</div>
+    `;
+
+    input.value="";
+
+    const res = await fetch(API_BASE,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            type:"solve",
+            message:question
+        })
+    });
+
+    const data = await res.json();
+
+    chat.innerHTML += `
+        <div class="bot-msg">
+            ${marked.parse(data.reply)}
+        </div>
+    `;
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+window.askDoubt = askDoubt;
+
 
     
 
