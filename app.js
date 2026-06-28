@@ -728,7 +728,40 @@ async function generateQuiz(){
 
         const data = await res.json();
 
-        result.innerHTML = marked.parse(data.reply || "No Quiz Generated");
+        quizQuestions = [];
+
+const blocks = data.reply.split("Question");
+
+blocks.forEach(block => {
+
+    const q = block.match(/^\s*\d*[:.-]?\s*(.*)/m);
+    const a = block.match(/A\)\s*(.*)/);
+    const b = block.match(/B\)\s*(.*)/);
+    const c = block.match(/C\)\s*(.*)/);
+    const d = block.match(/D\)\s*(.*)/);
+    const ans = block.match(/Correct Answer:\s*([ABCD])/i);
+
+    if(q && a && b && c && d && ans){
+
+        quizQuestions.push({
+            question: q[1].trim(),
+            options: {
+                A: a[1].trim(),
+                B: b[1].trim(),
+                C: c[1].trim(),
+                D: d[1].trim()
+            },
+            answer: ans[1].toUpperCase()
+        });
+
+    }
+
+});
+
+currentQuestion = 0;
+score = 0;
+
+showQuestion();
 
         xp = Number(xp) + 20;
         saveXP();
@@ -744,6 +777,29 @@ async function generateQuiz(){
 }
 
  window.generateQuiz = generateQuiz;
+
+function showQuestion(){
+
+    const result = document.getElementById("quizResult");
+
+    if(quizQuestions.length === 0){
+        result.innerHTML = "No quiz found.";
+        return;
+    }
+
+    const q = quizQuestions[currentQuestion];
+
+    result.innerHTML = `
+        <h2>Question ${currentQuestion + 1}/${quizQuestions.length}</h2>
+
+        <p><b>${q.question}</b></p>
+
+        <p>A) ${q.options.A}</p>
+        <p>B) ${q.options.B}</p>
+        <p>C) ${q.options.C}</p>
+        <p>D) ${q.options.D}</p>
+    `;
+}
 
 
     
