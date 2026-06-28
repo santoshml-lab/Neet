@@ -717,22 +717,23 @@ async function generateQuiz(){
     try{
 
         const res = await fetch(API_BASE,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                type:"quiz",
-                message:topic
-            })
-        });
+          method:"POST",
+          headers:{
+          "Content-Type":"application/json"
+    },
+          body: JSON.stringify({
+          type:"quiz",
+         message:topic
+    })
+});
 
-      
-          
+const data = await res.json();
 
-        quizQuestions = [];
+quizQuestions = [];
 
 const blocks = data.reply.split("Question");
+            
+            
 
 blocks.forEach(block => {
 
