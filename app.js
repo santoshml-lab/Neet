@@ -782,6 +782,7 @@ showQuestion();
  window.generateQuiz = generateQuiz;
 
 function showQuestion(){
+   answered = false;
 
     const result = document.getElementById("quizResult");
 
@@ -805,11 +806,17 @@ function showQuestion(){
 }
 function checkAnswer(selected){
 
+    if(answered){
+        return;
+    }
+
+    answered = true;
+
     const correct = quizQuestions[currentQuestion].answer;
 
     if(selected === correct){
 
-        alert("✅ Correct Answer!");
+        alert("✅ Correct!");
 
         score++;
 
@@ -820,6 +827,8 @@ function checkAnswer(selected){
     }
 
 }
+
+    
 
 function nextQuestion(){
 
