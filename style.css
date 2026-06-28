@@ -55,17 +55,15 @@ body{
 ========================= */
 
 header{
-    padding:30px 20px;
+    padding:20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    backdrop-filter:blur(20px);
-    background:rgba(255,255,255,.04);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    position:sticky;
-    top:0;
-    z-index:999;
+    flex-wrap:wrap;
 }
+    
+    
+    
 
 /* =========================
    LOGO
