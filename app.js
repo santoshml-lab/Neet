@@ -783,13 +783,7 @@ showQuestion();
 
 function showQuestion(){
    answered = false;
-
-    const result = document.getElementById("quizResult");
-
-    if(quizQuestions.length === 0){
-        result.innerHTML = "No quiz found.";
-        return;
-    }
+   const result = document.getElementById("quizResult");
 
     const q = quizQuestions[currentQuestion];
 
@@ -798,12 +792,19 @@ function showQuestion(){
 
         <p><b>${q.question}</b></p>
 
-        <p>A) ${q.options.A}</p>
-        <p>B) ${q.options.B}</p>
-        <p>C) ${q.options.C}</p>
-        <p>D) ${q.options.D}</p>
+        <button onclick="checkAnswer('A')">A) ${q.options.A}</button><br><br>
+
+        <button onclick="checkAnswer('B')">B) ${q.options.B}</button><br><br>
+
+        <button onclick="checkAnswer('C')">C) ${q.options.C}</button><br><br>
+
+        <button onclick="checkAnswer('D')">D) ${q.options.D}</button><br><br>
     `;
 }
+
+    
+
+    
 function checkAnswer(selected){
 
     if(answered){
