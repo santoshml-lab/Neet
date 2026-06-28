@@ -800,6 +800,51 @@ function showQuestion(){
         <p>D) ${q.options.D}</p>
     `;
 }
+function checkAnswer(selected){
+
+    const correct = quizQuestions[currentQuestion].answer;
+
+    if(selected === correct){
+
+        alert("✅ Correct Answer!");
+
+        score++;
+
+    }else{
+
+        alert("❌ Wrong!\nCorrect Answer: " + correct);
+
+    }
+
+}
+
+function nextQuestion(){
+
+    if(currentQuestion < quizQuestions.length - 1){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }else{
+
+        document.getElementById("quizResult").innerHTML = `
+            <h2>🎉 Quiz Completed!</h2>
+            <h3>Your Score: ${score}/${quizQuestions.length}</h3>
+        `;
+
+        xp = Number(xp) + (score * 5);
+
+        saveXP();
+
+        alert("🏆 Quiz Finished! XP Added.");
+
+    }
+
+}
+
+window.checkAnswer = checkAnswer;
+window.nextQuestion = nextQuestion;
 
 
     
