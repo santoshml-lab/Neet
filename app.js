@@ -5,6 +5,10 @@ const API_BASE = "https://neetlession.onrender.com/ai";
 // Flashcard Global Variables
 let flashcards = [];
 let currentCard = 0;
+// Quiz Global Variables
+let quizQuestions = [];
+let currentQuestion = 0;
+let score = 0;
 
 let deferredPrompt = null;
 
