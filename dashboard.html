@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | NEET Learning Hub</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📊 NEET Learning Dashboard</div>
+
+    <nav class="nav">
+        <a href="index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<section class="features">
+
+    <div class="feature-card">
+        <h2>🏆 Total XP</h2>
+        <h1 id="xpValue">0</h1>
+    </div>
+
+    <div class="feature-card">
+        <h2>📚 Lessons Completed</h2>
+        <h1 id="lessonValue">0</h1>
+    </div>
+
+    <div class="feature-card">
+        <h2>🧠 Quizzes Completed</h2>
+        <h1 id="quizValue">0</h1>
+    </div>
+
+    <div class="feature-card">
+        <h2>🔥 Daily Streak</h2>
+        <h1 id="streakValue">0</h1>
+    </div>
+
+    <div class="feature-card">
+        <h2>🎖 Badge</h2>
+        <h1 id="badgeValue">🌱 Beginner</h1>
+    </div>
+
+    <div class="feature-card">
+
+        <h2>⭐ Level</h2>
+
+        <h1 id="levelValue">Level 1</h1>
+
+        <div class="progress">
+            <div id="progressBar"></div>
+        </div>
+
+        <br>
+
+        <p id="progressText"></p>
+
+    </div>
+
+</section>
+
+<script>
+
+const xp = Number(localStorage.getItem("xp")) || 0;
+const lessons = Number(localStorage.getItem("lessonCount")) || 0;
+const quizzes = Number(localStorage.getItem("quizCount")) || 0;
+const streak = Number(localStorage.getItem("streak")) || 0;
+const badge = localStorage.getItem("badge") || "🌱 Beginner";
+
+document.getElementById("xpValue").innerText = xp;
+document.getElementById("lessonValue").innerText = lessons;
+document.getElementById("quizValue").innerText = quizzes;
+document.getElementById("streakValue").innerText = streak;
+document.getElementById("badgeValue").innerText = badge;
+
+let level = 1;
+let previousXP = 0;
+let nextXP = 100;
+
+if (xp >= 1000) {
+    level = 5;
+    previousXP = 1000;
+    nextXP = 1500;
+}
+else if (xp >= 500) {
+    level = 4;
+    previousXP = 500;
+    nextXP = 1000;
+}
+else if (xp >= 250) {
+    level = 3;
+    previousXP = 250;
+    nextXP = 500;
+}
+else if (xp >= 100) {
+    level = 2;
+    previousXP = 100;
+    nextXP = 250;
+}
+
+document.getElementById("levelValue").innerText = "Level " + level;
+
+let percent = ((xp - previousXP) / (nextXP - previousXP)) * 100;
+
+if(percent < 0) percent = 0;
+if(percent > 100) percent = 100;
+
+document.getElementById("progressBar").style.width = percent + "%";
+
+document.getElementById("progressText").innerText =
+xp + " XP / " + nextXP + " XP";
+
+</script>
+
+</body>
+</html>
