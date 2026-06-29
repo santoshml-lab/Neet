@@ -18,6 +18,10 @@ let deferredPrompt = null;
 /* =========================
    XP SYSTEM
 ========================= */
+let xp = Number(localStorage.getItem("xp")) || 0;
+let lessonCount = Number(localStorage.getItem("lessonCount")) || 0;
+let quizCount = Number(localStorage.getItem("quizCount")) || 0;
+
 let badge = localStorage.getItem("badge") || "🌱 Beginner";
 
 function updateBadge(){
@@ -46,9 +50,8 @@ function updateBadge(){
     }
 }
 
-let xp = localStorage.getItem("xp") || 0;
-let lessonCount = localStorage.getItem("lessonCount") || 0;
-let quizCount = localStorage.getItem("quizCount") || 0;
+
+
 
 function updateXPUI(){
 
