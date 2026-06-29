@@ -970,6 +970,8 @@ async function insertTestUser() {
 }
 
 insertTestUser();
+
+alert("END OF JS");
     
 
         
