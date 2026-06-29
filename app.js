@@ -934,7 +934,7 @@ async function analyzePerformance(){
 async function testSupabase() {
 
     const { data, error } = await supabase
-        .from("User")
+        .from("users")
         .select("*");
 
     if (error) {
@@ -950,7 +950,7 @@ testSupabase();
 async function insertTestUser() {
 
     const { data, error } = await supabase
-        .from("User")
+        .from("users")
         .insert([
             {
                 name: "Santosh",
