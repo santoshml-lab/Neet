@@ -1,4 +1,4 @@
-alert("JS START");
+jalert("JS START");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
     
@@ -975,9 +975,11 @@ async function insertTestUser() {
 }
 
 insertTestUser();
+alert(typeof insertTestUser);
 
 
 alert("END OF JS");
+
     
 
         
