@@ -946,6 +946,30 @@ async function testSupabase() {
 }
 
 testSupabase();
+
+async function insertTestUser() {
+
+    const { data, error } = await supabase
+        .from("users")
+        .insert([
+            {
+                name: "Santosh",
+                email: "test@test.com",
+                xp: 1150,
+                lessons: 16,
+                quizzes: 5,
+                badge: "👨‍⚕️ Future Doctor"
+            }
+        ]);
+
+    if (error) {
+        alert("❌ " + error.message);
+    } else {
+        alert("✅ Data Saved Successfully!");
+    }
+}
+
+insertTestUser();
     
 
         
