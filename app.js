@@ -979,8 +979,7 @@ alert(typeof insertTestUser);
 
 
 alert("END OF JS");
-
-    
+alert("Insert function started");   
 
         
        
