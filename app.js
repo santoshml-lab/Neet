@@ -931,7 +931,21 @@ async function analyzePerformance(){
     output.innerHTML = marked.parse(data.reply);
 }
 
+async function testSupabase() {
 
+    const { data, error } = await supabase
+        .from("users")
+        .select("*");
+
+    if (error) {
+        console.log("Supabase Error:", error.message);
+    } else {
+        console.log("Supabase Connected ✅");
+        console.log(data);
+    }
+}
+
+testSupabase();
     
 
         
