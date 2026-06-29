@@ -898,6 +898,32 @@ async function askDoubt(){
 
 window.askDoubt = askDoubt;
 
+async function analyzePerformance(){
+
+    const bio = document.getElementById("bioMarks").value;
+    const chem = document.getElementById("chemMarks").value;
+    const phy = document.getElementById("phyMarks").value;
+
+    const output = document.getElementById("analysisResult");
+
+    output.innerHTML = "Analyzing...";
+
+    const res = await fetch(API_BASE,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            type:"analysis",
+            message:`Biology: ${bio}, Chemistry: ${chem}, Physics: ${phy}`
+        })
+    });
+
+    const data = await res.json();
+
+    output.innerHTML = marked.parse(data.reply);
+}
+
 
     
 
