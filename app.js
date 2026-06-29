@@ -942,30 +942,40 @@ async function testSupabase() {
 }
 
 testSupabase();
-
 async function insertTestUser() {
 
-    const { data, error } = await supabase
-        .from("users")
-        .insert([
-            {
+    alert("1. Function Start");
+
+    try {
+        const { data, error } = await supabase
+            .from("users")
+            .insert([{
                 name: "Santosh",
-                email: "test@test.com",
+                email: "test123@test.com",
                 xp: 1150,
                 lessons: 16,
                 quizzes: 5,
                 badge: "👨‍⚕️ Future Doctor"
-            }
-        ]);
+            }]);
 
-    if (error) {
-        alert("❌ " + error.message);
-    } else {
-        alert("✅ Data Saved Successfully!");
+        alert("2. Query Completed");
+
+        console.log(data);
+        console.log(error);
+
+        if (error) {
+            alert("Error: " + error.message);
+        } else {
+            alert("Success");
+        }
+
+    } catch (e) {
+        alert("Catch: " + e.message);
     }
 }
 
 insertTestUser();
+
 
 alert("END OF JS");
     
