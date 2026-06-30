@@ -941,45 +941,12 @@ async function testSupabase() {
     }
 }
 
-testSupabase();
-//async function insertTestUser() {
-
-    alert("1. Function Start");
-
-    try {
-        const { data, error } = await db
-            .from("users")
-            .insert([{
-                name: "Santosh",
-                email: "test123@test.com",
-                xp: 1150,
-                lessons: 16,
-                quizzes: 5,
-                badge: "👨‍⚕️ Future Doctor"
-            }]);
-
-        alert("2. Query Completed");
-
-        console.log(data);
-        console.log(error);
-
-        if (error) {
-            alert("Error: " + error.message);
-        } else {
-            alert("Success");
-        }
-
-    } catch (e) {
-        alert("Catch: " + e.message);
-    }
-}
-
-insertTestUser();
-alert(typeof insertTestUser);
 
 
-alert("END OF JS");
-alert("Insert function started");   
+
+    
+            
+                
 
         
        
