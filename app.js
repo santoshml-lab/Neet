@@ -947,7 +947,7 @@ async function insertTestUser() {
     alert("1. Function Start");
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await db
             .from("users")
             .insert([{
                 name: "Santosh",
