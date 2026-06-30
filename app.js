@@ -942,7 +942,7 @@ async function testSupabase() {
 }
 
 testSupabase();
-async function insertTestUser() {
+//async function insertTestUser() {
 
     alert("1. Function Start");
 
