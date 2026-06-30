@@ -10,9 +10,20 @@ async function signup() {
 
     if (error) {
         alert(error.message);
-    } else {
-        alert("Account Created Successfully");
+        return;
     }
+
+    // users table me profile create
+    await db.from("users").insert([{
+        name: email.split("@")[0],
+        email: email,
+        xp: 0,
+        lessons: 0,
+        quizzes: 0,
+        badge: "🌱 Beginner"
+    }]);
+
+    alert("Account Created Successfully");
 }
 
 async function login() {
@@ -30,6 +41,6 @@ async function login() {
         alert(error.message);
     } else {
         alert("Login Successful");
-        window.location.href = "dashboard.html";
+        window.location.href = "index.html";
     }
 }
