@@ -1,4 +1,4 @@
-jalert("JS START");
+alert("JS START");
 
 const API_BASE = "https://neetlession.onrender.com/ai";
     
