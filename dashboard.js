@@ -5,38 +5,54 @@ async function loadDashboard() {
     } = await db.auth.getUser();
 
     if (!user) {
-        window.location.href = "login.html";
+        window.location.href = "Login.html";
         return;
     }
 
-    const { data, error } = await db
+    let { data, error } = await db
         .from("users")
         .select("*")
-        .eq("email", user.email)
-        .single();
+        .eq("email", user.email);
 
     if (error) {
         alert(error.message);
         return;
     }
 
-    document.getElementById("xpValue").innerText = data.xp || 0;
-    document.getElementById("lessonValue").innerText = data.lessons || 0;
-    document.getElementById("quizValue").innerText = data.quizzes || 0;
-    document.getElementById("streakValue").innerText = data.streak || 0;
-    document.getElementById("badgeValue").innerText = data.badge || "🌱 Beginner";
+    // Agar record nahi hai to naya record banao
+    if (data.length === 0) {
 
-    let xp = data.xp || 0;
-    let level = Math.floor(xp / 100) + 1;
+        await db.from("users").insert([{
+            email: user.email,
+            xp: 0,
+            lessons: 0,
+            quizzes: 0,
+            streak: 0,
+            badge: "🌱 Beginner"
+        }]);
+
+        data = [{
+            xp: 0,
+            lessons: 0,
+            quizzes: 0,
+            streak: 0,
+            badge: "🌱 Beginner"
+        }];
+    }
+
+    const userData = data[0];
+
+    document.getElementById("xpValue").innerText = userData.xp;
+    document.getElementById("lessonValue").innerText = userData.lessons;
+    document.getElementById("quizValue").innerText = userData.quizzes;
+    document.getElementById("streakValue").innerText = userData.streak;
+    document.getElementById("badgeValue").innerText = userData.badge;
+
+    let level = Math.floor(userData.xp / 100) + 1;
 
     document.getElementById("levelValue").innerText = "Level " + level;
-
-    let percent = xp % 100;
-
-    document.getElementById("progressBar").style.width = percent + "%";
-
-    document.getElementById("progressText").innerText =
-        xp + " XP";
+    document.getElementById("progressBar").style.width = (userData.xp % 100) + "%";
+    document.getElementById("progressText").innerText = userData.xp + " XP";
 }
 
 loadDashboard();
