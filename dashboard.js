@@ -21,15 +21,16 @@ async function loadDashboard() {
 
     // Agar record nahi hai to naya record banao
     if (data.length === 0) {
-
-        await db.from("users").insert([{
-            email: user.email,
-            xp: 0,
-            lessons: 0,
-            quizzes: 0,
+    await db.from("users").insert([{
+       name: user.email.split("@")[0],
+       email: user.email,
+       xp: 0,
+       lessons: 0,
+       quizzes: 0,
+       badge: "🌱 Beginner"
+}]);
             
-            badge: "🌱 Beginner"
-        }]);
+                          
 
         data = [{
             xp: 0,
@@ -45,7 +46,7 @@ async function loadDashboard() {
     document.getElementById("xpValue").innerText = userData.xp;
     document.getElementById("lessonValue").innerText = userData.lessons;
     document.getElementById("quizValue").innerText = userData.quizzes;
-    document.getElementById("streakValue").innerText = userData.streak;
+    document.getElementById("streakValue").innerText = "0";
     document.getElementById("badgeValue").innerText = userData.badge;
 
     let level = Math.floor(userData.xp / 100) + 1;
