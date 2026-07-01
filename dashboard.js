@@ -8,7 +8,7 @@ async function loadUser() {
     }
 
     alert("Welcome " + user.email);
-    
+     
 }
             
 loadUser();
