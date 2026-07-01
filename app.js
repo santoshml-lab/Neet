@@ -66,6 +66,8 @@ function updateXPUI(){
 
 function saveXP(){
 
+    alert("saveXP called");
+
     localStorage.setItem("xp", xp);
     localStorage.setItem("lessonCount", lessonCount);
     localStorage.setItem("quizCount", quizCount);
@@ -75,6 +77,11 @@ function saveXP(){
 
     syncXPToSupabase();
 }
+
+    
+    
+
+    
 
  async function syncXPToSupabase() {
 
