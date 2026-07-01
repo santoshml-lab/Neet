@@ -9,6 +9,7 @@ const db = createClient(
     SUPABASE_KEY
 );    
     
+window.db = db;
 
 
 console.log("✅ Supabase Connected");
