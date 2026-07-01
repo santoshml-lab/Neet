@@ -8,7 +8,9 @@ async function loadUser() {
     }
 
     alert("Welcome " + user.email);
-    const { data, error } = await db
+    
+}
+const { data, error } = await db
     .from("users")
     .select("*")
     .eq("email", user.email)
@@ -20,6 +22,4 @@ if (error) {
     console.log(data);
     alert("XP: " + data.xp);
 }
-}
-
 loadUser();
