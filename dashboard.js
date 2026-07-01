@@ -1,13 +1,13 @@
 async function loadUser() {
 
-    const {
-        data: { user }
-    } = await db.auth.getUser();
+    const { data: { user } } = await db.auth.getUser();
 
     if (!user) {
-        window.location.href = "Login.html";
+        window.location.href = "login.html";
         return;
     }
 
-    console.log("Logged in user:", user.email);
+    alert("Welcome " + user.email);
 }
+
+loadUser();
