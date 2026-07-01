@@ -76,33 +76,55 @@ function saveXP(){
     syncXPToSupabase();
 }
 
-    
-    
-    
-async function syncXPToSupabase() {
+ async function syncXPToSupabase() {
 
-    const {
-        data: { user }
-    } = await db.auth.getUser();
+    try {
 
-    if (!user) return;
+        const {
+            data: { user },
+            error: userError
+        } = await db.auth.getUser();
 
-    const { error } = await db
-        .from("users")
-        .update({
-            xp: xp,
-            lessons: lessonCount,
-            quizzes: quizCount,
-            badge: badge
-        })
-        .eq("email", user.email);
+        if (userError) {
+            alert("User Error: " + userError.message);
+            return;
+        }
 
-    if (error) {
-        console.log(error.message);
-    } else {
-        console.log("✅ XP Synced");
+        if (!user) {
+            alert("User not logged in");
+            return;
+        }
+
+        const { data, error } = await db
+            .from("users")
+            .update({
+                xp: xp,
+                lessons: lessonCount,
+                quizzes: quizCount,
+                badge: badge
+            })
+            .eq("email", user.email)
+            .select();
+
+        if (error) {
+            alert("Update Error: " + error.message);
+            console.log(error);
+            return;
+        }
+
+        alert("✅ XP Synced Successfully");
+        console.log(data);
+
+    } catch (err) {
+
+        alert("Catch Error: " + err.message);
+        console.log(err);
+
     }
-}
+
+ }   
+    
+           
 
     
 
