@@ -42,6 +42,8 @@ async function loadDashboard() {
     }
 
     const userData = data[0];
+    console.log(userData);
+       alert(JSON.stringify(userData));
 
     document.getElementById("xpValue").innerText = userData.xp;
     document.getElementById("lessonValue").innerText = userData.lessons;
