@@ -72,6 +72,36 @@ function saveXP(){
 
     updateXPUI();
     updateBadge();
+
+    syncXPToSupabase();
+}
+
+    
+    
+    
+async function syncXPToSupabase() {
+
+    const {
+        data: { user }
+    } = await db.auth.getUser();
+
+    if (!user) return;
+
+    const { error } = await db
+        .from("users")
+        .update({
+            xp: xp,
+            lessons: lessonCount,
+            quizzes: quizCount,
+            badge: badge
+        })
+        .eq("email", user.email);
+
+    if (error) {
+        console.log(error.message);
+    } else {
+        console.log("✅ XP Synced");
+    }
 }
 
     
