@@ -27,7 +27,7 @@ async function loadDashboard() {
             xp: 0,
             lessons: 0,
             quizzes: 0,
-            streak: 0,
+            
             badge: "🌱 Beginner"
         }]);
 
@@ -35,7 +35,7 @@ async function loadDashboard() {
             xp: 0,
             lessons: 0,
             quizzes: 0,
-            streak: 0,
+            
             badge: "🌱 Beginner"
         }];
     }
