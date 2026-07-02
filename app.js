@@ -1007,7 +1007,7 @@ async function logout() {
 
     alert("Logged Out Successfully");
 
-    window.location.href = "login.html";
+    window.location.href = "Login.html";
 }
 
 window.logout = logout;
