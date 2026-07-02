@@ -999,6 +999,18 @@ async function testSupabase() {
         console.log(data);
     }
 }
+async function logout() {
+
+    await db.auth.signOut();
+
+    localStorage.clear();
+
+    alert("Logged Out Successfully");
+
+    window.location.href = "login.html";
+}
+
+window.logout = logout;
 
 
 
