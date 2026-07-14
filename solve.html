@@ -1,220 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>NEET AI Solver</title>
+<title>AI Problem Solver | NEET Learning Hub</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#020617">
+<meta name="theme-color" content="#050816">
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>    
 
 </head>
 
 <body>
 
 <div class="glow"></div>
-
 <div class="glow2"></div>
 
-<header>
+<!-- SIDEBAR -->
 
-    <div class="logo">
+<aside class="sidebar">
 
-        🩺 NEET Learning Hub
+<div class="logo">
 
-    </div>
+<h2>🩺 NEET</h2>
 
-    <nav class="nav">
+<span>Learning Hub</span>
 
-        <a href="index.html">Home</a>
+</div>
 
-        <a href="learn.html">Learn</a>
+<nav>
 
-        <a href="solve.html">Solve</a>
+<a href="index.html">🏠 Dashboard</a>
 
-    </nav>
+<a href="learn.html">📚 Learn</a>
+
+<a class="active" href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>🧠 AI Problem Solver</h2>
+
+<p>Get step-by-step NEET solutions instantly.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
 
 </header>
 
-<!-- HERO SECTION -->
-
 <section class="hero">
 
-    <h1>
+<div class="hero-left">
 
-        🧠 AI Question Solver
+<span class="hero-tag">
 
-    </h1>
+⚡ AI Powered Solver
 
-    <p>
+</span>
 
-        Solve NEET questions with
-        step-by-step explanations,
-        formulas, shortcuts,
-        and exam-focused tips.
+<h1>
 
-    </p>
+Solve Every
+<span>NEET Question</span>
 
-</section>
+Like a Topper
 
-  <!-- =========================
-     AI SOLVER SECTION
-========================= -->
+</h1>
 
-<section class="ai-teacher">
+<p>
 
-    <div class="input-box">
+Enter any Physics, Chemistry or Biology question and get a detailed AI explanation.
 
-        <h2>🧠 What do you want to solve today?</h2>
+</p>
 
-        <p>
-            Enter any NEET question and let AI provide
-            step-by-step solutions with explanations.
-        </p>
+</div>
 
-        <textarea
-            id="solveInput"
-            placeholder="Enter your NEET question here..."
-            rows="5"
-            style="
-                width:100%;
-                padding:15px;
-                border-radius:15px;
-                border:none;
-                outline:none;
-                margin-top:15px;
-                resize:vertical;
-                font-family:Poppins,sans-serif;
-            "
-        ></textarea>
+<div class="hero-card">
 
-        <button
-            class="btn primary"
-            onclick="solve(document.getElementById('solveInput').value)">
+<h3>🎯 Today's Practice</h3>
 
-            🚀 Solve Now
+<h2>20 Questions</h2>
 
-        </button>
+<p>
 
-    </div>
+✔ Physics Numericals<br>
+✔ Organic Chemistry<br>
+✔ Biology MCQs
 
-    <!-- LOADING -->
+</p>
 
-    <div id="loading"
-         class="loading-box"
-         style="display:none;">
-
-        🤖 AI Solver is solving your question...
-
-    </div>
-
-    <!-- OUTPUT -->
-
-    <div id="output"
-         class="lesson-output">
-
-        <h3>🩺 Your solution will appear here</h3>
-
-        <p>
-            Enter a question above and click
-            "Solve Now".
-        </p>
-
-    </div>
+</div>
 
 </section>
 <!-- =========================
-     POPULAR NEET QUESTIONS
+AI SOLVER PANEL
+========================= -->
+
+<section class="continue">
+
+<h3>🧠 Enter Your Question</h3>
+
+<p>
+
+Ask any NEET Physics, Chemistry or Biology question.
+
+</p>
+
+<textarea
+id="solveInput"
+rows="6"
+placeholder="Example:
+A body is projected vertically upward with velocity 20 m/s. Find maximum height.">
+</textarea>
+
+<div class="hero-buttons">
+
+<button
+class="btn primary"
+onclick="solve(document.getElementById('solveInput').value)">
+
+🧠 Solve Question
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('imageUpload').click()">
+
+📷 Upload Image
+
+</button>
+
+<input
+type="file"
+id="imageUpload"
+accept="image/*"
+style="display:none;">
+
+</div>
+
+</section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is solving your question...</h3>
+
+<p>
+
+Please wait a few seconds.
+
+</p>
+
+</div>
+
+<!-- =========================
+OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>📖 Solution</h3>
+
+<p>
+
+Your step-by-step AI solution will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK ACTIONS
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="document.getElementById('solveInput').value='Newton Laws of Motion'">
+
+<h3>⚛ Physics</h3>
+
+<p>Mechanics & Numericals</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('solveInput').value='Chemical Bonding'">
+
+<h3>🧪 Chemistry</h3>
+
+<p>Organic & Physical</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('solveInput').value='Human Heart'">
+
+<h3>🧬 Biology</h3>
+
+<p>NCERT Based Questions</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('solveInput').value='Thermodynamics'">
+
+<h3>🔥 Hot Topic</h3>
+
+<p>Most Asked Questions</p>
+
+</div>
+
+</section>
+<!-- =========================
+POPULAR QUESTIONS
 ========================= -->
 
 <h2 class="section-title">
 
-    🔥 Popular NEET Questions
+🔥 Popular Questions
 
 </h2>
 
 <section class="subjects">
 
-    <div class="subject"
-         onclick="document.getElementById('solveInput').value='A car travels 20 m in 4 seconds. Find its speed.'">
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Laws of Motion'">
 
-        🚗 Speed Formula
+⚛ Laws of Motion
 
-    </div>
+</div>
 
-    <div class="subject"
-         onclick="document.getElementById('solveInput').value='Calculate the pH of a solution having H+ concentration of 1×10^-3 M.'">
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Human Heart'">
 
-        🧪 pH Calculation
+❤️ Human Heart
 
-    </div>
+</div>
 
-    <div class="subject"
-         onclick="document.getElementById('solveInput').value='Explain the process of photosynthesis.'">
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Photosynthesis'">
 
-        🌿 Photosynthesis
+🌿 Photosynthesis
 
-    </div>
+</div>
 
-    <div class="subject"
-         onclick="document.getElementById('solveInput').value='State Mendel’s Law of Segregation.'">
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Chemical Bonding'">
 
-        🧬 Genetics
+🧪 Chemical Bonding
 
-    </div>
+</div>
+
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Thermodynamics'">
+
+🔥 Thermodynamics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('solveInput').value='Genetics'">
+
+🧬 Genetics
+
+</div>
 
 </section>
 
+<!-- =========================
+BACK BUTTON
+========================= -->
 
-<!-- BACK BUTTON -->
+<div style="margin-top:35px;">
 
-<div style="text-align:center; margin:40px 0;">
+<a href="index.html" class="btn secondary">
 
-    <a href="index.html"
-       class="btn secondary">
+🏠 Back to Dashboard
 
-        🏠 Back to Dashboard
-
-    </a>
-
-</div>
-
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-    <h3>
-
-        🧠 NEET AI Solver
-
-    </h3>
-
-    <p>
-
-        Solve Faster • Understand Better • Crack NEET
-
-    </p>
+</a>
 
 </div>
 
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>AI Powered Problem Solver</p>
+
+<p>Built with ❤️ by Santosh</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
 
 <script src="app.js"></script>
 
 </body>
 </html>
+    
+
+    
+    
