@@ -1,69 +1,41 @@
 /* ===================================
-   NEET LEARNING HUB PREMIUM
-   app.js PART 1
+   NEET LEARNING HUB PREMIUM V2
+   APP.JS PART 1
 =================================== */
 
 const API_URL = "https://neetlession.onrender.com/ai";
 
 /* ==========================
-AI Greeting
+Toast
 ========================== */
 
-const greetings = [
-"👋 Welcome back Future Doctor!",
-"🩺 Ready to crack NEET today?",
-"🚀 Every chapter brings you closer to MBBS.",
-"📚 Stay consistent. Success follows discipline.",
-"🔥 Keep your study streak alive!"
-];
-
-function nextTip(){
-
-const msg = document.getElementById("aiMessage");
-
-if(!msg) return;
-
-msg.innerHTML =
-greetings[Math.floor(Math.random()*greetings.length)];
-
-}
-
-/* ==========================
-Toast Notification
-========================== */
-
-function showToast(text){
+function showToast(message){
 
 const toast=document.createElement("div");
 
-toast.className="toast";
+toast.innerHTML=message;
 
-toast.innerHTML=text;
+toast.style.position="fixed";
+toast.style.bottom="30px";
+toast.style.right="30px";
+toast.style.background="#2563EB";
+toast.style.color="white";
+toast.style.padding="14px 20px";
+toast.style.borderRadius="12px";
+toast.style.zIndex="9999";
+toast.style.fontWeight="600";
+toast.style.boxShadow="0 15px 30px rgba(0,0,0,.3)";
 
 document.body.appendChild(toast);
 
 setTimeout(()=>{
-
-toast.classList.add("show");
-
-},100);
-
-setTimeout(()=>{
-
-toast.classList.remove("show");
-
-setTimeout(()=>{
-
 toast.remove();
-
-},300);
-
 },2500);
 
 }
 
 /* ==========================
-API Request
+AI Request
 ========================== */
 
 async function callAI(type,message){
@@ -71,23 +43,14 @@ async function callAI(type,message){
 try{
 
 const res=await fetch(API_URL,{
-
 method:"POST",
-
 headers:{
-
 "Content-Type":"application/json"
-
 },
-
 body:JSON.stringify({
-
 type:type,
-
 message:message
-
 })
-
 });
 
 const data=await res.json();
@@ -98,32 +61,76 @@ return data.reply;
 
 }
 
-return "⚠️ No response received.";
+return "No response.";
 
 }catch(err){
 
-return "❌ Server Error.";
+return "Server Error.";
 
 }
 
 }
 
 /* ==========================
-Loading
+AI Greeting
 ========================== */
 
-function loading(id){
+const tips=[
 
-document.getElementById(id).innerHTML=
+"📚 Revise Biology today.",
 
-"⏳ AI is generating...";
+"🧪 Practice Organic Chemistry MCQs.",
+
+"⚛ Solve Physics numericals.",
+
+"🔥 Keep your study streak alive.",
+
+"🎯 Small progress every day wins."
+
+];
+
+function nextTip(){
+
+const box=document.getElementById("aiMessage");
+
+if(!box) return;
+
+box.innerHTML=tips[Math.floor(Math.random()*tips.length)];
+
+showToast("🤖 AI Suggestion Updated");
 
 }
 
 /* ===================================
-   NEET LEARNING HUB PREMIUM
-   app.js PART 2
+   NEET LEARNING HUB PREMIUM V2
+   APP.JS PART 2
 =================================== */
+
+/* ==========================
+Study Progress
+========================== */
+
+let progress = 68;
+
+function increaseProgress(){
+
+if(progress>=100){
+
+showToast("🎉 Today's study already completed!");
+
+return;
+
+}
+
+progress+=5;
+
+document.getElementById("progressFill").style.width=progress+"%";
+
+document.getElementById("progressText").innerHTML=progress+"% Completed";
+
+showToast("✅ Progress Updated");
+
+}
 
 /* ==========================
 Daily Challenge
@@ -131,16 +138,17 @@ Daily Challenge
 
 async function dailyChallenge(){
 
-loading("output");
+const result=await callAI(
 
-const reply = await callAI(
 "dailychallenge",
+
 "Generate today's NEET challenge"
+
 );
 
-document.getElementById("output").innerHTML = reply;
+showToast("🔥 Daily Challenge Ready");
 
-showToast("🔥 Daily Challenge Ready!");
+console.log(result);
 
 }
 
@@ -150,104 +158,87 @@ Study Planner
 
 async function generateStudyPlan(){
 
-const topic = document.getElementById("studyInput").value;
+const goal=prompt("Enter your target");
 
-if(topic.trim()==""){
+if(!goal) return;
 
-showToast("⚠️ Enter your study details.");
+const result=await callAI(
+
+"studyplan",
+
+goal
+
+);
+
+showToast("📅 Study Plan Generated");
+
+console.log(result);
+
+}
+
+/* ==========================
+Rank Predictor
+========================== */
+
+function predictRank(){
+
+const marks=document.getElementById("neetMarks");
+
+const result=document.getElementById("rankResult");
+
+if(!marks || !result) return;
+
+const m=parseInt(marks.value);
+
+if(isNaN(m)){
+
+result.innerHTML="Enter valid marks.";
 
 return;
 
 }
 
-loading("studyResult");
+let rank="";
 
-const reply = await callAI(
-"studyplan",
-topic
-);
+if(m>=700){
 
-document.getElementById("studyResult").innerHTML = reply;
-
-showToast("📅 Study Plan Generated!");
+rank="Expected Rank : Top 100";
 
 }
 
-/* ==========================
-NEET Rank Predictor
-========================== */
+else if(m>=650){
 
-function predictRank(){
-
-const marks =
-Number(document.getElementById("neetMarks").value);
-
-let result="";
-
-if(marks>=700){
-
-result="🏆 Expected Rank: Under AIR 100";
+rank="Expected Rank : Top 1,000";
 
 }
-else if(marks>=650){
 
-result="🥇 Expected Rank: AIR 100 - 3000";
+else if(m>=600){
 
-}
-else if(marks>=600){
-
-result="🥈 Expected Rank: AIR 3000 - 10000";
+rank="Expected Rank : Top 5,000";
 
 }
-else if(marks>=550){
 
-result="🥉 Expected Rank: AIR 10000 - 25000";
+else if(m>=550){
 
-}
-else if(marks>=500){
-
-result="📘 Keep Practicing! Estimated Rank: 25000+";
+rank="Expected Rank : Top 15,000";
 
 }
+
 else{
 
-result="💪 Don't give up. Improve with daily practice.";
+rank="Keep Practicing 💪";
 
 }
 
-document.getElementById("rankResult").innerHTML=result;
+result.innerHTML=rank;
 
-showToast("🎯 Rank Predicted!");
-
-}
-
-/* ==========================
-Progress Animation
-========================== */
-
-let progress=32;
-
-function increaseProgress(){
-
-if(progress<100){
-
-progress+=2;
-
-document.getElementById("progressFill").style.width=
-progress+"%";
-
-document.getElementById("progressText").innerHTML=
-progress+"% Completed";
-
-showToast("✅ Progress Updated!");
-
-}
+showToast("🎯 Rank Predicted");
 
 }
 
 /* ===================================
-   NEET LEARNING HUB PREMIUM
-   app.js PART 3
+   NEET LEARNING HUB PREMIUM V2
+   APP.JS PART 3
 =================================== */
 
 /* ==========================
@@ -289,103 +280,59 @@ deferredPrompt=null;
 }
 
 /* ==========================
-Learn AI
+AI Modules
 ========================== */
 
 async function learn(topic){
 
-const reply=await callAI("learn",topic);
-
-return reply;
+return await callAI("learn",topic);
 
 }
-
-/* ==========================
-Solve AI
-========================== */
 
 async function solve(question){
 
-const reply=await callAI("solve",question);
-
-return reply;
+return await callAI("solve",question);
 
 }
-
-/* ==========================
-MCQ Generator
-========================== */
 
 async function generateMCQ(subject){
 
-const reply=await callAI("mcq",subject);
-
-return reply;
+return await callAI("mcq",subject);
 
 }
-
-/* ==========================
-Revision Notes
-========================== */
 
 async function revision(topic){
 
-const reply=await callAI("revision",topic);
-
-return reply;
+return await callAI("revision",topic);
 
 }
-
-/* ==========================
-Quiz Generator
-========================== */
 
 async function generateQuiz(topic){
 
-const reply=await callAI("quiz",topic);
-
-return reply;
+return await callAI("quiz",topic);
 
 }
-
-/* ==========================
-Flashcards
-========================== */
 
 async function generateFlashcards(topic){
 
-const reply=await callAI("flashcards",topic);
-
-return reply;
+return await callAI("flashcards",topic);
 
 }
-
-/* ==========================
-Weakness Analysis
-========================== */
-
-async function analyzePerformance(data){
-
-const reply=await callAI("analysis",data);
-
-return reply;
-
-}
-
-/* ==========================
-NCERT Notes
-========================== */
 
 async function generateNCERTNotes(topic){
 
-const reply=await callAI("ncertnotes",topic);
+return await callAI("ncertnotes",topic);
 
-return reply;
+}
+
+async function analyzePerformance(text){
+
+return await callAI("analysis",text);
 
 }
 
 /* ==========================
-Initialize
+Initialize App
 ========================== */
 
 window.addEventListener("load",()=>{
@@ -394,11 +341,23 @@ nextTip();
 
 if("serviceWorker" in navigator){
 
-navigator.serviceWorker.register("./service-worker.js");
+navigator.serviceWorker.register("./service-worker.js")
+
+.then(()=>{
+
+console.log("Service Worker Registered");
+
+})
+
+.catch(err=>{
+
+console.log(err);
+
+});
 
 }
 
-showToast("🩺 Welcome to NEET Learning Hub!");
+showToast("🩺 Welcome to NEET Learning Hub V2");
 
 });
 
