@@ -6,144 +6,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NEET Learning Hub</title>
+<title>NEET Learning Hub | Premium V2</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#020617">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="theme-color" content="#07111F">
 
 </head>
 
 <body>
 
-<div class="glow"></div>
-<div class="glow2"></div>
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
 
-<!-- ===========================
+<!-- =========================
 SIDEBAR
-=========================== -->
+========================= -->
 
 <aside class="sidebar">
 
-<div class="brand">
+<div class="logo">
 
 <h2>🩺 NEET</h2>
 
-<p>Learning Hub AI</p>
+<span>Learning Hub</span>
 
 </div>
 
-<ul>
+<nav>
 
-<li class="active">🏠 Dashboard</li>
+<a class="active" href="#">
+🏠 Dashboard
+</a>
 
-<li onclick="location.href='learn.html'">
+<a href="learn.html">
 📚 Learn
-</li>
+</a>
 
-<li onclick="location.href='solve.html'">
+<a href="solve.html">
 🧠 Solve
-</li>
+</a>
 
-<li onclick="location.href='mcq.html'">
-📝 MCQs
-</li>
+<a href="mcq.html">
+🧬 MCQ
+</a>
 
-<li onclick="location.href='quiz.html'">
-🎯 Quiz
-</li>
+<a href="quiz.html">
+📝 Quiz
+</a>
 
-<li onclick="location.href='flashcards.html'">
-🗂 Flashcards
-</li>
+<a href="flashcards.html">
+🃏 Flashcards
+</a>
 
-<li onclick="location.href='dashboard.html'">
-📊 Analytics
-</li>
+<a href="analysis.html">
+📊 Analysis
+</a>
 
-<li onclick="logout()">
+<a href="dashboard.html">
+📈 Progress
+</a>
+
+<a href="#">
+⚙ Settings
+</a>
+
+<a href="#" onclick="logout()">
 🚪 Logout
-</li>
+</a>
 
-</ul>
+</nav>
 
 </aside>
 
-<!-- ===========================
-MAIN
-=========================== -->
+<!-- =========================
+MAIN CONTENT
+========================= -->
 
-<div class="main">
+<main class="main-content">
 
 <header class="topbar">
 
 <div>
 
-<h2>Welcome Back 👋</h2>
+<h2>
+Welcome Back 👋
+</h2>
 
-<p>Your AI NEET Preparation Platform</p>
+<p>
+Your AI NEET Mentor is ready.
+</p>
 
 </div>
 
-<button id="installBtn" class="btn">
+<button id="installBtn" class="install-btn">
 
 📲 Install App
 
 </button>
 
 </header>
-
-<!-- HERO -->
+<!-- =========================
+HERO SECTION
+========================= -->
 
 <section class="hero">
 
 <div class="hero-left">
 
+<span class="hero-tag">
+🚀 AI Powered NEET Preparation
+</span>
+
 <h1>
 
-Crack <span>NEET 2027</span>
+Become the
+<span>Doctor</span>
 
-Become a
-
-<span>Future Doctor</span>
+you dream to be.
 
 </h1>
 
 <p>
 
-Master Biology, Chemistry and Physics with your own AI mentor.
-
-Practice smarter.
-
-Revise faster.
-
-Score higher.
+Master Biology, Chemistry and Physics with your
+personal AI mentor. Learn smarter, practice daily,
+and stay on track for NEET success.
 
 </p>
 
 <div class="hero-buttons">
 
-<a href="learn.html" class="btn">
+<a href="learn.html" class="btn primary">
 
 📚 Start Learning
 
 </a>
 
-<a href="solve.html" class="btn secondary">
+<a href="mcq.html" class="btn secondary">
 
-🧠 Solve Questions
-
-</a>
-
-<a href="mcq.html" class="btn">
-
-📝 Practice MCQs
+🧬 Practice MCQs
 
 </a>
 
@@ -151,7 +161,7 @@ Score higher.
 
 </div>
 
-<div class="hero-right">
+<!-- Right Side -->
 
 <div class="hero-card">
 
@@ -161,68 +171,27 @@ Score higher.
 
 <p>
 
-Biology
-
-Chemistry
-
-Physics
+✔ Biology Revision<br>
+✔ Chemistry MCQs<br>
+✔ Physics Numericals
 
 </p>
 
-</div>
+<div class="progress-bar">
+
+<div class="progress-fill"></div>
 
 </div>
 
-</section>
-
-<!-- DASHBOARD -->
-
-<section class="dashboard">
-
-<div class="dashboard-card">
-
-<h3>🔥 Study Streak</h3>
-
-<h2>12 Days</h2>
-
-<p>Keep learning daily.</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>⭐ XP</h3>
-
-<h2>1840 XP</h2>
-
-<p>Level 12 Student</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>📊 Progress</h3>
-
-<h2>68%</h2>
-
-<p>NEET Syllabus Completed</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>🏆 Target</h3>
-
-<h2>720</h2>
-
-<p>AI keeps tracking your goal.</p>
+<span>68% Completed</span>
 
 </div>
 
 </section>
-<!-- ===========================
-AI STUDY COMPANION
-=========================== -->
+
+<!-- =========================
+AI COMPANION
+========================= -->
 
 <section class="continue">
 
@@ -230,21 +199,11 @@ AI STUDY COMPANION
 
 <p id="aiMessage">
 
-Good Afternoon 👋
-
-Today's AI recommendation:
-
-• Biology → Human Physiology
-
-• Chemistry → Organic Chemistry
-
-• Physics → Current Electricity
-
-Stay consistent and maintain your streak! 🔥
+Welcome back! Today is a great day to improve your NEET score.
 
 </p>
 
-<button class="btn" onclick="nextTip()">
+<button class="btn primary" onclick="nextTip()">
 
 ✨ Get AI Suggestion
 
@@ -252,29 +211,156 @@ Stay consistent and maintain your streak! 🔥
 
 </section>
 
-<!-- ===========================
-LEARNING PROGRESS
-=========================== -->
+<!-- =========================
+QUICK ACTIONS
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card" onclick="location.href='learn.html'">
+
+<h3>📚 Learn</h3>
+
+<p>Concepts with AI teacher</p>
+
+</div>
+
+<div class="dashboard-card" onclick="location.href='solve.html'">
+
+<h3>🧠 Solve</h3>
+
+<p>Step-by-step solutions</p>
+
+</div>
+
+<div class="dashboard-card" onclick="location.href='mcq.html'">
+
+<h3>🧬 MCQ Practice</h3>
+
+<p>Unlimited AI questions</p>
+
+</div>
+
+<div class="dashboard-card" onclick="location.href='quiz.html'">
+
+<h3>📝 Quiz</h3>
+
+<p>Test your preparation</p>
+
+</div>
+
+</section>
+
+ <!-- =========================
+DASHBOARD STATS
+========================= -->
+
+<section class="stats">
+
+<div class="stat">
+<h2>🔥 12</h2>
+<p>Study Streak</p>
+</div>
+
+<div class="stat">
+<h2>⭐ 2,480</h2>
+<p>XP Earned</p>
+</div>
+
+<div class="stat">
+<h2>📈 87%</h2>
+<p>Accuracy</p>
+</div>
+
+<div class="stat">
+<h2>🏆 680+</h2>
+<p>Target Score</p>
+</div>
+
+</section>
+
+<!-- =========================
+SUBJECTS
+========================= -->
+
+<h2 class="section-title">
+📖 Core Subjects
+</h2>
+
+<section class="subjects">
+
+<div class="subject">
+
+<h2>🧬 Biology</h2>
+
+<p>
+Human Physiology<br>
+Genetics<br>
+Ecology<br>
+Plant Physiology
+</p>
+
+</div>
+
+<div class="subject">
+
+<h2>🧪 Chemistry</h2>
+
+<p>
+Organic Chemistry<br>
+Physical Chemistry<br>
+Inorganic Chemistry
+</p>
+
+</div>
+
+<div class="subject">
+
+<h2>⚛ Physics</h2>
+
+<p>
+Mechanics<br>
+Modern Physics<br>
+Thermodynamics<br>
+Optics
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+PROGRESS
+========================= -->
 
 <section class="continue">
 
-<h3>📈 Overall NEET Progress</h3>
+<h3>📈 Your Progress</h3>
 
-<p>Complete your syllabus step by step.</p>
+<p>
+
+Keep practicing every day to increase your NEET score.
+
+</p>
 
 <div class="progress-bar">
 
-<div id="progressFill" class="progress-fill"></div>
+<div
+id="progressFill"
+class="progress-fill">
+</div>
 
 </div>
 
 <p id="progressText">
 
-32% Completed
+68% Completed
 
 </p>
 
-<button class="btn" onclick="increaseProgress()">
+<button
+class="btn primary"
+onclick="increaseProgress()">
 
 ✅ Mark Today's Study Complete
 
@@ -282,318 +368,47 @@ LEARNING PROGRESS
 
 </section>
 
-<!-- ===========================
-DAILY CHALLENGE
-=========================== -->
-
-<section class="continue">
-
-<h3>🔥 Daily Challenge</h3>
-
-<p>
-
-Attempt today's AI-generated NEET questions.
-
-</p>
-
-<button class="btn" onclick="dailyChallenge()">
-
-🚀 Start Challenge
-
-</button>
-
-<div id="output" class="lesson-output">
-
-<h4>Your challenge will appear here...</h4>
-
-</div>
-
-</section>
-
-<!-- ===========================
-AI STUDY PLANNER
-=========================== -->
-
-<section class="continue">
-
-<h3>📅 AI Study Planner</h3>
-
-<input
-type="text"
-id="studyInput"
-placeholder="Example: NEET 2027, 5 hrs/day, weak in Physics">
-
-<button class="btn"
-
-onclick="generateStudyPlan()">
-
-Generate Smart Plan
-
-</button>
-
-<div id="studyResult">
-
-Your personalized study plan will appear here...
-
-</div>
-
-</section>
-
-<!-- ===========================
-RANK PREDICTOR
-=========================== -->
-
-<section class="continue">
-
-<h3>🎯 AI Rank Predictor</h3>
-
-<input
-
-type="number"
-
-id="neetMarks"
-
-placeholder="Enter Expected Marks (0-720)">
-
-<button class="btn"
-
-onclick="predictRank()">
-
-Predict Rank
-
-</button>
-
-<div id="rankResult">
-
-</div>
-
-</section>
-
-<!-- ===========================
-QUICK STATS
-=========================== -->
-
-<section class="stats">
-
-<div class="stat">
-
-<h2>📚 142</h2>
-
-<p>Lessons Completed</p>
-
-</div>
-
-<div class="stat">
-
-<h2>📝 980</h2>
-
-<p>MCQs Solved</p>
-
-</div>
-
-<div class="stat">
-
-<h2>🎯 88%</h2>
-
-<p>Accuracy</p>
-
-</div>
-
-<div class="stat">
-
-<h2>⏱ 124 hrs</h2>
-
-<p>Total Study Time</p>
-
-</div>
-
-</section>
-
-<!-- ===========================
-LEARNING MODULES
-=========================== -->
-
-<h2 class="section-title">🩺 AI Learning Modules</h2>
-
-<section class="grid">
-
-<div class="card" onclick="location.href='learn.html'">
-<h3>📚 Learn AI</h3>
-<p>Understand every NEET concept with your AI teacher.</p>
-<div class="badge">Open</div>
-</div>
-
-<div class="card" onclick="location.href='solve.html'">
-<h3>🧠 Solve Questions</h3>
-<p>Practice step-by-step solutions with AI.</p>
-<div class="badge">Solve</div>
-</div>
-
-<div class="card" onclick="location.href='mcq.html'">
-<h3>📝 MCQ Practice</h3>
-<p>Unlimited Biology, Chemistry & Physics MCQs.</p>
-<div class="badge">Practice</div>
-</div>
-
-<div class="card" onclick="location.href='quiz.html'">
-<h3>🎯 AI Quiz</h3>
-<p>Test yourself with smart AI quizzes.</p>
-<div class="badge">Start</div>
-</div>
-
-<div class="card" onclick="location.href='flashcards.html'">
-<h3>🗂 Flashcards</h3>
-<p>Quick revision using AI flashcards.</p>
-<div class="badge">Revise</div>
-</div>
-
-<div class="card" onclick="location.href='doubt.html'">
-<h3>💬 AI Doubt Chat</h3>
-<p>Ask doubts anytime and get instant explanations.</p>
-<div class="badge">Chat</div>
-</div>
-
-<div class="card" onclick="location.href='analysis.html'">
-<h3>📊 Weakness Analysis</h3>
-<p>Discover weak topics and improve faster.</p>
-<div class="badge">Analyze</div>
-</div>
-
-<div class="card" onclick="location.href='ncert.html'">
-<h3>📖 NCERT AI</h3>
-<p>Master NCERT with AI-powered notes.</p>
-<div class="badge">Read</div>
-</div>
-
-</section>
-
-<!-- ===========================
-SUBJECTS
-=========================== -->
-
-<h2 class="section-title">🧬 Core Subjects</h2>
-
-<section class="subjects">
-
-<div class="subject">
-<h2>🧬 Biology</h2>
-<p>Human Physiology, Genetics, Ecology, Biotechnology</p>
-</div>
-
-<div class="subject">
-<h2>🧪 Chemistry</h2>
-<p>Physical, Organic & Inorganic Chemistry</p>
-</div>
-
-<div class="subject">
-<h2>⚛ Physics</h2>
-<p>Mechanics, Modern Physics, Electricity & Thermodynamics</p>
-</div>
-
-</section>
-
-<!-- ===========================
+<!-- =========================
 FOOTER
-=========================== -->
+========================= -->
 
 <footer>
 
-<h2>🩺 NEET Learning Hub</h2>
+<h2>
 
-<p>Your Complete AI Companion for NEET Preparation.</p>
+🩺 NEET Learning Hub
 
-<p>Made with ❤️ by Santosh</p>
+</h2>
 
-<div style="margin-top:20px;">
+<p>
 
-<a href="https://viberank.dev/apps/Neet%20Learning" target="_blank">
+AI Powered Learning Platform
 
-<img src="https://viberank.dev/badge?app=Neet%20Learning&theme=dark">
+</p>
 
-</a>
+<p>
 
-</div>
+Built with ❤️ by Santosh
+
+</p>
 
 </footer>
 
-</div>
-<!-- End Main -->
+</main>
 
 <script src="app.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
 <script src="auth.js"></script>
 
-<script>
-
-function nextTip(){
-const tips=[
-"📘 Revise NCERT before solving MCQs.",
-"🧬 Focus on Biology daily for maximum marks.",
-"⚛ Practice Physics numericals every day.",
-"🧪 Organic Chemistry needs regular revision.",
-"🎯 Solve one mock test every week."
-];
-
-document.getElementById("aiMessage").innerHTML =
-tips[Math.floor(Math.random()*tips.length)];
-}
-
-let progress=32;
-
-function increaseProgress(){
-
-if(progress<100){
-
-progress+=2;
-
-document.getElementById("progressFill").style.width=progress+"%";
-
-document.getElementById("progressText").innerHTML=
-progress+"% Completed";
-
-}
-
-}
-
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt",(e)=>{
-
-e.preventDefault();
-
-deferredPrompt=e;
-
-});
-
-document.getElementById("installBtn").onclick=async()=>{
-
-if(!deferredPrompt){
-
-alert("Install is available in supported browsers.");
-
-return;
-
-}
-
-deferredPrompt.prompt();
-
-await deferredPrompt.userChoice;
-
-deferredPrompt=null;
-
-};
-
-if("serviceWorker" in navigator){
-
-window.addEventListener("load",()=>{
-
-navigator.serviceWorker.register("./service-worker.js");
-
-});
-
-}
-
-</script>
-
 </body>
-</html>    
+
+</html>   
+    
+
+
+    
     
