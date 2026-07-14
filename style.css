@@ -1,690 +1,916 @@
+/* ===================================
+   NEET LEARNING HUB PREMIUM
+   PART 1
+=================================== */
 
-/* =========================
-   RESET
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
-/* =========================
-   BODY
-========================= */
+html{
+scroll-behavior:smooth;
+}
 
 body{
-    background:
-    radial-gradient(circle at top left,#10B98125,transparent 25%),
-    radial-gradient(circle at bottom right,#06B6D425,transparent 25%),
-    #020617;
 
-    color:white;
-    overflow-x:hidden;
+background:#050B18;
+color:white;
+overflow-x:hidden;
+
 }
 
-/* =========================
-   GLOW EFFECTS
-========================= */
+/* ==========================
+Background Glow
+========================== */
 
 .glow{
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#10B98120;
-    filter:blur(140px);
-    top:-120px;
-    left:-120px;
-    z-index:-1;
+
+position:fixed;
+
+width:600px;
+height:600px;
+
+background:#2563EB33;
+
+filter:blur(180px);
+
+top:-200px;
+left:-150px;
+
+border-radius:50%;
+
+z-index:-2;
+
 }
 
 .glow2{
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#06B6D420;
-    filter:blur(140px);
-    bottom:-120px;
-    right:-120px;
-    z-index:-1;
+
+position:fixed;
+
+width:500px;
+height:500px;
+
+background:#06B6D433;
+
+filter:blur(170px);
+
+right:-120px;
+bottom:-120px;
+
+border-radius:50%;
+
+z-index:-2;
+
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ==========================
+Sidebar
+========================== */
 
-header{
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-}
-    
-    
-    
+.sidebar{
 
-/* =========================
-   LOGO
-========================= */
+position:fixed;
 
-.logo{
-    font-size:28px;
-    font-weight:700;
-    color:#10B981;
-}
+left:0;
+top:0;
 
-/* =========================
-   NAV
-========================= */
+width:260px;
+height:100vh;
 
-.nav{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-    align-items:center;
+padding:30px 22px;
+
+background:rgba(12,18,32,.94);
+
+backdrop-filter:blur(20px);
+
+border-right:1px solid rgba(255,255,255,.08);
+
+z-index:1000;
+
 }
 
-.nav a{
-    text-decoration:none;
-    color:white;
-    padding:8px 12px;
-    border-radius:8px;
-    transition:.3s;
+.brand{
+
+margin-bottom:45px;
+
 }
 
-.nav a:hover{
-    background:#10B981;
-    color:#020617;
-}
-        
+.brand h2{
 
+font-size:30px;
+font-weight:800;
 
-/* =========================
-   INSTALL BUTTON
-========================= */
-
-.install-wrapper{
-    text-align:center;
-    margin-top:20px;
 }
 
-.install-btn{
-    padding:14px 24px;
-    border:none;
-    border-radius:16px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:600;
-    color:#020617;
-    background:linear-gradient(45deg,#10B981,#06B6D4);
-    box-shadow:0 0 30px rgba(16,185,129,.35);
-    transition:.3s;
+.brand p{
+
+margin-top:8px;
+
+color:#94A3B8;
+
+font-size:15px;
+
 }
 
-.install-btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 40px rgba(16,185,129,.55);
+.sidebar ul{
+
+list-style:none;
+
 }
 
-/* =========================
-   HERO
-========================= */
+.sidebar li{
 
-.hero{
-    padding:80px 20px;
-    text-align:center;
+padding:15px 18px;
+
+margin-bottom:10px;
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.35s;
+
+font-size:16px;
+
+font-weight:600;
+
+color:#E2E8F0;
+
 }
 
-.hero h1{
-    font-size:60px;
-    font-weight:700;
-    line-height:1.3;
+.sidebar li:hover{
+
+background:#2563EB;
+
+transform:translateX(8px);
+
+box-shadow:0 12px 30px rgba(37,99,235,.35);
+
 }
 
-.hero span{
-    color:#10B981;
+.sidebar li.active{
+
+background:#2563EB;
+
 }
 
-.hero p{
-    margin-top:20px;
-    font-size:18px;
-    opacity:.8;
+/* ==========================
+Main
+========================== */
+
+.main{
+
+margin-left:260px;
+
+padding:35px;
+
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* ==========================
+Topbar
+========================== */
 
-.hero-buttons{
-    margin-top:40px;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:40px;
+
+}
+
+.topbar h2{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.topbar p{
+
+margin-top:8px;
+
+color:#94A3B8;
+
 }
 
 .btn{
-    padding:16px 28px;
-    border:none;
-    border-radius:16px;
-    cursor:pointer;
-    font-weight:600;
-    font-size:16px;
-    text-decoration:none;
-    transition:.3s;
+
+padding:14px 24px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#2563EB,#1D4ED8);
+
+color:white;
+
+font-size:15px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(37,99,235,.35);
+
 }
 
-.primary{
-    background:linear-gradient(45deg,#10B981,#06B6D4);
-    color:#020617;
-    box-shadow:0 0 30px rgba(16,185,129,.35);
+.btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 20px 45px rgba(37,99,235,.45);
+
 }
 
-.primary:hover{
-    transform:translateY(-5px);
+.btn.secondary{
+
+background:#111827;
+
+border:1px solid rgba(255,255,255,.08);
+
 }
 
-.secondary{
-    background:rgba(255,255,255,.06);
-    color:white;
-    border:1px solid rgba(255,255,255,.08);
+/* ===================================
+   NEET LEARNING HUB PREMIUM
+   PART 2
+=================================== */
+
+/* ==========================
+Hero Section
+========================== */
+
+.hero{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:40px;
+
+align-items:center;
+
+margin-top:40px;
+
+margin-bottom:60px;
+
 }
 
-.secondary:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,.10);
+.hero-left h1{
+
+font-size:64px;
+
+font-weight:800;
+
+line-height:1.1;
+
+max-width:700px;
+
 }
 
-/* =========================
-   STATS
-========================= */
+.hero-left span{
+
+color:#38BDF8;
+
+}
+
+.hero-left p{
+
+margin:25px 0;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#CBD5E1;
+
+max-width:620px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-top:30px;
+
+}
+
+/* ==========================
+Hero Card
+========================== */
+
+.hero-card{
+
+background:rgba(17,24,39,.90);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:30px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+transition:.35s;
+
+}
+
+.hero-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 25px 60px rgba(37,99,235,.30);
+
+}
+
+.hero-card h3{
+
+color:#94A3B8;
+
+margin-bottom:15px;
+
+}
+
+.hero-card h2{
+
+font-size:42px;
+
+margin-bottom:15px;
+
+}
+
+.hero-card p{
+
+line-height:1.8;
+
+color:#CBD5E1;
+
+}
+
+/* ==========================
+Dashboard Cards
+========================== */
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+gap:25px;
+
+margin-top:50px;
+
+margin-bottom:50px;
+
+}
+
+.dashboard-card{
+
+background:rgba(17,24,39,.88);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:22px;
+
+padding:28px;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-6px);
+
+border-color:#2563EB;
+
+}
+
+.dashboard-card h3{
+
+color:#94A3B8;
+
+margin-bottom:12px;
+
+font-size:15px;
+
+}
+
+.dashboard-card h2{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+font-weight:800;
+
+}
+
+.dashboard-card p{
+
+color:#CBD5E1;
+
+font-size:15px;
+
+}
+
+/* ==========================
+AI Companion & Sections
+========================== */
+
+.continue{
+
+background:rgba(17,24,39,.90);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:30px;
+
+margin-bottom:35px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.continue h3{
+
+font-size:24px;
+
+margin-bottom:18px;
+
+}
+
+.continue p{
+
+line-height:1.8;
+
+color:#CBD5E1;
+
+margin-bottom:20px;
+
+}
+
+/* ==========================
+Progress Bar
+========================== */
+
+.progress-bar{
+
+width:100%;
+
+height:14px;
+
+background:#1E293B;
+
+border-radius:999px;
+
+overflow:hidden;
+
+margin:18px 0;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+width:32%;
+
+background:linear-gradient(90deg,#2563EB,#06B6D4);
+
+border-radius:999px;
+
+transition:.5s;
+
+}
+
+/* ==========================
+Stats
+========================== */
 
 .stats{
-    width:95%;
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:20px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:22px;
+
+margin-top:40px;
+
+margin-bottom:50px;
+
 }
 
-.stat-card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    padding:25px;
-    border-radius:24px;
-    text-align:center;
-    transition:.3s;
+.stat{
+
+background:rgba(17,24,39,.88);
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
 }
 
-.stat-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 30px rgba(16,185,129,.25);
+.stat:hover{
+
+transform:translateY(-6px);
+
+border-color:#38BDF8;
+
 }
 
-.stat-card h2{
-    font-size:34px;
-    color:#10B981;
+.stat h2{
+
+font-size:32px;
+
+margin-bottom:10px;
+
 }
 
-.stat-card p{
-    margin-top:10px;
-    opacity:.8;
+.stat p{
+
+color:#CBD5E1;
+
 }
 
-/* =========================
-   TITLES
-========================= */
+/* ===================================
+   NEET LEARNING HUB PREMIUM
+   PART 3
+=================================== */
+
+/* ==========================
+Learning Module Cards
+========================== */
 
 .section-title{
-    text-align:center;
-    margin:60px 0 30px;
-    font-size:38px;
-    font-weight:700;
+
+font-size:34px;
+
+font-weight:800;
+
+margin:60px 0 30px;
+
 }
 
-/* =========================
-   FEATURES
-========================= */
+.grid{
 
-.features{
-    width:95%;
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:20px;
-    padding-bottom:30px;
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+margin-bottom:60px;
+
 }
 
-.feature-card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    padding:30px;
-    border-radius:24px;
-    transition:.3s;
+.card{
+
+background:rgba(17,24,39,.90);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:28px;
+
+transition:.35s;
+
+cursor:pointer;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
 }
 
-.feature-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 30px rgba(16,185,129,.25);
+.card:hover{
+
+transform:translateY(-8px);
+
+border-color:#2563EB;
+
+box-shadow:0 25px 55px rgba(37,99,235,.25);
+
 }
 
-.feature-card h3{
-    font-size:26px;
-    color:#10B981;
-    margin-bottom:15px;
+.card h3{
+
+font-size:24px;
+
+margin-bottom:15px;
+
 }
 
-.feature-card p{
-    opacity:.85;
-    line-height:1.8;
+.card p{
+
+color:#CBD5E1;
+
+line-height:1.8;
+
+margin-bottom:20px;
+
 }
 
-.feature-card a{
-    display:inline-block;
-    margin-top:20px;
-    padding:14px 22px;
-    border-radius:14px;
-    background:#10B981;
-    color:#020617;
-    font-weight:600;
-    text-decoration:none;
+.badge{
+
+display:inline-block;
+
+padding:8px 18px;
+
+border-radius:999px;
+
+background:#2563EB;
+
+font-size:14px;
+
+font-weight:700;
+
 }
 
-/* =========================
-   SUBJECTS
-========================= */
+/* ==========================
+Subjects
+========================== */
 
 .subjects{
-    width:95%;
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+margin-bottom:60px;
+
 }
 
 .subject{
-    padding:30px;
-    text-align:center;
-    border-radius:24px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    transition:.3s;
+
+background:rgba(17,24,39,.90);
+
+padding:30px;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
 }
 
 .subject:hover{
-    transform:scale(1.03);
+
+transform:translateY(-8px);
+
+border-color:#06B6D4;
+
 }
 
 .subject h2{
-    font-size:30px;
-    margin-bottom:10px;
+
+margin-bottom:15px;
+
+font-size:28px;
+
 }
 
 .subject p{
-    opacity:.8;
+
+color:#CBD5E1;
+
+line-height:1.8;
+
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* ==========================
+Inputs
+========================== */
 
-.footer{
-    margin-top:80px;
-    padding:40px;
-    text-align:center;
-    background:rgba(255,255,255,.04);
-    border-top:1px solid rgba(255,255,255,.08);
+input{
+
+width:100%;
+
+padding:16px;
+
+margin:18px 0;
+
+border:none;
+
+border-radius:14px;
+
+background:#0F172A;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+border:1px solid rgba(255,255,255,.08);
+
 }
 
-.footer h3{
-    color:#10B981;
-    margin-bottom:10px;
+input:focus{
+
+border-color:#2563EB;
+
+box-shadow:0 0 15px rgba(37,99,235,.30);
+
 }
 
-.footer p{
-    opacity:.8;
-    margin-top:8px;
+/* ==========================
+Output Boxes
+========================== */
+
+.lesson-output,
+#studyResult,
+#rankResult{
+
+margin-top:20px;
+
+padding:20px;
+
+border-radius:16px;
+
+background:#0F172A;
+
+border:1px solid rgba(255,255,255,.08);
+
+color:#CBD5E1;
+
+line-height:1.8;
+
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ==========================
+Footer
+========================== */
+
+footer{
+
+margin-top:80px;
+
+padding:50px 20px;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+footer h2{
+
+font-size:32px;
+
+margin-bottom:15px;
+
+}
+
+footer p{
+
+color:#94A3B8;
+
+margin-top:8px;
+
+}
+
+/* ==========================
+Responsive
+========================== */
 
 @media(max-width:900px){
-    header{
-        flex-direction:column;
-        gap:15px;
-    }
 
-    .hero h1{
-        font-size:42px;
-    }
-}
+.sidebar{
 
-@media(max-width:600px){
-    .hero h1{
-        font-size:34px;
-    }
+position:relative;
 
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .btn,
-    .install-btn{
-        width:100%;
-    }
-}
-
-/* Existing CSS */
-
-.footer{
-   margin-top:50px;
-}
-
-/* YAHAN SE NAYA CSS ADD KARO */
-
-.action-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-margin-top:25px;
-}
-
-.action-card{
-background:#111827;
-border:1px solid rgba(255,255,255,.08);
-border-radius:18px;
-padding:20px;
-text-align:center;
-cursor:pointer;
-transition:.3s;
-}
-
-.action-card:hover{
-transform:translateY(-6px);
-box-shadow:0 0 20px rgba(77,163,255,.35);
-}
-
-.action-card h3{
-margin:10px 0;
-font-size:18px;
-}
-
-.action-card p{
-font-size:13px;
-opacity:.8;
-}
-
-/* =========================
-LEARN PAGE IMPROVEMENTS
-========================= */
-
-.ai-teacher{
-max-width:1000px;
-margin:auto;
-padding:20px;
-}
-
-.input-box{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:30px;
-text-align:center;
-margin-bottom:25px;
-}
-
-#learnInput{
 width:100%;
-max-width:700px;
-padding:18px;
-font-size:16px;
-border:none;
-outline:none;
-border-radius:16px;
-margin-top:15px;
-margin-bottom:20px;
-background:#111827;
-color:white;
+
+height:auto;
+
 }
 
-.lesson-output{
-max-width:1000px;
-margin:25px auto;
-padding:25px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-line-height:1.8;
-overflow-x:auto;
-}
+.main{
 
-#xpBox{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:25px;
-}
+margin-left:0;
 
-.hero h2{
-color:#10B981;
-margin-top:10px;
-font-size:20px;
-}
-
-
-.subject-card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
-padding:30px;
-border-radius:24px;
-text-align:center;
-transition:.3s;
-}
-
-.subject-card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 30px rgba(16,185,129,.35);
-}
-
-.subject-card h2{
-font-size:28px;
-margin-bottom:15px;
-color:#10B981;
-}
-
-.subject-card p{
-opacity:.85;
-line-height:1.7;
-margin-bottom:20px;
-}
-#studyResult{
-    max-height:300px;
-    overflow-y:auto;
-    margin-top:15px;
-    white-space:pre-wrap;
-    word-wrap:break-word;
-}
-
-.feature-card input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-}
-
-.feature-card button{
-    margin-top:10px;
-}
-/* AI Study Planner Fix */
-
-.feature-card{
-    min-height:auto;
-}
-
-#studyResult{
-    max-height:400px;
-    overflow-y:auto;
-    overflow-x:hidden;
-    margin-top:15px;
-    padding:15px;
-    background:rgba(255,255,255,.05);
-    border-radius:12px;
-    white-space:pre-wrap;
-    word-break:break-word;
-    text-align:left;
-}
-
-/* Daily Challenge Output */
-
-#output{
-    grid-column:1/-1;
-    width:100%;
-    max-width:1200px;
-}
-
-/* Mobile Fix */
-
-@media(max-width:768px){
-
-    .features{
-        grid-template-columns:1fr;
-    }
-
-    .feature-card{
-        width:100%;
-    }
-
-    #studyResult{
-        max-height:300px;
-    }
-}
-#studyResult pre{
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-#rankResult{
-    margin-top:15px;
-    padding:15px;
-    background:rgba(255,255,255,.05);
-    border-radius:12px;
-}
-
-.feature-card button{
-    display:block !important;
-    width:100%;
-    margin-top:15px;
-}
-
-#ncertInput{
-    width:100%;
-    padding:15px;
-    border-radius:10px;
-    margin:15px 0;
-}
-
-.btn{
-    display:inline-block !important;
-}
-#ncertInput{
-    width:100%;
-    padding:15px;
-    margin-bottom:20px;
-}
-
-button.btn.primary{
-    display:block !important;
-    width:100% !important;
-    margin-top:20px !important;
-    padding:15px !important;
-    background:#10B981 !important;
-    color:#020617 !important;
-    border:none !important;
-    border-radius:12px !important;
-    cursor:pointer;
-    visibility:visible !important;
-    opacity:1 !important;
-}
-
-.progress{
-    width:100%;
-    height:20px;
-    background:#ddd;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-#progressBar{
-    width:0%;
-    height:100%;
-    background:#00c853;
-    transition:0.5s;
-}
-.chat-container{
-max-width:900px;
-margin:30px auto;
 padding:20px;
+
 }
 
-.chat-box{
-height:500px;
-overflow-y:auto;
-background:#111827;
-padding:20px;
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+.hero-left h1{
+
+font-size:42px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+}
+
+.topbar{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+}
+
+/* ==========================
+Scrollbar
+========================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#2563EB;
+
 border-radius:20px;
-border:1px solid rgba(255,255,255,.08);
+
 }
 
-.user-msg{
-background:#10B981;
-color:#000;
-padding:12px;
-border-radius:15px;
-margin:10px 0;
-margin-left:120px;
+::-webkit-scrollbar-track{
+
+background:#0F172A;
+
 }
 
-.bot-msg{
-background:#1f2937;
-padding:12px;
-border-radius:15px;
-margin:10px 0;
-margin-right:120px;
+/* ==========================
+Animations
+========================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
 }
 
-.chat-input{
-display:flex;
-gap:10px;
-margin-top:20px;
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
 }
 
-.chat-input input{
-flex:1;
-padding:15px;
-border:none;
-border-radius:12px;
-font-size:16px;
 }
 
-.chat-input button{
-padding:15px 25px;
-border:none;
-border-radius:12px;
-background:#10B981;
-font-weight:bold;
-cursor:pointer;
+.hero,
+.dashboard,
+.continue,
+.grid,
+.subjects,
+footer{
+
+animation:fadeUp .7s ease;
+
 }
 
