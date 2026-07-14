@@ -1,2 +1,274 @@
+/* ===================================
+   NEET LEARNING HUB V2
+   STYLE.CSS - PART 1
+=================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:#050816;
+color:#fff;
+overflow-x:hidden;
+display:flex;
+min-height:100vh;
+
+}
+
+/* ========= Background ========= */
+
+.glow,
+.glow2{
+
+position:fixed;
+width:520px;
+height:520px;
+border-radius:50%;
+filter:blur(170px);
+z-index:-2;
+
+}
+
+.glow{
+
+top:-150px;
+left:-150px;
+background:rgba(37,99,235,.25);
+
+}
+
+.glow2{
+
+right:-150px;
+bottom:-150px;
+background:rgba(6,182,212,.20);
+
+}
+
+/* ========= Sidebar ========= */
+
+.sidebar{
+
+position:fixed;
+left:0;
+top:0;
+
+width:270px;
+height:100vh;
+
+background:#0f172a;
+
+border-right:1px solid rgba(255,255,255,.08);
+
+padding:35px 22px;
+
+display:flex;
+flex-direction:column;
+
+}
+
+.logo{
+
+margin-bottom:45px;
+
+}
+
+.logo h2{
+
+font-size:34px;
+font-weight:800;
+
+}
+
+.logo span{
+
+display:block;
+margin-top:8px;
+
+font-size:15px;
+
+color:#94A3B8;
+
+}
+
+.sidebar nav{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.sidebar nav a{
+
+text-decoration:none;
+
+padding:15px 18px;
+
+border-radius:15px;
+
+font-size:17px;
+font-weight:600;
+
+color:#CBD5E1;
+
+transition:.3s;
+
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active{
+
+background:linear-gradient(135deg,#2563EB,#06B6D4);
+
+color:white;
+
+}
+
+/* ========= Main ========= */
+
+.main-content{
+
+margin-left:270px;
+
+width:calc(100% - 270px);
+
+padding:35px;
+
+}
+
+/* ========= Topbar ========= */
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:40px;
+
+}
+
+.topbar h2{
+
+font-size:36px;
+
+font-weight:800;
+
+}
+
+.topbar p{
+
+margin-top:8px;
+
+color:#94A3B8;
+
+}
+
+/* ========= Install Button ========= */
+
+.install-btn{
+
+padding:14px 26px;
+
+border:none;
+
+border-radius:14px;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+color:#fff;
+
+background:linear-gradient(135deg,#2563EB,#06B6D4);
+
+box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+transition:.35s;
+
+}
+
+.install-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 20px 45px rgba(37,99,235,.45);
+
+}
+
+/* ========= Buttons ========= */
+
+.btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:15px 28px;
+
+border-radius:15px;
+
+font-weight:700;
+
+text-decoration:none;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.btn.primary{
+
+background:linear-gradient(135deg,#2563EB,#06B6D4);
+
+color:white;
+
+box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+}
+
+.btn.primary:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 20px 45px rgba(37,99,235,.45);
+
+}
+
+.btn.secondary{
+
+background:#111827;
+
+border:1px solid rgba(255,255,255,.08);
+
+color:white;
+
+}
+
+.btn.secondary:hover{
+
+background:#1E293B;
+
+border-color:#2563EB;
+
+}
 
