@@ -4,20 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>NEET AI Teacher</title>
+<title>NEET AI Teacher | V2</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#020617">
+<meta name="theme-color" content="#050816">
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -28,155 +25,255 @@ rel="stylesheet">
 <div class="glow"></div>
 <div class="glow2"></div>
 
-<header>
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<aside class="sidebar">
 
 <div class="logo">
-🩺 NEET Learning Hub
+
+<h2>🩺 NEET</h2>
+
+<span>Learning Hub</span>
+
 </div>
 
-<nav class="nav">
+<nav>
 
-<a href="index.html">Home</a>
-<a href="learn.html">Learn</a>
-<a href="solve.html">Solve</a>
+<a href="index.html">🏠 Dashboard</a>
+
+<a class="active" href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
 
 </nav>
 
-</header>
+</aside>
 
-<section class="hero">
+<!-- =========================
+MAIN CONTENT
+========================= -->
 
-<h1>
-🤖 AI Teacher
-</h1>
-  
+<main class="main-content">
 
-<p>
+<header class="topbar">
 
-Learn NEET concepts with
-structured AI-generated lessons,
-key points, memory tricks,
-and quick revision notes.
+<div>
 
-</p>
+<h2>🤖 AI Teacher</h2>
 
-</section>
-
-<!-- XP SYSTEM -->
-<div id="xpBox"
-class="lesson-output"
-style="max-width:700px;margin:20px auto;text-align:center;">
-
-🏅 Current Badge
-
-<br><br>
-
-<span id="badge">
-🌱 Beginner
-</span>
-
-</div>  
-
-<div id="xpBox"
-class="lesson-output"
-style="max-width:700px;margin:20px auto;text-align:center;">
-
-🏆 XP: <span id="xp">0</span>
-
-<br><br>
-
-📚 Lessons: <span id="lessonCount">0</span>
-
-<br><br>
-
-🧠 Quizzes: <span id="quizCount">0</span>
+<p>Learn any NEET topic with your personal AI mentor.</p>
 
 </div>
 
-<section class="ai-teacher">
+<button id="installBtn" class="install-btn">
 
-<div class="input-box">
+📲 Install App
 
-<h2>📚 What do you want to learn today?</h2>
+</button>
+
+</header>
+
+<!-- =========================
+HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<span class="hero-tag">
+
+📚 AI Powered Learning
+
+</span>
+
+<h1>
+
+Master Every
+<span>NEET Concept</span>
+
+with AI.
+
+</h1>
 
 <p>
-Enter any NEET topic and let AI teach you
-with exam-focused explanations.
+
+Generate complete lessons, quick revision notes,
+mock tests and quizzes instantly.
+
+</p>
+
+</div>
+
+<div class="hero-card">
+
+<h3>🎯 Today's Goal</h3>
+
+<h2>Complete 2 Lessons</h2>
+
+<p>
+
+✔ Biology
+
+<br>
+
+✔ Chemistry
+
+</p>
+
+</div>
+
+</section>
+<!-- =========================
+AI LEARNING PANEL
+========================= -->
+
+<section class="continue">
+
+<h3>📚 What do you want to learn?</h3>
+
+<p>
+
+Enter any NEET topic and let AI generate a complete lesson.
+
 </p>
 
 <input
 type="text"
 id="learnInput"
-placeholder="Enter topic (e.g. Human Heart, Photosynthesis)"
->
+placeholder="Example: Human Heart, Photosynthesis, Genetics">
 
-<div class="action-grid"><div class="action-card"
+<div class="hero-buttons">
+
+<button
+class="btn primary"
 onclick="learn(document.getElementById('learnInput').value)">
-📚
-<h3>Generate Lesson</h3>
-<p>AI Generated Lesson</p>
-</div><div class="action-card"
-onclick="generateQuiz(document.getElementById('learnInput').value)">
-🧠
-<h3>Generate Quiz</h3>
-<p>Practice MCQs</p>
-</div><div class="action-card"
+
+📚 Generate Lesson
+
+</button>
+
+<button
+class="btn secondary"
 onclick="revision(document.getElementById('learnInput').value)">
-📝
-<h3>Revision Notes</h3>
-<p>2 Minute Quick Revision</p>
-</div><div class="action-card"
+
+📝 Revision Notes
+
+</button>
+
+</div>
+
+<div class="hero-buttons" style="margin-top:15px;">
+
+<button
+class="btn primary"
+onclick="generateQuiz(document.getElementById('learnInput').value)">
+
+🧠 Generate Quiz
+
+</button>
+
+<button
+class="btn secondary"
 onclick="generateMockTest(document.getElementById('learnInput').value)">
-🏆
-<h3>Mock Test</h3>
-<p>10 NEET Level MCQs</p>
-</div></div>
 
+🏆 Mock Test
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div id="loading"
-class="loading-box"g
-style="display:none;">
-
-🤖 AI Teacher is preparing your lesson...
-
-</div>
-
-<div id="output"
-class="lesson-output">
-
-<h3>🩺 Your lesson will appear here</h3>
-
-<p>
-Enter a topic above and click
-"Generate Lesson".
-</p>
+</button>
 
 </div>
 
 </section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is preparing your lesson...</h3>
+
+<p>Please wait a few seconds.</p>
+
+</div>
+
+<!-- =========================
+OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>📖 AI Lesson Output</h3>
+
+<p>
+
+Your generated lesson will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+XP PANEL
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card">
+
+<h3>🏆 XP</h3>
+
+<h2 id="xp">0</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>📚 Lessons</h3>
+
+<h2 id="lessonCount">0</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>🧠 Quizzes</h3>
+
+<h2 id="quizCount">0</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>🥇 Badge</h3>
+
+<h2 id="badge">🌱 Beginner</h2>
+
+</div>
+
+</section>
+<!-- =========================
+POPULAR TOPICS
+========================= -->
 
 <h2 class="section-title">
 
@@ -214,12 +311,29 @@ onclick="document.getElementById('learnInput').value='Chemical Bonding'">
 
 </div>
 
+<div class="subject"
+onclick="document.getElementById('learnInput').value='Cell Division'">
+
+🔬 Cell Division
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('learnInput').value='Thermodynamics'">
+
+⚛ Thermodynamics
+
+</div>
+
 </section>
 
-<div style="text-align:center; margin:40px 0;">
+<!-- =========================
+BACK BUTTON
+========================= -->
 
-<a href="index.html"
-class="btn secondary">
+<div style="margin-top:30px;">
+
+<a href="index.html" class="btn secondary">
 
 🏠 Back to Dashboard
 
@@ -227,23 +341,35 @@ class="btn secondary">
 
 </div>
 
-<div class="footer">
+<!-- =========================
+FOOTER
+========================= -->
 
-<h3>
-🤖 NEET AI Teacher
-</h3>
+<footer>
 
-<p>
-Learn Smarter • Revise Faster • Crack NEET
-</p>
+<h2>🩺 NEET Learning Hub</h2>
 
-</div>
+<p>AI Powered Learning Platform</p>
+
+<p>Built with ❤️ by Santosh</p>
+
+</footer>
+
+</main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase.js"></script>
-<script src="auth.js"></script>  
+
+<script src="auth.js"></script>
+
 <script src="app.js"></script>
 
-
 </body>
-</html>
+
+</html>  
+  
+  
+
+  
   
