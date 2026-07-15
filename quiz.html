@@ -1,53 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Quiz | NEET Learning Hub</title>
+
+<title>NEET AI Quiz | V2</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050816">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 
 <body>
 
-<header>
-    <div class="logo">🧠 AI Quiz</div>
-</header>
+<div class="glow"></div>
+<div class="glow2"></div>
 
-<section class="features">
+<!-- SIDEBAR -->
 
-<div class="feature-card">
+<aside class="sidebar">
 
-<h2>Generate Quiz</h2>
+<div class="logo">
 
-<input
-type="text"
-id="quizInput"
-placeholder="Enter Topic">
+<h2>🩺 NEET</h2>
+<span>Learning Hub</span>
 
-<button
-class="btn primary"
-onclick="generateQuiz()">
-Generate Quiz
-</button>
-
-<div id="quizResult">
-Quiz will appear here...
 </div>
 
+<nav>
 
-<br><br>
+<a href="index.html">🏠 Dashboard</a>
 
-<button class="btn secondary" onclick="nextQuestion()">
-Next Question
-</button>    
+<a href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a class="active" href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>📝 AI Quiz Generator</h2>
+
+<p>Generate topic-wise NEET quizzes instantly.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-left">
+
+<span class="hero-tag">
+
+🧠 Smart Quiz Practice
+
+</span>
+
+<h1>
+
+Test Your
+<span>NEET Knowledge</span>
+
+with AI
+
+</h1>
+
+<p>
+
+Generate unlimited AI-powered quizzes and improve your speed, accuracy and confidence.
+
+</p>
+
+</div>
+
+<div class="hero-card">
+
+<h3>🎯 Today's Quiz Goal</h3>
+
+<h2>3 Quizzes</h2>
+
+<p>
+
+✔ Biology<br>
+
+✔ Chemistry<br>
+
+✔ Physics
+
+</p>
 
 </div>
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- =========================
+QUIZ GENERATOR
+========================= -->
+
+<section class="continue">
+
+<h3>📝 Generate AI Quiz</h3>
+
+<p>
+
+Enter any NEET topic and generate a 10-question AI quiz.
+
+</p>
+
+<input
+type="text"
+id="quizInput"
+placeholder="Example: Human Heart, Genetics, Thermodynamics">
+
+<div class="hero-buttons">
+
+<button
+class="btn primary"
+onclick="generateQuiz(document.getElementById('quizInput').value)">
+
+📝 Generate Quiz
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('quizInput').value='Biology'">
+
+🧬 Biology
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('quizInput').value='Chemistry'">
+
+🧪 Chemistry
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('quizInput').value='Physics'">
+
+⚛ Physics
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is preparing your quiz...</h3>
+
+<p>Please wait a few seconds.</p>
+
+</div>
+
+<!-- =========================
+QUIZ OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>📋 Quiz Questions</h3>
+
+<p>
+
+Your AI-generated quiz will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK QUIZ
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="document.getElementById('quizInput').value='Human Physiology'">
+
+<h3>❤️ Biology Quiz</h3>
+
+<p>10 Important Questions</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('quizInput').value='Organic Chemistry'">
+
+<h3>🧪 Chemistry Quiz</h3>
+
+<p>Reaction Based Quiz</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('quizInput').value='Mechanics'">
+
+<h3>⚛ Physics Quiz</h3>
+
+<p>Numericals & Concepts</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('quizInput').value='Genetics'">
+
+<h3>🧬 Genetics Quiz</h3>
+
+<p>NEET Level Questions</p>
+
+</div>
+
+</section>    
+<!-- =========================
+POPULAR QUIZ TOPICS
+========================= -->
+
+<h2 class="section-title">
+
+🔥 Popular Quiz Topics
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Human Heart'">
+
+❤️ Human Heart
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Photosynthesis'">
+
+🌿 Photosynthesis
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Chemical Bonding'">
+
+🧪 Chemical Bonding
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Thermodynamics'">
+
+🔥 Thermodynamics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Genetics'">
+
+🧬 Genetics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('quizInput').value='Laws of Motion'">
+
+⚛ Laws of Motion
+
+</div>
+
+</section>
+
+<!-- =========================
+BACK BUTTON
+========================= -->
+
+<div style="margin-top:35px;">
+
+<a href="index.html" class="btn secondary">
+
+🏠 Back to Dashboard
+
+</a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>AI Powered Quiz Generator</p>
+
+<p>Practice • Learn • Crack NEET 🚀</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
+
 <script src="app.js"></script>
 
 </body>
 </html>
+    
+
+    
