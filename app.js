@@ -1,249 +1,551 @@
-/* ===================================
-   NEET LEARNING HUB PREMIUM V2
-   APP.JS PART 1
-=================================== */
+/* ==========================================
+   NEET LEARNING HUB V2
+   app.js
+   PART 1
+========================================== */
 
-const API_URL = "https://neetlession.onrender.com/ai";
+const API_BASE = "https://neetlession.onrender.com/ai";
 
-/* ==========================
-Toast
-========================== */
+/* ===========================
+XP SYSTEM
+=========================== */
 
-function showToast(message){
+let xp = Number(localStorage.getItem("xp")) || 0;
+let lessonCount = Number(localStorage.getItem("lessonCount")) || 0;
+let quizCount = Number(localStorage.getItem("quizCount")) || 0;
+let badge = localStorage.getItem("badge") || "🌱 Beginner";
 
-const toast=document.createElement("div");
+/* ===========================
+Save Data
+=========================== */
 
-toast.innerHTML=message;
+function saveProgress(){
 
-toast.style.position="fixed";
-toast.style.bottom="30px";
-toast.style.right="30px";
-toast.style.background="#2563EB";
-toast.style.color="white";
-toast.style.padding="14px 20px";
-toast.style.borderRadius="12px";
-toast.style.zIndex="9999";
-toast.style.fontWeight="600";
-toast.style.boxShadow="0 15px 30px rgba(0,0,0,.3)";
+localStorage.setItem("xp", xp);
+localStorage.setItem("lessonCount", lessonCount);
+localStorage.setItem("quizCount", quizCount);
+localStorage.setItem("badge", badge);
 
-document.body.appendChild(toast);
-
-setTimeout(()=>{
-toast.remove();
-},2500);
+updateUI();
 
 }
 
-/* ==========================
-AI Request
-========================== */
+/* ===========================
+Badge System
+=========================== */
+
+function updateBadge(){
+
+if(xp>=1000){
+
+badge="👨‍⚕️ Future Doctor";
+
+}
+else if(xp>=500){
+
+badge="🏆 Expert";
+
+}
+else if(xp>=250){
+
+badge="🧠 Scholar";
+
+}
+else if(xp>=100){
+
+badge="📚 Learner";
+
+}
+else{
+
+badge="🌱 Beginner";
+
+}
+
+}
+
+/* ===========================
+Update UI
+=========================== */
+
+function updateUI(){
+
+const xpEl=document.getElementById("xp");
+const lessonEl=document.getElementById("lessonCount");
+const quizEl=document.getElementById("quizCount");
+const badgeEl=document.getElementById("badge");
+
+if(xpEl) xpEl.textContent=xp;
+if(lessonEl) lessonEl.textContent=lessonCount;
+if(quizEl) quizEl.textContent=quizCount;
+if(badgeEl) badgeEl.textContent=badge;
+
+}
+
+/* ===========================
+Add XP
+=========================== */
+
+function addXP(points){
+
+xp+=points;
+
+updateBadge();
+
+saveProgress();
+
+}
+
+/* ===========================
+Loading
+=========================== */
+
+function showLoading(){
+
+const loading=document.getElementById("loading");
+
+if(loading){
+
+loading.style.display="block";
+
+}
+
+}
+
+function hideLoading(){
+
+const loading=document.getElementById("loading");
+
+if(loading){
+
+loading.style.display="none";
+
+}
+
+}
+
+/* ===========================
+Output
+=========================== */
+
+function showOutput(text){
+
+const output=document.getElementById("output");
+
+if(!output) return;
+
+if(typeof marked!=="undefined"){
+
+output.innerHTML=marked.parse(text);
+
+}else{
+
+output.innerHTML=text;
+
+}
+
+}
+
+/* ===========================
+API CALL
+=========================== */
 
 async function callAI(type,message){
 
+showLoading();
+
 try{
 
-const res=await fetch(API_URL,{
+const res=await fetch(API_BASE,{
+
 method:"POST",
+
 headers:{
 "Content-Type":"application/json"
 },
+
 body:JSON.stringify({
 type:type,
 message:message
 })
+
 });
 
 const data=await res.json();
 
+hideLoading();
+
 if(data.reply){
 
-return data.reply;
+showOutput(data.reply);
+
+}else{
+
+showOutput("❌ "+(data.error || "Unknown Error"));
 
 }
-
-return "No response.";
 
 }catch(err){
 
-return "Server Error.";
+hideLoading();
+
+showOutput("❌ Server Error<br>"+err);
 
 }
 
 }
 
-/* ==========================
-AI Greeting
-========================== */
+updateUI();
 
-const tips=[
+/* ==========================================
+   app.js
+   PART 2
+========================================== */
 
-"📚 Revise Biology today.",
+/* ===========================
+LEARN
+=========================== */
 
-"🧪 Practice Organic Chemistry MCQs.",
+async function learn(topic){
 
-"⚛ Solve Physics numericals.",
+if(!topic){
 
-"🔥 Keep your study streak alive.",
-
-"🎯 Small progress every day wins."
-
-];
-
-function nextTip(){
-
-const box=document.getElementById("aiMessage");
-
-if(!box) return;
-
-box.innerHTML=tips[Math.floor(Math.random()*tips.length)];
-
-showToast("🤖 AI Suggestion Updated");
-
-}
-
-/* ===================================
-   NEET LEARNING HUB PREMIUM V2
-   APP.JS PART 2
-=================================== */
-
-/* ==========================
-Study Progress
-========================== */
-
-let progress = 68;
-
-function increaseProgress(){
-
-if(progress>=100){
-
-showToast("🎉 Today's study already completed!");
-
+alert("Please enter a topic.");
 return;
 
 }
 
-progress+=5;
+lessonCount++;
 
-document.getElementById("progressFill").style.width=progress+"%";
+addXP(10);
 
-document.getElementById("progressText").innerHTML=progress+"% Completed";
-
-showToast("✅ Progress Updated");
+await callAI("learn",topic);
 
 }
 
-/* ==========================
-Daily Challenge
-========================== */
+/* ===========================
+SOLVE
+=========================== */
 
-async function dailyChallenge(){
+async function solve(question){
 
-const result=await callAI(
+if(!question){
 
-"dailychallenge",
-
-"Generate today's NEET challenge"
-
-);
-
-showToast("🔥 Daily Challenge Ready");
-
-console.log(result);
+alert("Please enter a question.");
+return;
 
 }
 
-/* ==========================
-Study Planner
-========================== */
+addXP(10);
+
+await callAI("solve",question);
+
+}
+
+/* ===========================
+REVISION NOTES
+=========================== */
+
+async function revision(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+addXP(5);
+
+await callAI("revision",topic);
+
+}
+
+/* ===========================
+MOCK TEST
+=========================== */
+
+async function generateMockTest(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+quizCount++;
+
+addXP(30);
+
+await callAI("mocktest",topic);
+
+}
+
+/* ===========================
+MCQ
+=========================== */
+
+async function generateMCQ(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+quizCount++;
+
+addXP(15);
+
+await callAI("mcq",topic);
+
+}
+
+/* ===========================
+STUDY PLAN
+=========================== */
 
 async function generateStudyPlan(){
 
-const goal=prompt("Enter your target");
+addXP(25);
 
-if(!goal) return;
-
-const result=await callAI(
-
-"studyplan",
-
-goal
-
-);
-
-showToast("📅 Study Plan Generated");
-
-console.log(result);
+await callAI("studyplan","Generate a complete 7-day NEET study plan.");
 
 }
 
-/* ==========================
-Rank Predictor
-========================== */
+/* ==========================================
+   app.js
+   PART 2
+========================================== */
 
-function predictRank(){
+/* ===========================
+LEARN
+=========================== */
 
-const marks=document.getElementById("neetMarks");
+async function learn(topic){
 
-const result=document.getElementById("rankResult");
+if(!topic){
 
-if(!marks || !result) return;
-
-const m=parseInt(marks.value);
-
-if(isNaN(m)){
-
-result.innerHTML="Enter valid marks.";
-
+alert("Please enter a topic.");
 return;
 
 }
 
-let rank="";
+lessonCount++;
 
-if(m>=700){
+addXP(10);
 
-rank="Expected Rank : Top 100";
-
-}
-
-else if(m>=650){
-
-rank="Expected Rank : Top 1,000";
+await callAI("learn",topic);
 
 }
 
-else if(m>=600){
+/* ===========================
+SOLVE
+=========================== */
 
-rank="Expected Rank : Top 5,000";
+async function solve(question){
 
-}
+if(!question){
 
-else if(m>=550){
-
-rank="Expected Rank : Top 15,000";
-
-}
-
-else{
-
-rank="Keep Practicing 💪";
+alert("Please enter a question.");
+return;
 
 }
 
-result.innerHTML=rank;
+addXP(10);
 
-showToast("🎯 Rank Predicted");
+await callAI("solve",question);
 
 }
 
-/* ===================================
-   NEET LEARNING HUB PREMIUM V2
-   APP.JS PART 3
-=================================== */
+/* ===========================
+REVISION NOTES
+=========================== */
 
-/* ==========================
-PWA Install
-========================== */
+async function revision(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+addXP(5);
+
+await callAI("revision",topic);
+
+}
+
+/* ===========================
+MOCK TEST
+=========================== */
+
+async function generateMockTest(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+quizCount++;
+
+addXP(30);
+
+await callAI("mocktest",topic);
+
+}
+
+/* ===========================
+MCQ
+=========================== */
+
+async function generateMCQ(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+quizCount++;
+
+addXP(15);
+
+await callAI("mcq",topic);
+
+}
+
+/* ===========================
+STUDY PLAN
+=========================== */
+
+async function generateStudyPlan(){
+
+addXP(25);
+
+await callAI("studyplan","Generate a complete 7-day NEET study plan.");
+
+}
+
+/* ==========================================
+   app.js
+   PART 3
+========================================== */
+
+/* ===========================
+FLASHCARDS
+=========================== */
+
+async function generateFlashcards(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+addXP(20);
+
+await callAI("flashcards",topic);
+
+}
+
+/* ===========================
+QUIZ
+=========================== */
+
+async function generateQuiz(topic){
+
+if(!topic){
+
+alert("Please enter a topic.");
+return;
+
+}
+
+quizCount++;
+
+addXP(20);
+
+await callAI("quiz",topic);
+
+}
+
+/* ===========================
+ANALYSIS
+=========================== */
+
+async function analyzePerformance(text){
+
+if(!text){
+
+alert("Please enter your performance details.");
+return;
+
+}
+
+addXP(15);
+
+await callAI("analysis",text);
+
+}
+
+/* ===========================
+NCERT NOTES
+=========================== */
+
+async function generateNCERTNotes(topic){
+
+if(!topic){
+
+alert("Please enter a chapter.");
+return;
+
+}
+
+addXP(15);
+
+await callAI("ncertnotes",topic);
+
+}
+
+/* ===========================
+DAILY CHALLENGE
+=========================== */
+
+async function dailyChallenge(){
+
+addXP(20);
+
+await callAI(
+"dailychallenge",
+"Generate today's NEET daily challenge."
+);
+
+}
+
+/* ===========================
+UPDATE UI
+=========================== */
+
+updateBadge();
+updateUI();
+
+/* ==========================================
+   app.js
+   PART 4 (FINAL)
+========================================== */
+
+/* ===========================
+PWA INSTALL
+=========================== */
 
 let deferredPrompt;
 
@@ -253,113 +555,108 @@ e.preventDefault();
 
 deferredPrompt=e;
 
-});
-
 const installBtn=document.getElementById("installBtn");
 
 if(installBtn){
 
-installBtn.addEventListener("click",async()=>{
+installBtn.style.display="inline-flex";
 
-if(!deferredPrompt){
-
-showToast("📲 Install is available in supported browsers.");
-
-return;
-
-}
+installBtn.onclick=async()=>{
 
 deferredPrompt.prompt();
 
-await deferredPrompt.userChoice;
+const choice=await deferredPrompt.userChoice;
 
 deferredPrompt=null;
 
+installBtn.style.display="none";
+
+};
+
+}
+
+});
+
+/* ===========================
+LOGOUT
+=========================== */
+
+function logout(){
+
+localStorage.removeItem("user");
+
+localStorage.removeItem("session");
+
+window.location.href="login.html";
+
+}
+
+/* ===========================
+DASHBOARD SYNC
+=========================== */
+
+function syncDashboard(){
+
+const ids={
+
+xp:["xp","xp2"],
+lesson:["lessonCount","lessonCount2"],
+quiz:["quizCount","quizCount2"],
+badge:["badge","badge2"]
+
+};
+
+ids.xp.forEach(id=>{
+const el=document.getElementById(id);
+if(el) el.textContent=xp;
+});
+
+ids.lesson.forEach(id=>{
+const el=document.getElementById(id);
+if(el) el.textContent=lessonCount;
+});
+
+ids.quiz.forEach(id=>{
+const el=document.getElementById(id);
+if(el) el.textContent=quizCount;
+});
+
+ids.badge.forEach(id=>{
+const el=document.getElementById(id);
+if(el) el.textContent=badge;
 });
 
 }
 
-/* ==========================
-AI Modules
-========================== */
+/* ===========================
+WINDOW LOAD
+=========================== */
 
-async function learn(topic){
+window.onload=()=>{
 
-return await callAI("learn",topic);
+updateBadge();
 
-}
+updateUI();
 
-async function solve(question){
+syncDashboard();
 
-return await callAI("solve",question);
+console.log("✅ NEET Learning Hub V2 Loaded");
 
-}
+};
 
-async function generateMCQ(subject){
+/* ===========================
+GLOBAL ERROR HANDLER
+=========================== */
 
-return await callAI("mcq",subject);
+window.addEventListener("error",(e)=>{
 
-}
-
-async function revision(topic){
-
-return await callAI("revision",topic);
-
-}
-
-async function generateQuiz(topic){
-
-return await callAI("quiz",topic);
-
-}
-
-async function generateFlashcards(topic){
-
-return await callAI("flashcards",topic);
-
-}
-
-async function generateNCERTNotes(topic){
-
-return await callAI("ncertnotes",topic);
-
-}
-
-async function analyzePerformance(text){
-
-return await callAI("analysis",text);
-
-}
-
-/* ==========================
-Initialize App
-========================== */
-
-window.addEventListener("load",()=>{
-
-nextTip();
-
-if("serviceWorker" in navigator){
-
-navigator.serviceWorker.register("./service-worker.js")
-
-.then(()=>{
-
-console.log("Service Worker Registered");
-
-})
-
-.catch(err=>{
-
-console.log(err);
+console.error("App Error:",e.message);
 
 });
 
-}
-
-showToast("🩺 Welcome to NEET Learning Hub V2");
-
-});
+/* ===========================
+END
+=========================== */
 
 
 
