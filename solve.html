@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Problem Solver | NEET Learning Hub</title>
+<title>NEET AI Solver | V2</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -25,7 +25,7 @@
 <div class="glow"></div>
 <div class="glow2"></div>
 
-<!-- SIDEBAR -->
+<!-- Sidebar -->
 
 <aside class="sidebar">
 
@@ -61,7 +61,7 @@
 
 </aside>
 
-<!-- MAIN -->
+<!-- Main -->
 
 <main class="main-content">
 
@@ -69,9 +69,9 @@
 
 <div>
 
-<h2>🧠 AI Problem Solver</h2>
+<h2>🧠 AI Question Solver</h2>
 
-<p>Get step-by-step NEET solutions instantly.</p>
+<p>Get detailed step-by-step solutions for any NEET question.</p>
 
 </div>
 
@@ -89,22 +89,23 @@
 
 <span class="hero-tag">
 
-⚡ AI Powered Solver
+⚡ Instant Solution
 
 </span>
 
 <h1>
 
-Solve Every
+Solve Any
+
 <span>NEET Question</span>
 
-Like a Topper
+with AI
 
 </h1>
 
 <p>
 
-Enter any Physics, Chemistry or Biology question and get a detailed AI explanation.
+Paste any Biology, Chemistry or Physics question and receive a complete step-by-step explanation with concepts.
 
 </p>
 
@@ -112,40 +113,43 @@ Enter any Physics, Chemistry or Biology question and get a detailed AI explanati
 
 <div class="hero-card">
 
-<h3>🎯 Today's Practice</h3>
+<h3>🎯 AI Solver</h3>
 
-<h2>20 Questions</h2>
+<h2>24×7 Available</h2>
 
 <p>
 
-✔ Physics Numericals<br>
-✔ Organic Chemistry<br>
-✔ Biology MCQs
+✔ Step-by-Step Solution<br>
+
+✔ Concept Explanation<br>
+
+✔ Exam Tips
 
 </p>
 
 </div>
 
 </section>
-<!-- =========================
-AI SOLVER PANEL
-========================= -->
+
+<!-- ===========================
+AI SOLVER
+=========================== -->
 
 <section class="continue">
 
-<h3>🧠 Enter Your Question</h3>
+<h3>🧠 Ask Any NEET Question</h3>
 
 <p>
 
-Ask any NEET Physics, Chemistry or Biology question.
+Type or paste your Biology, Chemistry or Physics question below.
 
 </p>
 
 <textarea
 id="solveInput"
-rows="6"
+rows="7"
 placeholder="Example:
-A body is projected vertically upward with velocity 20 m/s. Find maximum height.">
+A particle is projected vertically upward with an initial velocity of 20 m/s. Calculate the maximum height.">
 </textarea>
 
 <div class="hero-buttons">
@@ -160,105 +164,110 @@ onclick="solve(document.getElementById('solveInput').value)">
 
 <button
 class="btn secondary"
-onclick="document.getElementById('imageUpload').click()">
+onclick="document.getElementById('solveInput').value='Biology Question'">
 
-📷 Upload Image
+🧬 Biology
 
 </button>
 
-<input
-type="file"
-id="imageUpload"
-accept="image/*"
-style="display:none;">
+<button
+class="btn secondary"
+onclick="document.getElementById('solveInput').value='Chemistry Question'">
+
+🧪 Chemistry
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('solveInput').value='Physics Question'">
+
+⚛ Physics
+
+</button>
 
 </div>
 
 </section>
 
-<!-- =========================
-LOADING
-========================= -->
+<!-- ===========================
+Loading
+=========================== -->
 
 <div
 id="loading"
-class="continue"
+class="loading-box"
 style="display:none;">
 
-<h3>🤖 AI is solving your question...</h3>
-
-<p>
-
-Please wait a few seconds.
-
-</p>
+🤖 AI is solving your question...
 
 </div>
 
-<!-- =========================
-OUTPUT
-========================= -->
+<!-- ===========================
+Output
+=========================== -->
 
 <section
 id="output"
-class="continue">
+class="lesson-output">
 
-<h3>📖 Solution</h3>
+<h3>📖 Step-by-Step Solution</h3>
 
 <p>
 
-Your step-by-step AI solution will appear here.
+Your AI-generated solution will appear here.
 
 </p>
 
 </section>
 
-<!-- =========================
-QUICK ACTIONS
-========================= -->
+<!-- ===========================
+Quick Questions
+=========================== -->
 
 <section class="dashboard">
 
 <div class="dashboard-card"
-onclick="document.getElementById('solveInput').value='Newton Laws of Motion'">
+onclick="document.getElementById('solveInput').value='Explain Photosynthesis.'">
 
-<h3>⚛ Physics</h3>
+<h3>🌿 Biology</h3>
 
-<p>Mechanics & Numericals</p>
+<p>Important Biology Concepts</p>
 
 </div>
 
 <div class="dashboard-card"
-onclick="document.getElementById('solveInput').value='Chemical Bonding'">
+onclick="document.getElementById('solveInput').value='Explain Chemical Bonding.'">
 
 <h3>🧪 Chemistry</h3>
 
-<p>Organic & Physical</p>
+<p>Reaction & Theory Questions</p>
 
 </div>
 
 <div class="dashboard-card"
-onclick="document.getElementById('solveInput').value='Human Heart'">
+onclick="document.getElementById('solveInput').value='State Newton Second Law.'">
 
-<h3>🧬 Biology</h3>
+<h3>⚛ Physics</h3>
 
-<p>NCERT Based Questions</p>
+<p>Formula & Numerical Questions</p>
 
 </div>
 
 <div class="dashboard-card"
-onclick="document.getElementById('solveInput').value='Thermodynamics'">
+onclick="document.getElementById('solveInput').value='Explain Genetics.'">
 
-<h3>🔥 Hot Topic</h3>
+<h3>🧬 Genetics</h3>
 
-<p>Most Asked Questions</p>
+<p>High Weightage Topic</p>
 
 </div>
 
 </section>
-<!-- =========================
-POPULAR QUESTIONS
-========================= -->
+
+ <!-- ===========================
+POPULAR TOPICS
+=========================== -->
 
 <h2 class="section-title">
 
@@ -269,52 +278,52 @@ POPULAR QUESTIONS
 <section class="subjects">
 
 <div class="subject"
-onclick="document.getElementById('solveInput').value='Laws of Motion'">
-
-⚛ Laws of Motion
-
-</div>
-
-<div class="subject"
-onclick="document.getElementById('solveInput').value='Human Heart'">
+onclick="document.getElementById('solveInput').value='Explain Human Heart.'">
 
 ❤️ Human Heart
 
 </div>
 
 <div class="subject"
-onclick="document.getElementById('solveInput').value='Photosynthesis'">
+onclick="document.getElementById('solveInput').value='Explain Photosynthesis.'">
 
 🌿 Photosynthesis
 
 </div>
 
 <div class="subject"
-onclick="document.getElementById('solveInput').value='Chemical Bonding'">
+onclick="document.getElementById('solveInput').value='Explain Chemical Bonding.'">
 
 🧪 Chemical Bonding
 
 </div>
 
 <div class="subject"
-onclick="document.getElementById('solveInput').value='Thermodynamics'">
+onclick="document.getElementById('solveInput').value='Explain Thermodynamics.'">
 
 🔥 Thermodynamics
 
 </div>
 
 <div class="subject"
-onclick="document.getElementById('solveInput').value='Genetics'">
+onclick="document.getElementById('solveInput').value='Explain Genetics.'">
 
 🧬 Genetics
 
 </div>
 
+<div class="subject"
+onclick="document.getElementById('solveInput').value='State Newton Second Law.'">
+
+⚛ Newton's Laws
+
+</div>
+
 </section>
 
-<!-- =========================
+<!-- ===========================
 BACK BUTTON
-========================= -->
+=========================== -->
 
 <div style="margin-top:35px;">
 
@@ -326,21 +335,23 @@ BACK BUTTON
 
 </div>
 
-<!-- =========================
+<!-- ===========================
 FOOTER
-========================= -->
+=========================== -->
 
 <footer>
 
 <h2>🩺 NEET Learning Hub</h2>
 
-<p>AI Powered Problem Solver</p>
+<p>AI Powered Question Solver</p>
 
-<p>Built with ❤️ by Santosh</p>
+<p>Learn • Solve • Understand • Crack NEET 🚀</p>
 
 </footer>
 
 </main>
+
+<!-- Scripts -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -351,7 +362,9 @@ FOOTER
 <script src="app.js"></script>
 
 </body>
-</html>
+</html>   
+
+    
     
 
     
