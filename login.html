@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | NEET Learning Hub</title>
+
+<link rel="stylesheet" href="login.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<meta name="theme-color" content="#050816">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<div class="login-container">
+
+<!-- Left Side -->
+
+<div class="login-left">
+
+<span class="tag">
+🩺 AI Powered Learning
+</span>
+
+<h1>
+
+Welcome to
+
+<span>NEET Learning Hub</span>
+
+</h1>
+
+<p>
+
+India's AI-powered platform for NEET aspirants.
+
+Learn smarter, solve faster, practice daily and track your progress with AI.
+
+</p>
+
+<div class="features">
+
+<div class="feature">
+
+✅ AI Teacher
+
+</div>
+
+<div class="feature">
+
+🧠 AI Question Solver
+
+</div>
+
+<div class="feature">
+
+📝 Quiz Generator
+
+</div>
+
+<div class="feature">
+
+🧬 MCQ Practice
+
+</div>
+
+<div class="feature">
+
+📊 Performance Analysis
+
+</div>
+
+<div class="feature">
+
+🏆 XP & Badges
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Right Side -->
+
+<div class="login-card">
+
+<h2>
+
+Welcome Back 👋
+
+</h2>
+
+<p>
+
+Login to continue your NEET preparation.
+
+</p>
+
+<!-- ===========================
+LOGIN FORM
+=========================== -->
+
+<form id="loginForm">
+
+<div class="input-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required>
+
+<button
+type="button"
+class="show-btn"
+onclick="togglePassword()">
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<div class="login-options">
+
+<label>
+
+<input type="checkbox">
+
+Remember me
+
+</label>
+
+<a href="#" onclick="forgotPassword()">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+<button
+type="submit"
+class="login-btn">
+
+🚀 Login
+
+</button>
+
+<div class="divider">
+
+<span>OR</span>
+
+</div>
+
+<button
+type="button"
+class="google-btn"
+onclick="googleLogin()">
+
+<img
+src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+width="20">
+
+Continue with Google
+
+</button>
+
+<p class="signup-text">
+
+Don't have an account?
+
+<a href="signup.html">
+
+Create Account
+
+</a>
+
+</p>
+
+</form>
+
+<!-- ===========================
+FOOTER
+=========================== -->
+
+<div class="login-footer">
+
+<p>
+
+🩺 NEET Learning Hub
+
+</p>
+
+<span>
+
+AI Powered Learning Platform • Learn • Practice • Crack NEET 🚀
+
+</span>
+
+</div>
+
+</div>
+
+<!-- End Login Card -->
+
+</div>
+
+<!-- End Container -->
+
+<!-- ===========================
+Scripts
+=========================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="login.js"></script>
+
+</body>
+</html>  
