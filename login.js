@@ -1,46 +1,69 @@
-async function signup() {
+/* ==========================================
+   LOGIN.JS
+   PART 1
+========================================== */
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+// Supabase Client
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
-    const { data, error } = await db.auth.signUp({
-        email,
-        password
-    });
+// Toggle Password
+function togglePassword(){
 
-    if (error) {
-        alert(error.message);
-        return;
-    }
+const password=document.getElementById("password");
 
-    // users table me profile create
-    await db.from("users").insert([{
-        name: email.split("@")[0],
-        email: email,
-        xp: 0,
-        lessons: 0,
-        quizzes: 0,
-        badge: "🌱 Beginner"
-    }]);
+if(password.type==="password"){
 
-    alert("Account Created Successfully");
+password.type="text";
+
+}else{
+
+password.type="password";
+
 }
 
-async function login() {
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const { data, error } =
-        await db.auth.signInWithPassword({
-            email,
-            password
-        });
-
-    if (error) {
-        alert(error.message);
-    } else {
-        alert("Login Successful");
-        window.location.href = "index.html";
-    }
 }
+
+// Login Form
+document.getElementById("loginForm").addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const email=document.getElementById("email").value.trim();
+
+const password=document.getElementById("password").value;
+
+const button=document.querySelector(".login-btn");
+
+button.disabled=true;
+button.innerHTML="⏳ Logging in...";
+
+try{
+
+const {data,error}=await supabase.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+if(error) throw error;
+
+alert("✅ Login Successful!");
+
+window.location.href="index.html";
+
+}catch(err){
+
+alert("❌ "+err.message);
+
+}finally{
+
+button.disabled=false;
+button.innerHTML="🚀 Login";
+
+}
+
+});
