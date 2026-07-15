@@ -1,34 +1,362 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NEET MCQ Practice</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#020617"><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script></head><body><div class="glow"></div>
-<div class="glow2"></div><header><div class="logo">🩺 NEET Learning Hub</div><nav class="nav">
-<a href="index.html">Home</a>
-<a href="learn.html">Learn</a>
-<a href="solve.html">Solve</a>
-<a href="mcq.html">MCQs</a>
-</nav></header><section class="hero"><h1>🧠 NEET MCQ Practice</h1><p>
-Practice subject-wise NEET questions with AI.
-Choose a subject and start solving instantly.
-</p></section><section class="subjects"><div class="subject-card" onclick="generateMCQ('Biology')"><h2>🧬 Biology</h2><p>
-Genetics, Human Physiology, Ecology,
-Plant Physiology and more.
-</p><button class="btn primary">
-Start Biology MCQs
-</button></div><div class="subject-card" onclick="generateMCQ('Chemistry')"><h2>🧪 Chemistry</h2><p>
-Organic, Inorganic and Physical Chemistry
-practice questions.
-</p><button class="btn primary">
-Start Chemistry MCQs
-</button></div><div class="subject-card" onclick="generateMCQ('Physics')"><h2>⚛️ Physics</h2><p>
-Mechanics, Thermodynamics,
-Modern Physics and more.
-</p><button class="btn primary">
-Start Physics MCQs
-</button></div></section><div id="output" class="lesson-output"><h3>🎯 Your MCQs will appear here</h3><p>
-Select a subject above to begin practice.
-</p></div><div style="text-align:center;margin:40px 0;"><a href="index.html" class="btn secondary">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEET MCQ Practice | V2</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050816">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo">
+<h2>🩺 NEET</h2>
+<span>Learning Hub</span>
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Dashboard</a>
+
+<a href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a class="active" href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- Main -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>🧬 AI MCQ Generator</h2>
+
+<p>Practice unlimited NEET-level MCQs powered by AI.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-left">
+
+<span class="hero-tag">
+
+🎯 Smart Practice
+
+</span>
+
+<h1>
+
+Practice
+<span>Unlimited MCQs</span>
+
+with AI
+
+</h1>
+
+<p>
+
+Generate topic-wise NEET questions with answers and explanations instantly.
+
+</p>
+
+</div>
+
+<div class="hero-card">
+
+<h3>📈 Daily Target</h3>
+
+<h2>50 MCQs</h2>
+
+<p>
+
+✔ Biology
+
+<br>
+
+✔ Chemistry
+
+<br>
+
+✔ Physics
+
+</p>
+
+</div>
+
+</section>
+<!-- =========================
+MCQ GENERATOR
+========================= -->
+
+<section class="continue">
+
+<h3>🧬 Generate NEET MCQs</h3>
+
+<p>
+
+Enter any topic and AI will generate 10 NEET-level MCQs.
+
+</p>
+
+<input
+type="text"
+id="mcqInput"
+placeholder="Example: Human Heart, Chemical Bonding, Thermodynamics">
+
+<div class="hero-buttons">
+
+<button
+class="btn primary"
+onclick="generateMCQ(document.getElementById('mcqInput').value)">
+
+🧠 Generate MCQs
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('mcqInput').value='Biology'">
+
+🧬 Biology
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('mcqInput').value='Chemistry'">
+
+🧪 Chemistry
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('mcqInput').value='Physics'">
+
+⚛ Physics
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is generating MCQs...</h3>
+
+<p>Please wait a few seconds.</p>
+
+</div>
+
+<!-- =========================
+OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>📝 Generated MCQs</h3>
+
+<p>
+
+Your AI-generated MCQs will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK PRACTICE
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="document.getElementById('mcqInput').value='Human Physiology'">
+
+<h3>❤️ Human Physiology</h3>
+
+<p>Most Important Biology Questions</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('mcqInput').value='Organic Chemistry'">
+
+<h3>🧪 Organic Chemistry</h3>
+
+<p>Reaction-Based MCQs</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('mcqInput').value='Mechanics'">
+
+<h3>⚛ Mechanics</h3>
+
+<p>Physics Numericals & Concepts</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('mcqInput').value='Genetics'">
+
+<h3>🧬 Genetics</h3>
+
+<p>Previous Year Style Questions</p>
+
+</div>
+
+</section>
+
+  <!-- =========================
+POPULAR TOPICS
+========================= -->
+
+<h2 class="section-title">
+
+🔥 Popular MCQ Topics
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Human Heart'">
+
+❤️ Human Heart
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Photosynthesis'">
+
+🌿 Photosynthesis
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Chemical Bonding'">
+
+🧪 Chemical Bonding
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Thermodynamics'">
+
+🔥 Thermodynamics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Genetics'">
+
+🧬 Genetics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('mcqInput').value='Laws of Motion'">
+
+⚛ Laws of Motion
+
+</div>
+
+</section>
+
+<!-- =========================
+BACK BUTTON
+========================= -->
+
+<div style="margin-top:35px;">
+
+<a href="index.html" class="btn secondary">
+
 🏠 Back to Dashboard
-</a></div><div class="footer"><h3>🧠 NEET MCQ Practice</h3><p>
-Practice • Learn • Crack NEET
-</p></div><script src="app.js"></script></body>
+
+</a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>AI Powered MCQ Generator</p>
+
+<p>Practice • Improve • Crack NEET 🚀</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
+
+<script src="app.js"></script>
+
+</body>
 </html>
+  
