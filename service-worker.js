@@ -1,4 +1,3 @@
-
 const CACHE_NAME = "NEET-Learning-Hub-v15";
 
 const urlsToCache = [
