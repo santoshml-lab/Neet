@@ -2,75 +2,414 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dashboard | NEET Learning Hub</title>
+<title>NEET Dashboard | V2</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#050816">
+
 </head>
 
 <body>
 
-<header>
-    <div class="logo">📊 NEET Learning Dashboard</div>
+<div class="glow"></div>
+<div class="glow2"></div>
 
-    <nav class="nav">
-        <a href="index.html">🏠 Home</a>
-    </nav>
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🩺 NEET</h2>
+<span>Learning Hub</span>
+
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Home</a>
+
+<a href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a class="active" href="dashboard.html">📈 Dashboard</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- Main -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>📈 Student Dashboard</h2>
+
+<p>Track your NEET preparation progress.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
+
 </header>
 
-<section class="features">
+<section class="hero">
 
-    <div class="feature-card">
-        <h2>🏆 Total XP</h2>
-        <h1 id="xpValue">0</h1>
-    </div>
+<div class="hero-left">
 
-    <div class="feature-card">
-        <h2>📚 Lessons Completed</h2>
-        <h1 id="lessonValue">0</h1>
-    </div>
+<span class="hero-tag">
 
-    <div class="feature-card">
-        <h2>🧠 Quizzes Completed</h2>
-        <h1 id="quizValue">0</h1>
-    </div>
+🏆 Your Progress
 
-    <div class="feature-card">
-        <h2>🔥 Daily Streak</h2>
-        <h1 id="streakValue">0</h1>
-    </div>
+</span>
 
-    <div class="feature-card">
-        <h2>🎖 Badge</h2>
-        <h1 id="badgeValue">🌱 Beginner</h1>
-    </div>
+<h1>
 
-    <div class="feature-card">
+Welcome Back,
 
-        <h2>⭐ Level</h2>
+<span>Future Doctor!</span>
 
-        <h1 id="levelValue">Level 1</h1>
+</h1>
 
-        <div class="progress">
-            <div id="progressBar"></div>
-        </div>
+<p>
 
-        <br>
+Monitor your XP, completed lessons, quizzes, mock tests and daily streak in one place.
 
-        <p id="progressText"></p>
+</p>
 
-    </div>
+</div>
+
+<div class="hero-card">
+
+<h3>🔥 Daily Goal</h3>
+
+<h2>Complete 2 Lessons</h2>
+
+<p>
+
+✔ Learn
+
+<br>
+
+✔ Practice
+
+<br>
+
+✔ Revise
+
+</p>
+
+</div>
+
+</section>
+    
+<!-- =========================
+PROGRESS STATS
+========================= -->
+
+<section class="stats">
+
+<div class="stat">
+
+<h2 id="xp">0</h2>
+
+<p>🏆 Total XP</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="lessonCount">0</h2>
+
+<p>📚 Lessons</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="quizCount">0</h2>
+
+<p>📝 Quizzes</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="badge">🌱 Beginner</h2>
+
+<p>🏅 Current Badge</p>
+
+</div>
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js"></script>
-<script src="dashboard.js"></script>
-</body>
-</html>
+<!-- =========================
+DASHBOARD CARDS
+========================= -->
 
+<section class="dashboard">
+
+<div class="dashboard-card">
+
+<h3>📚 Learning Progress</h3>
+
+<p>Track completed lessons and revision.</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>📝 Quiz Performance</h3>
+
+<p>Monitor quiz attempts and accuracy.</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>🧬 MCQ Practice</h3>
+
+<p>View solved MCQs and weak areas.</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>📊 AI Analysis</h3>
+
+<p>Get personalized improvement tips.</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+RECENT ACTIVITY
+========================= -->
+
+<section class="continue">
+
+<h3>📈 Recent Activity</h3>
+
+<p>
+
+✔ Lessons Completed:
+<span id="lessonCount2">0</span>
+
+</p>
+
+<p>
+
+✔ Quizzes Attempted:
+<span id="quizCount2">0</span>
+
+</p>
+
+<p>
+
+✔ Total XP Earned:
+<span id="xp2">0</span>
+
+</p>
+
+<p>
+
+✔ Current Badge:
+<span id="badge2">🌱 Beginner</span>
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK ACTIONS
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="location.href='learn.html'">
+
+<h3>📚 Continue Learning</h3>
+
+<p>Resume your lessons.</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="location.href='quiz.html'">
+
+<h3>📝 Take Quiz</h3>
+
+<p>Test your knowledge.</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="location.href='mcq.html'">
+
+<h3>🧬 Practice MCQs</h3>
+
+<p>Improve your accuracy.</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="location.href='analysis.html'">
+
+<h3>📊 View Analysis</h3>
+
+<p>See your weak topics.</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+DAILY GOALS
+========================= -->
+
+<h2 class="section-title">
+
+🎯 Today's Goals
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject">
+
+<h2>📚 Learn</h2>
+
+<p>Complete 2 AI lessons today.</p>
+
+</div>
+
+<div class="subject">
+
+<h2>📝 Quiz</h2>
+
+<p>Attempt 1 AI Quiz.</p>
+
+</div>
+
+<div class="subject">
+
+<h2>🧬 MCQs</h2>
+
+<p>Solve 20 MCQs.</p>
+
+</div>
+
+<div class="subject">
+
+<h2>🔥 Revision</h2>
+
+<p>Revise one important chapter.</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+BACK BUTTON
+========================= -->
+
+<div style="margin-top:35px;">
+
+<a href="index.html" class="btn secondary">
+
+🏠 Back to Dashboard
+
+</a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>Your Personal AI NEET Mentor</p>
+
+<p>Learn • Practice • Analyze • Succeed 🚀</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
+
+<script src="app.js"></script>
+
+<script>
+
+// Dashboard Stats Sync
+
+document.getElementById("xp").textContent =
+localStorage.getItem("xp") || 0;
+
+document.getElementById("lessonCount").textContent =
+localStorage.getItem("lessonCount") || 0;
+
+document.getElementById("quizCount").textContent =
+localStorage.getItem("quizCount") || 0;
+
+document.getElementById("badge").textContent =
+localStorage.getItem("badge") || "🌱 Beginner";
+
+// Duplicate fields
+
+document.getElementById("xp2").textContent =
+localStorage.getItem("xp") || 0;
+
+document.getElementById("lessonCount2").textContent =
+localStorage.getItem("lessonCount") || 0;
+
+document.getElementById("quizCount2").textContent =
+localStorage.getItem("quizCount") || 0;
+
+document.getElementById("badge2").textContent =
+localStorage.getItem("badge") || "🌱 Beginner";
+
+</script>
+
+</body>
+</html>    
 
 
 
