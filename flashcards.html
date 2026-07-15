@@ -1,60 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flashcards | NEET Learning Hub</title>
+
+<title>NEET AI Flashcards | V2</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050816">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 
 <body>
 
-<header>
-<div class="logo">🧠 Flashcards</div>
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo">
+<h2>🩺 NEET</h2>
+<span>Learning Hub</span>
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Dashboard</a>
+
+<a href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a class="active" href="flashcards.html">🃏 Flashcards</a>
+
+<a href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- Main -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>🃏 AI Flashcards</h2>
+
+<p>Memorize NEET concepts faster using AI flashcards.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
+
 </header>
 
-<section class="features">
+<section class="hero">
 
-<div class="feature-card">
+<div class="hero-left">
 
-<h2>Generate Flashcards</h2>
+<span class="hero-tag">
 
-<input
-type="text"
-id="flashInput"
-placeholder="Enter Topic">
+🧠 Smart Revision
 
-<button
-class="btn primary"
-onclick="generateFlashcards()">
-Generate Flashcards
-</button>
+</span>
 
-<div id="flashResult">
-Flashcards will appear here...
+<h1>
+
+Revise Faster with
+<span>AI Flashcards</span>
+
+</h1>
+
+<p>
+
+Generate instant flashcards for Biology, Chemistry and Physics to improve memory and revision speed.
+
+</p>
+
 </div>
-<div class="hero-buttons">
 
-<button class="btn secondary" onclick="prevCard()">
-⬅ Previous
-</button>
+<div class="hero-card">
 
-<button class="btn primary" onclick="flipCard()">
-🔄 Flip
-</button>
+<h3>🎯 Today's Goal</h3>
 
-<button class="btn secondary" onclick="nextCard()">
-Next ➡
-</button>
+<h2>100 Flashcards</h2>
 
-</div>  
+<p>
+
+✔ Biology<br>
+
+✔ Chemistry<br>
+
+✔ Physics
+
+</p>
 
 </div>
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- =========================
+FLASHCARD GENERATOR
+========================= -->
+
+<section class="continue">
+
+<h3>🃏 Generate AI Flashcards</h3>
+
+<p>
+
+Enter any NEET topic and generate smart revision flashcards instantly.
+
+</p>
+
+<input
+type="text"
+id="flashcardInput"
+placeholder="Example: Human Heart, Genetics, Thermodynamics">
+
+<div class="hero-buttons">
+
+<button
+class="btn primary"
+onclick="generateFlashcards(document.getElementById('flashcardInput').value)">
+
+🃏 Generate Flashcards
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('flashcardInput').value='Biology'">
+
+🧬 Biology
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('flashcardInput').value='Chemistry'">
+
+🧪 Chemistry
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('flashcardInput').value='Physics'">
+
+⚛ Physics
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is creating flashcards...</h3>
+
+<p>Please wait a few seconds.</p>
+
+</div>
+
+<!-- =========================
+OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>🃏 Your Flashcards</h3>
+
+<p>
+
+Your AI-generated flashcards will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK FLASHCARDS
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="document.getElementById('flashcardInput').value='Human Physiology'">
+
+<h3>❤️ Biology</h3>
+
+<p>Quick Revision Cards</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('flashcardInput').value='Organic Chemistry'">
+
+<h3>🧪 Chemistry</h3>
+
+<p>Reaction Flashcards</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('flashcardInput').value='Mechanics'">
+
+<h3>⚛ Physics</h3>
+
+<p>Formula Flashcards</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('flashcardInput').value='Genetics'">
+
+<h3>🧬 Genetics</h3>
+
+<p>High Yield Revision</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+POPULAR FLASHCARD TOPICS
+========================= -->
+
+<h2 class="section-title">
+
+🔥 Popular Flashcard Topics
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Human Heart'">
+
+❤️ Human Heart
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Photosynthesis'">
+
+🌿 Photosynthesis
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Chemical Bonding'">
+
+🧪 Chemical Bonding
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Thermodynamics'">
+
+🔥 Thermodynamics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Genetics'">
+
+🧬 Genetics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('flashcardInput').value='Laws of Motion'">
+
+⚛ Laws of Motion
+
+</div>
+
+</section>
+
+<!-- =========================
+BACK BUTTON
+========================= -->
+
+<div style="margin-top:35px;">
+
+<a href="index.html" class="btn secondary">
+
+🏠 Back to Dashboard
+
+</a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>AI Powered Flashcards</p>
+
+<p>Revise Faster • Remember Longer • Crack NEET 🚀</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
+
 <script src="app.js"></script>
 
 </body>
-</html>
+</html>  
