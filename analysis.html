@@ -1,68 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Weakness Analysis</title>
+
+<title>NEET AI Analysis | V2</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050816">
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 
 <body>
 
-<header>
-    <div class="logo">🧠 AI Weakness Analysis</div>
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🩺 NEET</h2>
+<span>Learning Hub</span>
+
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Dashboard</a>
+
+<a href="learn.html">📚 Learn</a>
+
+<a href="solve.html">🧠 Solve</a>
+
+<a href="mcq.html">🧬 MCQ</a>
+
+<a href="quiz.html">📝 Quiz</a>
+
+<a href="flashcards.html">🃏 Flashcards</a>
+
+<a class="active" href="analysis.html">📊 Analysis</a>
+
+<a href="dashboard.html">📈 Progress</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
+
+</aside>
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h2>📊 AI Performance Analysis</h2>
+
+<p>Discover your weak areas and get a personalized improvement plan.</p>
+
+</div>
+
+<button id="installBtn" class="install-btn">
+
+📲 Install App
+
+</button>
+
 </header>
 
 <section class="hero">
 
-<h1>Analyze Your Performance</h1>
+<div class="hero-left">
 
-<div class="feature-card">
+<span class="hero-tag">
 
-<input
-type="number"
-id="bioMarks"
-placeholder="Biology Marks (%)">
+📈 Smart Analysis
 
-<br><br>
+</span>
 
-<input
-type="number"
-id="chemMarks"
-placeholder="Chemistry Marks (%)">
+<h1>
 
-<br><br>
+Know Your
+<span>Weak Subjects</span>
 
-<input
-type="number"
-id="phyMarks"
-placeholder="Physics Marks (%)">
+with AI
 
-<br><br>
+</h1>
 
-<button
-class="btn primary"
-onclick="analyzePerformance()">
+<p>
 
-Analyze Now
+Analyze your NEET preparation and receive an AI-powered 7-day improvement strategy.
 
-</button>
+</p>
 
 </div>
 
-<div
-id="analysisResult"
-class="lesson-output">
+<div class="hero-card">
 
-Your AI Report will appear here...
+<h3>🎯 Goal</h3>
+
+<h2>Improve Every Week</h2>
+
+<p>
+
+✔ Identify weak topics<br>
+
+✔ Track progress<br>
+
+✔ Personalized strategy
+
+</p>
 
 </div>
 
 </section>
 
+<!-- =========================
+AI ANALYSIS PANEL
+========================= -->
+
+<section class="continue">
+
+<h3>📊 Analyze Your Performance</h3>
+
+<p>
+
+Describe your current preparation, weak subjects or recent test performance.
+
+</p>
+
+<textarea
+id="analysisInput"
+rows="6"
+placeholder="Example:
+I scored 520 marks.
+Weak in Physics numericals.
+Strong in Biology.
+Need a 7-day improvement plan.">
+</textarea>
+
+<div class="hero-buttons">
+
+<button
+class="btn primary"
+onclick="analyzePerformance(document.getElementById('analysisInput').value)">
+
+📊 Analyze Performance
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('analysisInput').value='Weak in Biology'">
+
+🧬 Biology
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('analysisInput').value='Weak in Chemistry'">
+
+🧪 Chemistry
+
+</button>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('analysisInput').value='Weak in Physics'">
+
+⚛ Physics
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+LOADING
+========================= -->
+
+<div
+id="loading"
+class="continue"
+style="display:none;">
+
+<h3>🤖 AI is analyzing your performance...</h3>
+
+<p>Please wait a few seconds.</p>
+
+</div>
+
+<!-- =========================
+OUTPUT
+========================= -->
+
+<section
+id="output"
+class="continue">
+
+<h3>📈 Analysis Report</h3>
+
+<p>
+
+Your AI-generated performance analysis will appear here.
+
+</p>
+
+</section>
+
+<!-- =========================
+QUICK ANALYSIS
+========================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card"
+onclick="document.getElementById('analysisInput').value='Weak in Human Physiology'">
+
+<h3>❤️ Biology Analysis</h3>
+
+<p>Find weak Biology topics</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('analysisInput').value='Weak in Organic Chemistry'">
+
+<h3>🧪 Chemistry Analysis</h3>
+
+<p>Reaction & Concept Review</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('analysisInput').value='Weak in Mechanics'">
+
+<h3>⚛ Physics Analysis</h3>
+
+<p>Numerical Improvement</p>
+
+</div>
+
+<div class="dashboard-card"
+onclick="document.getElementById('analysisInput').value='Need full NEET analysis'">
+
+<h3>🎯 Complete Analysis</h3>
+
+<p>Overall Performance Review</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+POPULAR ANALYSIS
+========================= -->
+
+<h2 class="section-title">
+
+🔥 Popular Analysis Templates
+
+</h2>
+
+<section class="subjects">
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Weak in Human Heart'">
+
+❤️ Human Heart
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Weak in Photosynthesis'">
+
+🌿 Photosynthesis
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Weak in Chemical Bonding'">
+
+🧪 Chemical Bonding
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Weak in Thermodynamics'">
+
+🔥 Thermodynamics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Weak in Genetics'">
+
+🧬 Genetics
+
+</div>
+
+<div class="subject"
+onclick="document.getElementById('analysisInput').value='Need Complete NEET Analysis'">
+
+📊 Full Analysis
+
+</div>
+
+</section>
+
+<!-- =========================
+BACK BUTTON
+========================= -->
+
+<div style="margin-top:35px;">
+
+<a href="index.html" class="btn secondary">
+
+🏠 Back to Dashboard
+
+</a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>🩺 NEET Learning Hub</h2>
+
+<p>AI Powered Performance Analysis</p>
+
+<p>Analyze • Improve • Crack NEET 🚀</p>
+
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="auth.js"></script>
+
 <script src="app.js"></script>
 
 </body>
-</html>
+</html>    
