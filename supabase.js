@@ -13,5 +13,5 @@ window.db = db;
 
 
 console.log("✅ Supabase Connected");
-alert("Supabase Loaded");
+
 console.log(window.db);
