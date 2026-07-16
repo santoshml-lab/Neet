@@ -15,3 +15,4 @@ window.db = db;
 console.log("✅ Supabase Connected");
 
 console.log(window.db);
+
