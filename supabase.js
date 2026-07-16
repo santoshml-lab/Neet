@@ -6,7 +6,7 @@ const { createClient } = supabase;
 
 const db = createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_ANON_KEY
 );    
     
 window.db = db;
