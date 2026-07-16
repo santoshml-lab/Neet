@@ -6,7 +6,7 @@
 // Supabase Client
 const supabase = window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE__KEY
+    SUPABASE_KEY
 );
 
 // Toggle Password
