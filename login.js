@@ -94,9 +94,9 @@ alert("❌ "+err.message);
 
 }
 
-/* ===========================
-Forgot Password
-=========================== */
+
+
+
 
 async function forgotPassword(){
 
@@ -124,9 +124,9 @@ alert("❌ "+err.message);
 
 }
 
-/* ===========================
-Auto Login Check
-=========================== */
+
+
+
 
 window.addEventListener("load",async()=>{
 
@@ -140,9 +140,9 @@ window.location.href="index.html";
 
 });
 
-/* ===========================
-Auth State Change
-=========================== */
+
+
+
 
 supabase.auth.onAuthStateChange((event,session)=>{
 
@@ -160,9 +160,9 @@ console.log("🚪 User Signed Out");
 
 });
 
-/* ===========================
-Logout Helper
-=========================== */
+
+
+
 
 async function logout(){
 
