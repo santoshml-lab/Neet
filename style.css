@@ -1176,6 +1176,15 @@ background:linear-gradient(
 /* ===========================
 End
 =========================== */
+.sidebar{
+    color:white !important;
+}
+
+.sidebar *{
+    color:white !important;
+    opacity:1 !important;
+    visibility:visible !important;
+}
 
 
 
