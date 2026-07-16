@@ -2,6 +2,7 @@
    LOGIN.JS
    PART 1
 ========================================== */
+
 alert("login.js loaded");
 
 // Supabase Client
