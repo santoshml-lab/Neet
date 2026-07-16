@@ -1,97 +1,66 @@
-// ===============================
-// LOGIN.JS
-// ===============================
 
-const supabase = window.db;
+const loginForm = document.getElementById("loginForm");
 
-document.addEventListener("DOMContentLoaded", () => {
+if (loginForm) {
 
-    const form = document.getElementById("loginForm");
+loginForm.addEventListener("submit", async (e) => {
 
-    form.addEventListener("submit", async (e) => {
+e.preventDefault();
 
-        e.preventDefault();
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+const { data, error } = await db.auth.signInWithPassword({
 
-        const button = document.querySelector(".login-btn");
-
-        button.disabled = true;
-        button.innerHTML = "⏳ Logging in...";
-
-        try {
-
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-
-            if (error) throw error;
-
-            alert("✅ Login Successful");
-
-            window.location.href = "index.html";
-
-        } catch (err) {
-
-            alert("❌ " + err.message);
-
-        } finally {
-
-            button.disabled = false;
-            button.innerHTML = "🚀 Login";
-
-        }
-
-    });
+email: email,
+password: password
 
 });
 
-// Toggle Password
-function togglePassword() {
+if (error) {
 
-    const password = document.getElementById("password");
+alert("❌ " + error.message);
+return;
 
-    password.type =
-        password.type === "password" ? "text" : "password";
+}
+
+alert("✅ Login Successful");
+
+window.location.href = "index.html";
+
+});
 
 }
 
 // Google Login
-async function googleLogin() {
+const googleBtn = document.querySelector(".google-btn");
 
-    const { error } = await supabase.auth.signInWithOAuth({
+if (googleBtn) {
 
-        provider: "google",
+googleBtn.addEventListener("click", async () => {
 
-        options: {
-            redirectTo: window.location.origin + "/index.html"
-        }
+const { error } = await db.auth.signInWithOAuth({
 
-    });
+provider: "google"
 
-    if (error) alert(error.message);
+});
+
+if (error) {
+
+alert(error.message);
 
 }
 
-// Forgot Password
-async function forgotPassword() {
+});
 
-    const email = prompt("Enter your registered email");
+}
 
-    if (!email) return;
+// Show Password
+function togglePassword() {
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email);
+const password = document.getElementById("password");
 
-    if (error) {
-
-        alert(error.message);
-
-    } else {
-
-        alert("✅ Password reset email sent.");
-
-    }
+password.type =
+password.type === "password" ? "text" : "password";
 
 }
